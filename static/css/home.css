@@ -1,6 +1,28 @@
-.navbar {
-  background-color: #F57C00;
+.navbar-orange {
+	background-color: #F57C00;
 }
 .navbar-brand {
-  color: white;
+	color: white;
+}
+.navbar-nav .nav-link {
+	color: white;
+}
+.navbar-nav .nav-link i {
+	color: white;
+}
+.searchBoxContainer {
+	border-radius: 10px;
+	background-color: white;
+}
+.search {
+	border: none !important;
+}
+.search:focus {
+	box-shadow: 0 0 0 0;
+	border: 0 none;
+	outline: 0;
+}
+.navbar-grey {
+	background-color: #4A4A4A;
+	color: white;
 }
