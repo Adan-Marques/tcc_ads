@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from home import views 
+from django.contrib.auth.views import PasswordResetConfirmView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,4 +25,5 @@ urlpatterns = [
     path('esqueci/', views.esqueci, name='esqueci'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('logout/', views.logout_view, name='logout'),
+    path('password_reset_confirm/<uidb64>/<token>/', PasswordResetConfirmView.as_view(template_name='registration/password_reset_confirm.html', success_url='/accounts/login/'), name='password_reset_confirm')
 ]
