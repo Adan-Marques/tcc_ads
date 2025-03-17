@@ -26,3 +26,30 @@
 	background-color: #4A4A4A;
 	color: white;
 }
+
+body {
+	background-color: #f8f9fa;
+}
+.form-container {
+	max-width: 400px;
+	margin: 50px auto;
+	background: #fff;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.nav-tabs .nav-link {
+	color: #000;
+}
+.nav-tabs .nav-link.active {
+	font-weight: bold;
+	color: #ff9800;
+	border-bottom: 2px solid #ff9800;
+}
+.btn-custom {
+	background-color: #ff9800;
+	color: #fff;
+}
+.btn-custom:hover {
+	background-color: #e68900;
+}

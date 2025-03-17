@@ -9,6 +9,5 @@ def home(request):
 def logout_view(request):
     return logout_then_login(request)
 
-def esqueci(request):
-    #default_token_generator
-    return render(request, 'esqueci.html')
+def cadastro(request):
+    return render(request, 'cadastro.html')
