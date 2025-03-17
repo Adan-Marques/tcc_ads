@@ -1,3 +1,28 @@
 from django.shortcuts import render
+from .models import User
 
-# Create your views here.
+def login(request):
+    print("entrou em login")    
+    if request.method == 'POST':
+        email = request.POST.get('emailLogin')
+        senha = request.POST.get('senhaLogin')
+
+        usuario = auth.authenticate(
+                request,
+                username = "teste",
+                email = email,
+                password = senha
+                )
+        auth.login(request, usuario)
+        print("logado")
+
+    return render(request, 'login.html')
+
+
+'''
+def cadastrar(resquest):
+    user = User()
+    nome = request.POST.get('nome')
+    senha = request.POST.get('senha')
+    '''
+
