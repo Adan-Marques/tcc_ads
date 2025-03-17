@@ -1,41 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from users.models import User
-from django.contrib import auth
-from django.contrib.auth import authenticate, login
-from django.contrib.auth import logout
+from django.contrib.auth.views import logout_then_login
 
 def home(request):
     return render(request, 'home.html')
 
-
-# corrigir
-def login(request):
-    if request.method == 'GET':
-        print("entrou em get")
-    if request.method == 'POST':
-        print("entrou em post")
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-
-        usuario = authenticate(
-                request,
-                username = username,
-                password = password
-                )
-        if usuario is not None:
-            auth.login(request, usuario)
-            print("logado")
-        else:
-            print("algo deu errado")
-            print(username)
-            print(password)
-
-    return render(request, 'login.html')
-
 def logout_view(request):
-    logout(request)
-    return render(request, 'registration/login.html')
+    return logout_then_login(request)
 
 def esqueci(request):
     return render(request, 'esqueci.html')
