@@ -46,6 +46,15 @@
                             <a href="./cadastro">Criar conta</a>
                         </div>
                     </div>
+				{% if request.user.is_authenticated %}
+				<div class="mx-auto">
+					<h1> Você está logado! </h1>
+					<form method="POST" action="{% url 'logout' %}">
+    						{% csrf_token %}
+    						<button type="submit">logout</button>
+					</form>
+				</div>
+				{% endif %}
                 </div>
             </div>
         </div>

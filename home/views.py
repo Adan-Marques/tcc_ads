@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from users.models import User
 from django.contrib import auth
 from django.contrib.auth import authenticate, login
+from django.contrib.auth import logout
 
 def home(request):
     return render(request, 'home.html')
@@ -31,6 +32,10 @@ def login(request):
             print(password)
 
     return render(request, 'login.html')
+
+def logout_view(request):
+    logout(request)
+    return render(request, 'registration/login.html')
 
 def esqueci(request):
     return render(request, 'esqueci.html')

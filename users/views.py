@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import User
+from django.contrib.auth import logout
 
 def login(request):
     print("entrou em login")    
@@ -18,6 +19,9 @@ def login(request):
 
     return render(request, 'login.html')
 
+def logout(request):
+    logout(request)
+    return render(request, 'login.html')
 
 '''
 def cadastrar(resquest):
