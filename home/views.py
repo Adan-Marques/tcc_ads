@@ -15,11 +15,14 @@ def cadastro(request):
     if request.method == 'POST':
         user.cpf = request.POST.get('cpf')
         user.first_name = request.POST.get('nome')
+        user.username = request.POST.get('nome')
+        user.email = request.POST.get('email')
         user.last_name = request.POST.get('sobrenome')
         user.telefone = request.POST.get('telefone')
         user.endereco = request.POST.get('endereco')
-        user.password = request.POST.get('senha')
-        user.set_password(user.password)
+        senha = request.POST.get('password')
+        if senha:
+            user.set_password(senha)
         user.save()
 
     return render(request, 'cadastro.html')
