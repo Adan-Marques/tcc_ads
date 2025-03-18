@@ -29,32 +29,33 @@
             <!-- FORMULARIO DA PESSOA --> 
             <div class="tab-content mt-3">
                 <div class="tab-pane fade show active" id="pessoal">
-                    <form>
+                    <form method='POST'>
+			{% csrf_token %}
                         <div class="mb-3">
-                            <input type="text" class="form-control" placeholder="CPF ou CNPJ">
+                            <input name="cpf" type="text" class="form-control" placeholder="CPF ou CNPJ">
                         </div>
                         <div class="row mb-3">
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="Nome">
+                                <input name="nome" type="text" class="form-control" placeholder="Nome">
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="Sobre Nome">
+                                <input name="sobrenome" type="text" class="form-control" placeholder="Sobrenome">
                             </div>
                         </div>
                         <div class="mb-3">
                             <select class="form-select">
                                 <option selected>+55</option>
                             </select>
-                            <input type="text" class="form-control mt-2" placeholder="Celular">
+                            <input name="telefone" type="text" class="form-control mt-2" placeholder="Celular">
                         </div>
                         <div class="mb-3">
-                            <input type="text" class="form-control" placeholder="Endereço">
+                            <input name="endereco" type="text" class="form-control" placeholder="Endereço">
                         </div>
                         <div class="mb-3">
-                            <input type="email" class="form-control" placeholder="Email">
+                            <input name="email" type="email" class="form-control" placeholder="Email">
                         </div>
                         <div class="mb-3">
-                            <input type="password" class="form-control" placeholder="Senha (min 8 caracteres)">
+                            <input name="password" type="password" class="form-control" placeholder="Senha (min 8 caracteres)">
                         </div>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input">
@@ -67,16 +68,17 @@
                 </div>
                 <!-- FORMULARIO DO PROFISSIONAL-->
                 <div class="tab-pane fade" id="profissional">
-                    <form>
+                    <form method='POST'>
+			    {% csrf_token %}
                         <div class="mb-3">
-                            <input type="text" class="form-control" placeholder="CPF ou CNPJ">
+                            <input name="cpf" type="text" class="form-control" placeholder="CPF ou CNPJ">
                         </div>
                         <div class="row mb-3">
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="Nome">
+                                <input name="name" type="text" class="form-control" placeholder="Nome">
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="Sobre Nome">
+                                <input name="sobrenome" type="text" class="form-control" placeholder="Sobrenome">
                             </div>
                         </div>
                         <div class="mb-3">
@@ -88,16 +90,16 @@
                             <select class="form-select">
                                 <option selected>+55</option>
                             </select>
-                            <input type="text" class="form-control mt-2" placeholder="Celular">
+                            <input nome="telefone" type="text" class="form-control mt-2" placeholder="Celular">
                         </div>
                         <div class="mb-3">
-                            <input type="text" class="form-control" placeholder="Endereço">
+                            <input name="endereco" type="text" class="form-control" placeholder="Endereço">
                         </div>
                         <div class="mb-3">
-                            <input type="email" class="form-control" placeholder="Email">
+                            <input name="email" type="email" class="form-control" placeholder="Email">
                         </div>
                         <div class="mb-3">
-                            <input type="password" class="form-control" placeholder="Senha (min 8 caracteres)">
+                            <input name="senha" type="password" class="form-control" placeholder="Senha (min 8 caracteres)">
                         </div>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input">
