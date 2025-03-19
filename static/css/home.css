@@ -53,3 +53,64 @@ body {
 .btn-custom:hover {
 	background-color: #e68900;
 }
+
+.card {
+	width: 600px;
+	height: 600px;
+	border-radius: 12px;
+	padding: 30px 20px;
+	background: white;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+	border: none;
+	text-align: center;
+}
+
+.title {
+	font-weight: bold;
+	color: #FF9800;
+	font-size: 20px;
+	margin-bottom: 8px;
+}
+
+.subtitle {
+	font-size: 16px;
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+
+.input-group {
+	position: relative;
+	width: 100%;
+}
+
+.input-group input {
+	width: 100%;
+	padding: 8px;
+	padding-right: 40px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+}
+
+.input-group .toggle-password {
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
+	color: #777;
+}
+
+.btn-warning {
+	width: 100%;
+	color:#F3F3F3;
+	font-weight: bold;
+	border-radius: 6px;
+	background-color: #FF9800;
+	border: none;
+	padding: 8px;
+	font-size: 14px;
+}
+
+.btn-warning:hover {
+	background-color: #e68900;
+}

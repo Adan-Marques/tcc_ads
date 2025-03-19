@@ -3,7 +3,7 @@ from .models import User
 from django.contrib.auth import logout
 
 def login(request):
-    print("entrou em login")    
+    print("entrou em login")
     if request.method == 'POST':
         email = request.POST.get('emailLogin')
         senha = request.POST.get('senhaLogin')
@@ -16,7 +16,7 @@ def login(request):
                 )
         auth.login(request, usuario)
         print("logado")
-
+    
     return render(request, 'login.html')
 
 def logout(request):
