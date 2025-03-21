@@ -1,32 +1,26 @@
 from django.shortcuts import render
 from .models import User
-from django.contrib.auth import logout
+from django.contrib.auth.views import logout_then_login
 
-def login(request):
-    print("entrou em login")
-    if request.method == 'POST':
-        email = request.POST.get('emailLogin')
-        senha = request.POST.get('senhaLogin')
+def logout_view(request):
+    print("passou pelo logout_view")
+    return logout_then_login(request)
 
-        usuario = auth.authenticate(
-                request,
-                username = "teste",
-                email = email,
-                password = senha
-                )
-        auth.login(request, usuario)
-        print("logado")
-    
-    return render(request, 'login.html')
-
-def logout(request):
-    logout(request)
-    return render(request, 'login.html')
-
-'''
-def cadastrar(resquest):
+def cadastro(request):
     user = User()
-    nome = request.POST.get('nome')
-    senha = request.POST.get('senha')
-    '''
+
+    if request.method == 'POST':
+        user.cpf = request.POST.get('cpf')
+        user.first_name = request.POST.get('nome')
+        user.username = request.POST.get('nome')
+        user.email = request.POST.get('email')
+        user.last_name = request.POST.get('sobrenome')
+        user.telefone = request.POST.get('telefone')
+        user.endereco = request.POST.get('endereco')
+        senha = request.POST.get('password')
+        if senha:
+            user.set_password(senha)
+        user.save()
+
+    return render(request, 'cadastro.html')
 
