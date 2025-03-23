@@ -1,102 +1,103 @@
 {% extends 'base.html' %}
 {% block body %}
 <div class="container">
-        <div class="form-container">
-            <h2 class="text-center">WorkExpress</h2>
-            <ul class="nav nav-tabs justify-content-center" id="tabMenu">
-                <li class="nav-item">
-                    <a class="nav-link active" data-bs-toggle="tab" href="#pessoal">Pessoal</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="tab" href="#profissional">Profissional</a>
-                </li>
-            </ul>
-            <!-- FORMULARIO DA PESSOA --> 
-            <div class="tab-content mt-3">
-                <div class="tab-pane fade show active" id="pessoal">
-                    <form method='POST'>
-			{% csrf_token %}
-                        <div class="mb-3">
-                            <input name="cpf" type="text" class="form-control" placeholder="CPF ou CNPJ">
+    <div class="form-container">
+        <h2 class="text-center">WorkExpress</h2>
+        <ul class="nav nav-tabs justify-content-center" id="tabMenu">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#pessoal">Pessoal</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#profissional">Profissional</a>
+            </li>
+        </ul>
+        <!-- FORMULARIO DA PESSOA FISICA-->
+        <div class="tab-content mt-3">
+            <div class="tab-pane fade show active" id="pessoal">
+                <form method='POST'>
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <input name="cpf" type="text" class="form-control" placeholder="CPF ou CNPJ">
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <input name="nome" type="text" class="form-control" placeholder="Nome">
                         </div>
-                        <div class="row mb-3">
-                            <div class="col">
-                                <input name="nome" type="text" class="form-control" placeholder="Nome">
-                            </div>
-                            <div class="col">
-                                <input name="sobrenome" type="text" class="form-control" placeholder="Sobrenome">
-                            </div>
+                        <div class="col">
+                            <input name="sobrenome" type="text" class="form-control" placeholder="Sobrenome">
                         </div>
-                        <div class="mb-3">
-                            <select class="form-select">
-                                <option selected>+55</option>
-                            </select>
-                            <input name="telefone" type="text" class="form-control mt-2" placeholder="Celular">
+                    </div>
+                    <div class="mb-3">
+                        <select class="form-select">
+                            <option selected>+55</option>
+                        </select>
+                        <input name="telefone" type="text" class="form-control mt-2" placeholder="Celular">
+                    </div>
+                    <div class="mb-3">
+                        <input name="endereco" type="text" class="form-control" placeholder="Endereço">
+                    </div>
+                    <div class="mb-3">
+                        <input name="email" type="email" class="form-control" placeholder="Email">
+                    </div>
+                    <div class="mb-3">
+                        <input name="password" type="password" class="form-control"
+                            placeholder="Senha (min 8 caracteres)">
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input">
+                        <label class="form-check-label">Li e concordo com os termos, condições e <a href="#">Políticas
+                                de privacidade</a>.</label>
+                    </div>
+                    <button type="submit" class="btn btn-custom w-100">Inscreva-se</button>
+                    <p class="text-center mt-3">Já tem uma conta? <a href="{%  url 'login'  %}">Entrar</a></p>
+                </form>
+            </div>
+            <!-- FORMULARIO DO PROFISSIONAL-->
+            <div class="tab-pane fade" id="profissional">
+                <form method='POST'>
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <input name="cpf" type="text" class="form-control" placeholder="CPF ou CNPJ">
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <input name="name" type="text" class="form-control" placeholder="Nome">
                         </div>
-                        <div class="mb-3">
-                            <input name="endereco" type="text" class="form-control" placeholder="Endereço">
+                        <div class="col">
+                            <input name="sobrenome" type="text" class="form-control" placeholder="Sobrenome">
                         </div>
-                        <div class="mb-3">
-                            <input name="email" type="email" class="form-control" placeholder="Email">
-                        </div>
-                        <div class="mb-3">
-                            <input name="password" type="password" class="form-control" placeholder="Senha (min 8 caracteres)">
-                        </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input">
-                            <label class="form-check-label">Li e concordo com os termos, condições e <a
-                                    href="#">Políticas de privacidade</a>.</label>
-                        </div>
-                        <button type="submit" class="btn btn-custom w-100">Inscreva-se</button>
-                        <p class="text-center mt-3">Já tem uma conta? <a href="{%  url 'login'  %}">Entrar</a></p>
-                    </form>
-                </div>
-                <!-- FORMULARIO DO PROFISSIONAL-->
-                <div class="tab-pane fade" id="profissional">
-                    <form method='POST'>
-			    {% csrf_token %}
-                        <div class="mb-3">
-                            <input name="cpf" type="text" class="form-control" placeholder="CPF ou CNPJ">
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col">
-                                <input name="name" type="text" class="form-control" placeholder="Nome">
-                            </div>
-                            <div class="col">
-                                <input name="sobrenome" type="text" class="form-control" placeholder="Sobrenome">
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <select class="form-select">
-                                <option selected>Especialidades</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <select class="form-select">
-                                <option selected>+55</option>
-                            </select>
-                            <input nome="telefone" type="text" class="form-control mt-2" placeholder="Celular">
-                        </div>
-                        <div class="mb-3">
-                            <input name="endereco" type="text" class="form-control" placeholder="Endereço">
-                        </div>
-                        <div class="mb-3">
-                            <input name="email" type="email" class="form-control" placeholder="Email">
-                        </div>
-                        <div class="mb-3">
-                            <input name="senha" type="password" class="form-control" placeholder="Senha (min 8 caracteres)">
-                        </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input">
-                            <label class="form-check-label">Li e concordo com os termos, condições e <a
-                                    href="#">Políticas de privacidade</a>.</label>
-                        </div>
-                        <button type="submit" class="btn btn-custom w-100">Inscreva-se</button>
-                        <p class="text-center mt-3">Já tem uma conta? <a href="{%  url 'login'  %}">Entrar</a>
-                        </p>
-                    </form>
-                </div>
+                    </div>
+                    <div class="mb-3">
+                        <select class="form-select">
+                            <option selected>Especialidades</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <select class="form-select">
+                            <option selected>+55</option>
+                        </select>
+                        <input nome="telefone" type="text" class="form-control mt-2" placeholder="Celular">
+                    </div>
+                    <div class="mb-3">
+                        <input name="endereco" type="text" class="form-control" placeholder="Endereço">
+                    </div>
+                    <div class="mb-3">
+                        <input name="email" type="email" class="form-control" placeholder="Email">
+                    </div>
+                    <div class="mb-3">
+                        <input name="senha" type="password" class="form-control" placeholder="Senha (min 8 caracteres)">
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input">
+                        <label class="form-check-label">Li e concordo com os termos, condições e <a href="#">Políticas
+                                de privacidade</a>.</label>
+                    </div>
+                    <button type="submit" class="btn btn-custom w-100">Inscreva-se</button>
+                    <p class="text-center mt-3">Já tem uma conta? <a href="{%  url 'login'  %}">Entrar</a>
+                    </p>
+                </form>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
