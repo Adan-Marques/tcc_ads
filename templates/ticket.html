@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar: Tickets em Andamento -->
+            <div class="col-md-2 sidebar">
+                <h5 class="text-center">Tickets em Andamento</h5>
+                <div class="ticket-list">
+                    <div class=" text-center border p-2 my-2 ticket-box">
+                        <p><strong>Nº TICKET 00000000-00</strong></p>
+                        <p>DATA: 21/02/2025</p>
+                        <p>STATUS: EM ABERTO</p>
+                    </div>
+                    <div class="text-center border p-2 my-2 ticket-box">
+                        <p><strong>Nº TICKET 00000000-00</strong></p>
+                        <p>DATA: 21/02/2025</p>
+                        <p>STATUS: EM ABERTO</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Formulário de Abertura de Ticket -->
+            <div class="col-md-6 p-4 content-container">
+                <div class="card p-4">
+                    <h4> <i class="fa-solid fa-pen"></i>  Abertura de Novo Ticket</h4>
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Serviço</label>
+                            <select class="form-select">
+                                <option selected>Selecione um tipo de trabalho</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Data</label>
+                            <input type="date" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Região</label>
+                            <select class="form-select">
+                                <option selected>Selecione a região onde o serviço será executado</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Fotos</label>
+                            <input type="file" class="form-control" multiple>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Nota</label>
+                            <textarea class="form-control" rows="3" placeholder="Insira informações adicionais sobre o serviço"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-warning w-100">Adicionar</button>
+                    </form>
+                </div>
+                
+                <!-- Resumo do Ticket -->
+                <div class="card p-4 mt-4">
+                    <h4> <i class="fa-solid fa-wrench"></i>   Resumo do Ticket</h4>
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Serviço</label>
+                                <input type="text" class="form-control" disabled>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Início</label>
+                                <input type="date" class="form-control" disabled>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Fim (previsão)</label>
+                                <input type="date" class="form-control" disabled>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Região</label>
+                                <input type="text" class="form-control" disabled>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Fotos</label>
+                            <div class="d-flex gap-2">
+                                <img src="https://via.placeholder.com/50" class="img-thumbnail" alt="foto">
+                                <img src="https://via.placeholder.com/50" class="img-thumbnail" alt="foto">
+                                <img src="https://via.placeholder.com/50" class="img-thumbnail" alt="foto">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Nota</label>
+                            <textarea class="form-control" rows="3" disabled></textarea>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-warning flex-fill">Confirmar</button>
+                            <button type="button" class="btn btn-secondary flex-fill">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

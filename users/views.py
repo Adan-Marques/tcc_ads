@@ -24,3 +24,5 @@ def cadastro(request):
 
     return render(request, 'cadastro.html')
 
+def ticket(request):
+    return render(request, 'ticket.html')

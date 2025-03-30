@@ -318,7 +318,7 @@ body {
 .hero-section {
 	background-image: url('/static/images/1.jpg');
     background-size: cover;
-    height: 700px; /* Ajuste a altura conforme necessário */
+    height: 700px; 
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -413,4 +413,47 @@ body {
     width: 70%; 
     height: 180px; 
     object-fit: cover;
+}
+body {
+	background-color: #f5f5f5;
+}
+.sidebar {
+	height: 100vh;
+	background-color: #fff;
+	padding: 20px;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.ticket-box {
+	width: 100%;
+	max-width: 280px;
+	text-align: center;
+	padding: 10px;
+	background-color: #f8f9fa;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.ticket-list {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+}
+.btn-warning {
+	background-color: #ff9800;
+	border-color: #ff9800;
+}
+.btn-warning:hover {
+	background-color: #e68900;
+	border-color: #e68900;
+}
+.content-container {
+	max-width: 600px;
+	margin: auto;
+}
+.ticket-list {
+	margin: 0;
+	text-align: center;
 }
