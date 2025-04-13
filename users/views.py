@@ -18,6 +18,7 @@ def cadastro(request):
         user.telefone = request.POST.get('telefone')
         user.endereco = request.POST.get('endereco')
         senha = request.POST.get('password')
+        type_user = request.POST.get('type')
         if senha:
             user.set_password(senha)
         user.save()

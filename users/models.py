@@ -9,7 +9,7 @@ TYPE_CHOICE =  [
         
 
 class User(AbstractUser):
-    type_user = models.CharField(max_length=2, choices=TYPE_CHOICE, default="C")
+    type_user = models.CharField(max_length=1, choices=TYPE_CHOICE, default="C")
     cpf = models.CharField(max_length=12)
     telefone = models.CharField(max_length=12)
 
