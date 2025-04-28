@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .models import User
 from django.contrib.auth.views import logout_then_login
+from django.contrib.auth.decorators import login_required
+
 
 def logout_view(request):
     print("passou pelo logout_view")
@@ -18,12 +20,20 @@ def cadastro(request):
         user.telefone = request.POST.get('telefone')
         user.endereco = request.POST.get('endereco')
         senha = request.POST.get('password')
-        type_user = request.POST.get('type')
+        user.type_user = request.POST.get('type')
         if senha:
             user.set_password(senha)
         user.save()
 
     return render(request, 'cadastro.html')
 
+@login_required
 def ticket(request):
+    if request.user.type_user == 'P':
+        return render(request, 'home.html')
     return render(request, 'ticket.html')
+
+
+
+
+

@@ -15,7 +15,7 @@ CATEGORY_CHOICE = [
         ("VI", "Vidracaria"),
         ("MA", "Marcenaria"),
         ("FR", "Freteiro"),
-        ("MO","Montagem"),
+        ("MO", "Montagem"),
         ("EL", "Eletrica")
         ]
 
