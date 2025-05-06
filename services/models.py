@@ -1,5 +1,7 @@
 from django.db import models
-from users.models import User
+from users.models import User, Endereco
+from django.utils import timezone
+
 
 STATUS_CHOICE = [
         ("A", "Aberto"),
@@ -23,9 +25,9 @@ class TicketServico(models.Model):
     status = models.CharField(max_length=1, choices=STATUS_CHOICE, default="C")
     solicitante = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     categoria = models.CharField(max_length=2, choices=CATEGORY_CHOICE, default="RE")
-    dataCriacao = models.DateField()
+    dataCriacao = models.DateTimeField(default=timezone.now)
     descricao = models.TextField()
-
+    endereco = models.ForeignKey(Endereco, on_delete=models.SET_NULL, null=True)
 
 
 

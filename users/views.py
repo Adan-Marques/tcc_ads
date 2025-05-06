@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import User
 from django.contrib.auth.views import logout_then_login
 from django.contrib.auth.decorators import login_required
-
+from django.http import HttpResponse
 
 def logout_view(request):
     print("passou pelo logout_view")
@@ -30,7 +30,8 @@ def cadastro(request):
 @login_required
 def ticket(request):
     if request.user.type_user == 'P':
-        return render(request, 'home.html')
+        #TODO refactor
+        return HttpResponse('*Fazer uma paǵina 404*')
     return render(request, 'ticket.html')
 
 

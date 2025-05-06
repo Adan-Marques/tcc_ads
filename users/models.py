@@ -14,5 +14,15 @@ class User(AbstractUser):
     telefone = models.CharField(max_length=12)
 
 
-
+class Endereco(models.Model):
+    numero = models.CharField(max_length=20)
+    cep = models.CharField(max_length=20)
+    bairro = models.CharField(max_length=20)
+    cidade = models.CharField(max_length=20)
+    estado = models.CharField(max_length=20)
+    logradouro = models.CharField(max_length=20)
+    complemento = models.CharField(max_length=20)
+    referencia = models.CharField(max_length=20)
+    pais = models.CharField(max_length=20)
+    tipo = models.CharField(max_length=20)
 
