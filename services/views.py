@@ -1,15 +1,19 @@
 from django.shortcuts import render
-from .models import Ticket
+from .models import TicketServico
 
 # Fazer o cadastro de ticket
 
 def cadastroTicket(request):
-    ticket = Ticket()
-    
+    ticket = TicketServico()
+    # TODO: corrigir isso
+    from users.models import Endereco
+    from users.models import User
+
     if request.method == 'POST':
         ticket.status = "A"
-        ticket.solicitante = request.POST.get()
-        ticket.categoria = request.POST.get()
-        ticket.descricao = request.POST.get()
+        ticket.solicitante = User.objects.all()[0]
+        ticket.categoria = "VI"
+        ticket.descricao = request.POST.get('descricao')
+        ticket.endereco = Endereco.objects.all()[0]
         ticket.save()
     return render(request, 'ticket.html')

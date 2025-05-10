@@ -1,5 +1,5 @@
 from django.urls import path
-from service import views
+from services import views
 
 urlpatterns = [
     path('cadastroticket/', views.cadastroTicket, name='cadastroticket'),
