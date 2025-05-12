@@ -27,8 +27,8 @@
                     {% csrf_token %}
                     <div class="mb-3">
                         <label class="form-label">Serviço</label>
-                        <select class="form-select">
-                            <option selected>Selecione um tipo de trabalho</option>
+                        <select name="categoria" class="form-select">
+			    <option value="" selected disabled>Selecione um tipo de trabalho</option>
                             <option value="ES">Escoamento</option>
                             <option value="PI">Pintura</option>
                             <option value="RE">Reforma</option>
