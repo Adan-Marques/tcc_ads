@@ -5,7 +5,6 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 
 def logout_view(request):
-    print("passou pelo logout_view")
     return logout_then_login(request)
 
 def cadastro(request):
