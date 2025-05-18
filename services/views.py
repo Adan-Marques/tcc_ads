@@ -26,7 +26,7 @@ def cadastroTicket(request):
         ticket.descricao = request.POST.get('descricao')
         ticket.endereco = endereco
         ticket.save()
-    return render(request, 'ticket.html')
+    return render(request, 'cliente/ticket.html')
 
 
 

@@ -26,12 +26,13 @@ def cadastro(request):
 
     return render(request, 'cadastro.html')
 
+#TODO: REMOVER
 @login_required
 def ticket(request):
     if request.user.type_user == 'P':
         #TODO refactor
         return HttpResponse('*Fazer uma paǵina 404*')
-    return render(request, 'ticket.html')
+    return render(request, 'cliente/ticket.html')
 
 
 @login_required
@@ -39,13 +40,13 @@ def ticketUsuario(request):
     #if request.user.type_user == 'P':
         #TODO refactor
         #return HttpResponse('*Fazer uma paǵina 404*')
-    return render(request, 'ticketUsuario.html')
+    return render(request, 'cliente/ticketUsuario.html')
 
 def ticketPrestador(request):
     #if request.user.type_user == 'P':
         #TODO refactor
         #return HttpResponse('*Fazer uma paǵina 404*')
-    return render(request, 'ticketPrestador.html')
+    return render(request, 'prestador/ticketPrestador.html')
 
 
 
