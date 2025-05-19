@@ -1,37 +1,6 @@
-{% extends 'base.html' %}
+{% extends 'cliente/base_cliente.html' %}
 {% block body %}
     <div class="container my-4">
-        <div class="container mt-4">
-            <nav class="navbar-menu d-flex align-items-center justify-content-between px-4 py-3">
-                <h3>
-                    <div class="logo fw-bold fs-4">
-                        <h2>WorkExpress</h2>
-                    </div>
-                </h3>
-                <ul class="nav gap-4 align-items-center mb-0">
-                    <li class="nav-item">
-                        <a class="nav-link nav-menu-link" href="#" style="color: black;">
-                            Todos os serviços </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-menu-link" href="{%  url 'home'  %}" style="color: black;">
-                            <i class="fa-solid fa-house"></i>
-                            Inicio </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-menu-link" href="#" style="color: black;">
-                            <i class="fa-solid fa-list-ul" style="margin-right: 5px;"></i> Meus chamados
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-menu-link" href="" style="color: black;">
-                            <i class="fa-regular fa-circle-user" style="margin-right: 5px;"></i> Spozzato Melo
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            </nav>
-        </div>
         <!-- Voltar -->
         <a href="{%  url 'ticketUsuario'  %}" class="text-decoration-none mb-3 d-block">&larr; Voltar</a>
         <!-- Título -->

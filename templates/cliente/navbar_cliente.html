@@ -1,13 +1,34 @@
-<header class="navbar navbar-expand-lg p-3 shadow-sm">
-	<div class="container">
-		<a class="navbar-brand" href="#">
-			<h3>WorkExpress</h3>
-		</a>
-		<div class="collapse navbar-collapse justify-content-end d-flex gap-4">
-			<a class="nav-link" href="#">Saiba mais</a>
-			<a class="nav-link " href="{% url 'cadastro' %}">navbar cliente</a>
-			<a class="nav-link " href="{% url 'login'  %}"> <i class="fa-regular fa-circle-user"></i> Entrar</a>
+<header class="navbar navbar-expand shadow-sm">
+	<div class="container my-1">
+		<div class="container py-2">
+			<nav class="navbar-menu d-flex align-items-center justify-content-between px-3 py-2">
+				<h3>
+					<div class="logo fw-bold fs-4">
+						<h2>WorkExpress</h2>
+					</div>
+				</h3>
+				<ul class="nav gap-4 align-items-center mb-0">
+					<li class="nav-item">
+						<a class="nav-link nav-menu-link" href="#" style="color: black;">
+							Todos os serviços </a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link nav-menu-link" href="{%  url 'home'  %}" style="color: black;">
+							<i class="fa-solid fa-house"></i>
+							Inicio </a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link nav-menu-link" href="#" style="color: black;">
+							<i class="fa-solid fa-list-ul" style="margin-right: 5px;"></i> Meus chamados
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link nav-menu-link" href="" style="color: black;">
+							<i class="fa-regular fa-circle-user" style="margin-right: 5px;"></i> Spozzato Melo
+						</a>
+					</li>
+				</ul>
+			</nav>
+			</nav>
 		</div>
-	</div>
 </header>
-

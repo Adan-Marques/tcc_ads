@@ -52,5 +52,5 @@ def detalhesPedido(request):
     #if request.user.type_user == 'P':
         #TODO refactor
         #return HttpResponse('*Fazer uma paǵina 404*')
-    return render(request, 'detalhesPedido.html')
+    return render(request, 'cliente/detalhesPedido.html')
 
