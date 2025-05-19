@@ -1,45 +1,103 @@
 {% extends 'base.html' %}
 {% block body %}
-    <div class="container m-5">
-        <div class="position-absolute top-0 end-0 mt-3 me-3">
-            {% if request.user.is_authenticated %}
-            <div class="d-flex align-items-center gap-2">
-                <p class="mb-0">Você está logado!</p>
-                <form method="POST" action="{% url 'logout' %}">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-secondary">Logout</button>
-                </form>
-            </div>
-            {% endif %}
+<div class="container m-5">
+    <div class="position-absolute top-0 end-0 mt-3 me-3">
+        {% if request.user.is_authenticated %}
+        <div class="d-flex align-items-center gap-2">
+            <p class="mb-0">Você está logado!</p>
+            <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-secondary">Logout</button>
+            </form>
         </div>
-        <div class="col-md-6 col-sm-12 mx-auto">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="text-center fw-bold my-4">Login</h2>
-                    <div class="mb-3">
-                        <form action="{% url 'login' %}" method="POST">{% csrf_token %}
-                            <label for="username" class="form-label">Email</label>
-                            <input placeholder="Digite o seu email" type="text" class="form-control" name="username"
-                                id="username">
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Senha</label>
-                        <input placeholder="Digite a sua senha" type="password" class="form-control" id="password"
-                            name="password">
-                    </div>
-                    <input class="form-check-input" type="checkbox"> Lembre de mim
-                    <div class="d-flex justify-content-center my-4">
-                        <button type="submit" class="btn btn-custom w-50">Entrar</button>
-                        </form>
-                    </div>
-                    <hr class="my-4">
-                    <div class="d-flex justify-content-between">
-                        <a href="{% url 'password_reset'  %}">Esqueci minha senha</a>
-                        <a href="{% url 'cadastro' %}">Criar conta</a>
-                    </div>
+        {% endif %}
+    </div>
+    <div class="col-md-6 col-sm-12 mx-auto">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="text-center fw-bold my-4">Login</h2>
+                <div class="mb-3">
+                    <form action="{% url 'login' %}" method="POST">{% csrf_token %}
+
+                        <!-- Abas -->
+                        <ul class="nav nav-tabs justify-content-center" id="loginTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="pessoal-tab" data-bs-toggle="tab"
+                                    data-bs-target="#pessoal" type="button" role="tab" aria-controls="pessoal"
+                                    aria-selected="true">Pessoal</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="profissional-tab" data-bs-toggle="tab"
+                                    data-bs-target="#profissional" type="button" role="tab" aria-controls="profissional"
+                                    aria-selected="false">Profissional</button>
+                            </li>
+                        </ul>
+
+                        <!-- Conteúdo das Abas -->
+                        <div class="tab-content mt-4" id="loginTabsContent">
+                            <!-- Aba Pessoal -->
+                            <div class="tab-pane fade show active" id="pessoal" role="tabpanel"
+                                aria-labelledby="pessoal-tab">
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="type" value="C">
+                                    <div class="mb-3">
+                                        <input name="username" type="text" class="form-control"
+                                            placeholder="Email ou CPF" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input name="password" type="password" class="form-control" placeholder="Senha"
+                                            required>
+                                    </div>
+                                    <div class="mb-3 d-flex justify-content-between align-items-center">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="rememberPessoal">
+                                            <label class="form-check-label" for="rememberPessoal">Lembrar-me</label>
+                                        </div>
+                                        <a href="{% url 'password_reset' %}" class="text-decoration-none">Esqueceu a
+                                            senha?</a>
+                                    </div>
+                                    <button type="submit" class="btn btn-warning w-100">Entrar</button>
+                                </form>
+                            </div>
+                            <!-- Aba Profissional -->
+                            <div class="tab-pane fade" id="profissional" role="tabpanel"
+                                aria-labelledby="profissional-tab">
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="type" value="P"> 
+                                    <div class="mb-3">
+                                        <input name="username" type="text" class="form-control"
+                                            placeholder="Email ou CPF" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input name="password" type="password" class="form-control" placeholder="Senha"
+                                            required>
+                                    </div>
+                                    <div class="mb-3 d-flex justify-content-between align-items-center">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="rememberProfissional">
+                                            <label class="form-check-label"
+                                                for="rememberProfissional">Lembrar-me</label>
+                                        </div>
+                                        <a href="{% url 'password_reset' %}" class="text-decoration-none">Esqueceu a
+                                            senha?</a>
+                                    </div>
+                                    <button type="submit" class="btn btn-warning w-100">Entrar</button>
+                                </form>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="text-center">
+                            <p> OU</p>
+                        <br>
+                        
+                        Ainda não tem uma conta <a href="{% url 'cadastro' %}">Criar uma conta</a>
+                        </div>
                 </div>
             </div>
         </div>
     </div>
-</body>
-{% endblock %}
+    </body>
+    {% endblock %}

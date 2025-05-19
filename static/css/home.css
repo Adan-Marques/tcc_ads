@@ -598,3 +598,22 @@ body {
 .btn-orange:hover {
 	background-color: #e56d00;
 }
+
+.pedido-status {
+	color: green;
+	font-weight: bold;
+}
+
+.orcamento-card {
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	padding: 16px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.orcamento-card img {
+	border-radius: 50%;
+	width: 60px;
+	height: 60px;
+}

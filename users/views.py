@@ -48,5 +48,9 @@ def ticketPrestador(request):
         #return HttpResponse('*Fazer uma paǵina 404*')
     return render(request, 'ticketPrestador.html')
 
-
+def detalhesPedido(request):
+    #if request.user.type_user == 'P':
+        #TODO refactor
+        #return HttpResponse('*Fazer uma paǵina 404*')
+    return render(request, 'detalhesPedido.html')
 

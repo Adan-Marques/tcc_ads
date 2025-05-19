@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% block body %}
+    <div class="container my-4">
+        <div class="container mt-4">
+            <nav class="navbar-menu d-flex align-items-center justify-content-between px-4 py-3">
+                <h3>
+                    <div class="logo fw-bold fs-4">
+                        <h2>WorkExpress</h2>
+                    </div>
+                </h3>
+                <ul class="nav gap-4 align-items-center mb-0">
+                    <li class="nav-item">
+                        <a class="nav-link nav-menu-link" href="#" style="color: black;">
+                            Todos os serviços </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-menu-link" href="{%  url 'home'  %}" style="color: black;">
+                            <i class="fa-solid fa-house"></i>
+                            Inicio </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-menu-link" href="#" style="color: black;">
+                            <i class="fa-solid fa-list-ul" style="margin-right: 5px;"></i> Meus chamados
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-menu-link" href="" style="color: black;">
+                            <i class="fa-regular fa-circle-user" style="margin-right: 5px;"></i> Spozzato Melo
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            </nav>
+        </div>
+        <!-- Voltar -->
+        <a href="{%  url 'ticketUsuario'  %}" class="text-decoration-none mb-3 d-block">&larr; Voltar</a>
+        <!-- Título -->
+        <h4 class="text-center mb-4">Meu Pedido</h4>
+        <!-- Detalhes do Pedido -->
+        <div class="mb-3">
+            <h5>Detalhes do Pedido</h5>
+            <p class="mb-1"><strong>Eletricista</strong> <a href="#" class="text-decoration-none">#0001</a></p>
+            <p class="mb-1">
+                <i class="bi bi-geo-alt-fill"></i> R. Frei João - Ipiranga, São Paulo - SP
+                <span class="pedido-status ms-2">Pedido aberto</span>
+            </p>
+        </div>
+        <!-- Orçamentos -->
+        <h6>2 Orçamentos recebidos</h6>
+        <div class="row">
+            <!-- Card 1 -->
+            <div class="col-md-4">
+                <div class="orcamento-card">
+                    <p class="mb-1">Valor do orçamento:</p>
+                    <h5 class="text-warning">R$ 150</h5>
+                    <img src="https://via.placeholder.com/60" alt="Foto do profissional" class="my-2">
+                    <p class="mb-0"><strong>Felipe Spozzato</strong></p>
+                    <p class="text-muted small mb-1">⭐ 5.0 &nbsp; | &nbsp; 15 serviços realizados</p>
+                    <div class="d-flex justify-content-between mt-2">
+                        <button class="btn btn-success btn-sm">Aceitar</button>
+                        <button class="btn btn-danger btn-sm">Recusar</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="col-md-4">
+                <div class="orcamento-card">
+                    <p class="mb-1">Valor do orçamento:</p>
+                    <h5 class="text-warning">R$ 150</h5>
+                    <img src="https://via.placeholder.com/60" alt="Foto do profissional" class="my-2">
+                    <p class="mb-0"><strong>Felipe Spozzato</strong></p>
+                    <p class="text-muted small mb-1">⭐ 5.0 &nbsp; | &nbsp; 15 serviços realizados</p>
+                    <div class="d-flex justify-content-between mt-2">
+                        <button class="btn btn-success btn-sm">Aceitar</button>
+                        <button class="btn btn-danger btn-sm">Recusar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr style="border-top: 1px solid #ccc; margin-top: 40px;" />
+        <!-- Mais informações -->
+        <div class="mt-4">
+            <h4>Mais informações:</h4>
+            <p><strong>Endereço:</strong> R. Frei João - Ipiranga, SP</p>
+            <p><strong>Data do pedido:</strong> 12/05/2025</p>
+            <!-- Adicione mais dados conforme necessário -->
+        </div>
+        <!-- Data prevista -->
+        <p class="mb-1">
+            <i class="bi bi-calendar-event-fill me-1"></i>
+            <strong>Data prevista:</strong> 17/05/2025
+        </p>
+        <!-- Tipo de serviço -->
+        <p class="mb-4">
+            <strong>Tipo de serviço:</strong><br />
+            Manutenção elétrica
+        </p>
+        <!-- Botão Cancelar -->
+        <div class="text-end">
+            <button class="btn" style="background-color: #8b0000; color: white;">
+                Cancelar
+            </button>
+        </div>
+    </div>
+    </div>
+    <!-- Bootstrap JS (opcional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

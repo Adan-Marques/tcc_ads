@@ -7,5 +7,6 @@ urlpatterns = [
     path('ticket/', views.ticket, name='ticket'),
     path('ticketUsuario/', views.ticketUsuario, name='ticketUsuario'),
     path('ticketPrestador/', views.ticketPrestador, name='ticketPrestador'),
+    path('detalhesPedido/', views.detalhesPedido, name='detalhesPedido'),
 ]
 
