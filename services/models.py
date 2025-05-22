@@ -30,4 +30,9 @@ class TicketServico(models.Model):
     endereco = models.ForeignKey(Endereco, on_delete=models.SET_NULL, null=True)
 
 
+class Service(models.Model):
+    pass
 
+
+class Orcamento(models.Model):
+    pass

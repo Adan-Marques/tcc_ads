@@ -26,14 +26,6 @@ def cadastro(request):
 
     return render(request, 'cadastro.html')
 
-#TODO: REMOVER
-@login_required
-def ticket(request):
-    if request.user.type_user == 'P':
-        #TODO refactor
-        return HttpResponse('*Fazer uma paǵina 404*')
-    return render(request, 'cliente/ticket.html')
-
 
 @login_required
 def ticketUsuario(request):
