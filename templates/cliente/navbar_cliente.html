@@ -1,34 +1,35 @@
-<header class="navbar navbar-expand shadow-sm">
-	<div class="container my-1">
-		<div class="container py-2">
-			<nav class="navbar-menu d-flex align-items-center justify-content-between px-3 py-2">
-				<h3>
-					<div class="logo fs-4">
-						<h2>WorkExpress</h2>
-					</div>
-				</h3>
-				<ul class="nav gap-4 align-items-center mb-0">
-					<li class="nav-item">
-						<a class="nav-link nav-menu-link" href="#" style="color: black;">
-							Todos os serviços </a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link nav-menu-link" href="{%  url 'home'  %}" style="color: black;">
-							<i class="fa-solid fa-house"></i>
-							Inicio </a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link nav-menu-link" href="#" style="color: black;">
-							<i class="fa-solid fa-list-ul" style="margin-right: 5px;"></i> Meus chamados
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link nav-menu-link" href="" style="color: black;">
-							<i class="fa-regular fa-circle-user" style="margin-right: 5px;"></i> Spozzato Melo
-						</a>
-					</li>
-				</ul>
-			</nav>
-			</nav>
-		</div>
+<header class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <div class="container py-2">
+        <div class="logo fs-4">
+            <h2>WorkExpress</h2>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+            aria-controls="navbarContent" aria-expanded="false" aria-label="Alternar navegação">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav ms-auto gap-lg-4 align-items-lg-center mt-3">
+                <li class="nav-item">
+                    <a class="nav-menu-link" href="#" style="color: black;">
+                        Todos os serviços
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class=" nav-menu-link" href="{% url 'home' %}" style="color: black;">
+                        <i class="fa-solid fa-house me-1"></i> Início
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class=" nav-menu-link" href="{% url 'ticketUsuario' %}" style="color: black;">
+                        <i class="fa-solid fa-list-ul me-1"></i> Meus chamados
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-menu-link" href="#" style="color: black;">
+                        <i class="fa-regular fa-circle-user me-1"></i> Spozzato Melo
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </header>

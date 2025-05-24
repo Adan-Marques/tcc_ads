@@ -46,6 +46,7 @@ def cadastro(request):
     return render(request, 'cadastro.html')
 
 
+
 @login_required
 def ticketUsuario(request):
     #if request.user.type_user == 'P':
@@ -64,4 +65,6 @@ def detalhesPedido(request):
         #TODO refactor
         #return HttpResponse('*Fazer uma paǵina 404*')
     return render(request, 'cliente/detalhesPedido.html')
+
+
 

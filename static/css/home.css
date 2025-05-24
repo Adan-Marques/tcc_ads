@@ -617,3 +617,13 @@ body {
 	width: 60px;
 	height: 60px;
 }
+
+@media (max-width: 576px) {
+	.orcamento-card {
+		text-align: center;
+	}
+	.orcamento-card img {
+		display: block;
+		margin: 0 auto;
+	}
+}
