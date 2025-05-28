@@ -28,7 +28,7 @@ class TicketServico(models.Model):
     dataCriacao = models.DateTimeField(default=timezone.now)
     descricao = models.TextField()
     endereco = models.ForeignKey(Endereco, on_delete=models.SET_NULL, null=True)
-    imagem = models.ImageField(upload_to="media", null=True)
+    imagem = models.ImageField(blank=True, null=True)
 
 class Service(models.Model):
     pass

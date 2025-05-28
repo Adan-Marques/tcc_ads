@@ -26,7 +26,7 @@ def cadastroTicket(request):
         ticket.categoria = request.POST.get('categoria')
         ticket.descricao = request.POST.get('descricao')
         ticket.endereco = endereco
-        ticket.imagem = request.POST.get('imagem')
+        ticket.imagem = request.FILES.get('imagem')
         ticket.save()
     return render(request, 'cliente/ticket.html')
 

@@ -24,7 +24,7 @@
             <div class="card p-4">
                 <h4> <i class="fa-solid fa-pen"></i> Abertura de Novo Ticket</h4>
                 {% if not confirmacao %}
-                <form method='POST'>
+                <form method='POST' enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="mb-3">
                         <label class="form-label">Serviço</label>
