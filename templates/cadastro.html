@@ -16,7 +16,7 @@
             <div class="tab-pane fade show active" id="pessoal">
                 <form method='POST'>
                     {% csrf_token %}
-		    <input type="hidden" name="type" value="C">
+                    <input type="hidden" name="type" value="C">
                     <div class="mb-3">
                         <input name="cpf" type="text" class="form-control" placeholder="CPF ou CNPJ">
                     </div>
@@ -29,13 +29,46 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <select class="form-select">
-                            <option selected>+55</option>
-                        </select>
                         <input name="telefone" type="text" class="form-control mt-2" placeholder="Celular">
                     </div>
                     <div class="mb-3">
-                        <input name="endereco" type="text" class="form-control" placeholder="Endereço">
+                        <input name="cep" type="text" class="form-control" placeholder="CEP">
+                    </div>
+                    <div class="mb-3">
+                        <input name="logradouro" type="text" class="form-control" placeholder="Logradouro">
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <input name="numero" type="text" class="form-control" placeholder="Número">
+                        </div>
+                        <div class="col">
+                            <input name="complemento" type="text" class="form-control"
+                                placeholder="Complemento (opcional)">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <input name="bairro" type="text" class="form-control" placeholder="Bairro">
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <input name="cidade" type="text" class="form-control" placeholder="Cidade">
+                        </div>
+                        <div class="col">
+                            <input name="estado" type="text" class="form-control" placeholder="Estado">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <input name="pais" type="text" class="form-control" placeholder="País">
+                    </div>
+                    <div class="mb-3">
+                        <input name="referencia" type="text" class="form-control" placeholder="Referência (opcional)">
+                    </div>
+                    <div class="mb-3">
+                        <select class="form-select">
+                            <option selected>Tipo de Endereço</option>
+                            <option >Comercial</option>
+                            <option>Residencial</option>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <input name="email" type="email" class="form-control" placeholder="Email">
@@ -57,7 +90,7 @@
             <div class="tab-pane fade" id="profissional">
                 <form method='POST'>
                     {% csrf_token %}
-		    <input type="hidden" name="type" value="P">
+                    <input type="hidden" name="type" value="P">
                     <div class="mb-3">
                         <input name="cpf" type="text" class="form-control" placeholder="CPF ou CNPJ">
                     </div>
@@ -75,28 +108,58 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <select class="form-select">
-                            <option selected>+55</option>
-                        </select>
                         <input name="telefone" type="text" class="form-control mt-2" placeholder="Celular">
                     </div>
                     <div class="mb-3">
-                        <input name="endereco" type="text" class="form-control" placeholder="Endereço">
-                    </div>
-                    <div class="mb-3">
-                        <input name="email" type="email" class="form-control" placeholder="Email">
-                    </div>
-                    <div class="mb-3">
-                        <input name="password" type="password" class="form-control" placeholder="Senha (min 8 caracteres)">
-                    </div>
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input">
-                        <label class="form-check-label">Li e concordo com os termos, condições e <a href="#">Políticas
-                                de privacidade</a>.</label>
-                    </div>
-                    <button type="submit" class="btn btn-custom w-100">Inscreva-se</button>
-                    <p class="text-center mt-3">Já tem uma conta? <a href="{%  url 'login'  %}">Entrar</a>
-                    </p>
+                        <div class="mb-3">
+                            <input name="cep" type="text" class="form-control" placeholder="CEP">
+                        </div>
+                        <div class="mb-3">
+                            <input name="logradouro" type="text" class="form-control" placeholder="Logradouro">
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <input name="numero" type="text" class="form-control" placeholder="Número">
+                            </div>
+                            <div class="col">
+                                <input name="complemento" type="text" class="form-control"
+                                    placeholder="Complemento (opcional)">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <input name="bairro" type="text" class="form-control" placeholder="Bairro">
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <input name="cidade" type="text" class="form-control" placeholder="Cidade">
+                            </div>
+                            <div class="col">
+                                <input name="estado" type="text" class="form-control" placeholder="Estado">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <input name="pais" type="text" class="form-control" placeholder="País">
+                        </div>
+                        <div class="mb-3">
+                            <input name="referencia" type="text" class="form-control"
+                                placeholder="Referência (opcional)">
+                        </div>
+                        <div class="mb-3">
+                            <input name="email" type="email" class="form-control" placeholder="Email">
+                        </div>
+                        <div class="mb-3">
+                            <input name="password" type="password" class="form-control"
+                                placeholder="Senha (min 8 caracteres)">
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input">
+                            <label class="form-check-label">Li e concordo com os termos, condições e <a
+                                    href="#">Políticas
+                                    de privacidade</a>.</label>
+                        </div>
+                        <button type="submit" class="btn btn-custom w-100">Inscreva-se</button>
+                        <p class="text-center mt-3">Já tem uma conta? <a href="{%  url 'login'  %}">Entrar</a>
+                        </p>
                 </form>
             </div>
         </div>

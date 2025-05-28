@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import TicketServico
 from users.models import Endereco
 
+
 def cadastroTicket(request):
     ticket = TicketServico()
     endereco = Endereco()
@@ -28,10 +29,6 @@ def cadastroTicket(request):
         ticket.imagem = request.POST.get('imagem')
         ticket.save()
     return render(request, 'cliente/ticket.html')
-
-
-
-
 
 
 
