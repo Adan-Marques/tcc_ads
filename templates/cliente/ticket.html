@@ -47,11 +47,11 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">CEP</label>
-                        <input type="text" name="cep" class="form-control" maxlength="20">
+                        <input type="text" name="cep" id="cep" class="form-control" maxlength="20" required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Logradouro</label>
-                        <input type="text" name="logradouro" class="form-control" maxlength="20">
+                        <input type="text" name="logradouro" id="logradouro" class="form-control" maxlength="20">
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-6">
@@ -66,15 +66,15 @@
                     <div class="row mb-3">
                         <div class="col-md-4">
                             <label class="form-label">Bairro</label>
-                            <input type="text" name="bairro" class="form-control" maxlength="20">
+                            <input type="text" name="bairro" id="bairro" class="form-control" maxlength="20">
                         </div>
                         <div class="col-md-5">
                             <label class="form-label">Cidade</label>
-                            <input type="text" name="cidade" class="form-control" maxlength="20">
+                            <input type="text" name="cidade" id="cidade" class="form-control" maxlength="20">
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">Estado</label>
-                            <input type="text" name="estado" class="form-control" maxlength="20">
+                            <input type="text" name="estado" id="estado" class="form-control" maxlength="20">
                         </div>
                     </div>
                     <div class="mb-3">
@@ -178,4 +178,33 @@
         {% endif %}
     </div>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const cepInput = document.getElementById('cep');
+
+    cepInput.addEventListener('blur', function () {
+        const cep = cepInput.value.replace(/\D/g, '');
+
+        if (cep.length !== 8) return;
+
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.erro) {
+                    alert('CEP não encontrado!');
+                    return;
+                }
+
+                document.getElementById('logradouro').value = data.logradouro;
+                document.getElementById('bairro').value = data.bairro;
+                document.getElementById('cidade').value = data.localidade;
+                document.getElementById('estado').value = data.uf;
+            })
+            .catch(error => {
+                console.error('Erro ao buscar o CEP:', error);
+                alert('Erro ao buscar o CEP!');
+            });
+    });
+});
+</script>
 {% endblock %}
