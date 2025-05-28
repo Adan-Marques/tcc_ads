@@ -23,26 +23,6 @@ def cadastro(request):
         if senha:
             user.set_password(senha)
         user.save()
-        if not user.cpf or not user.username or not user.email or not senha:
-            return HttpResponse("Por favor, preencha todos os campos obrigatórios.")
-        if len(senha) < 8:
-            return HttpResponse("A senha deve ter no mínimo 8 caracteres.")
-        endereco = Endereco()
-        endereco.user = user
-        endereco.logradouro = request.POST.get('logradouro')
-        endereco.numero = request.POST.get('numero')
-        endereco.bairro = request.POST.get('bairro')
-        endereco.cidade = request.POST.get('cidade')
-        endereco.estado = request.POST.get('estado')
-        endereco.cep = request.POST.get('cep')
-        endereco.pais = request.POST.get('pais')
-        endereco.complemento = request.POST.get('complemento')
-        endereco.tipo = request.POST.get('tipo')
-        endereco.save()
-
-        return HttpResponse("Cadastro realizado com sucesso.")
-
-
     return render(request, 'cadastro.html')
 
 

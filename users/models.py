@@ -8,12 +8,6 @@ TYPE_CHOICE =  [
         ]
         
 
-class User(AbstractUser):
-    type_user = models.CharField(max_length=1, choices=TYPE_CHOICE, default="C")
-    cpf = models.CharField(max_length=12)
-    telefone = models.CharField(max_length=12)
-
-
 class Endereco(models.Model):
     numero = models.CharField(max_length=20)
     cep = models.CharField(max_length=20)
@@ -25,4 +19,14 @@ class Endereco(models.Model):
     referencia = models.CharField(max_length=20)
     pais = models.CharField(max_length=20)
     tipo = models.CharField(max_length=20)
+
+
+class User(AbstractUser):
+    type_user = models.CharField(max_length=1, choices=TYPE_CHOICE, default="C")
+    cpf = models.CharField(max_length=12)
+    telefone = models.CharField(max_length=12)
+    endereco = models.ForeignKey(Endereco, on_delete=models.SET_NULL, null=True, blank=True)
+
+
+
 
