@@ -32,10 +32,11 @@
                         <input name="telefone" type="text" class="form-control mt-2" placeholder="Celular">
                     </div>
                     <div class="mb-3">
-                        <input name="cep" type="text" class="form-control" placeholder="CEP">
+                        <input type="text" name="cep" id="cep-pessoal" class="form-control" maxlength="20" required placeholder="CEP">
                     </div>
                     <div class="mb-3">
-                        <input name="logradouro" type="text" class="form-control" placeholder="Logradouro">
+                        <input type="text" name="logradouro" id="logradouro-pessoal" class="form-control" maxlength="20"
+                            placeholder="Logradouro">
                     </div>
                     <div class="row mb-3">
                         <div class="col">
@@ -47,18 +48,18 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <input name="bairro" type="text" class="form-control" placeholder="Bairro">
+                        <input type="text" name="bairro" id="bairro-pessoal" class="form-control" maxlength="20" placeholder="Bairro">
                     </div>
                     <div class="row mb-3">
                         <div class="col">
-                            <input name="cidade" type="text" class="form-control" placeholder="Cidade">
+                            <input type="text" name="cidade" id="cidade-pessoal" class="form-control" maxlength="20"placeholder="Cidade">
                         </div>
                         <div class="col">
-                            <input name="estado" type="text" class="form-control" placeholder="Estado">
+                            <input type="text" name="estado" id="estado-pessoal" class="form-control" maxlength="20" placeholder="Estado">
                         </div>
                     </div>
                     <div class="mb-3">
-                        <input name="pais" type="text" class="form-control" placeholder="País">
+                        <input type="text" name="pais" id="pais-pessoal" class="form-control" maxlength="20" placeholder="Pais">
                     </div>
                     <div class="mb-3">
                         <input name="referencia" type="text" class="form-control" placeholder="Referência (opcional)">
@@ -66,7 +67,7 @@
                     <div class="mb-3">
                         <select class="form-select">
                             <option selected>Tipo de Endereço</option>
-                            <option >Comercial</option>
+                            <option>Comercial</option>
                             <option>Residencial</option>
                         </select>
                     </div>
@@ -112,10 +113,10 @@
                     </div>
                     <div class="mb-3">
                         <div class="mb-3">
-                            <input name="cep" type="text" class="form-control" placeholder="CEP">
+                            <input type="text" name="cep" id="cep-profissional" class="form-control" maxlength="20" required placeholder="CEP">
                         </div>
                         <div class="mb-3">
-                            <input name="logradouro" type="text" class="form-control" placeholder="Logradouro">
+                            <input type="text" name="logradouro" id="logradouro-profissional" class="form-control" maxlength="20" placeholder="Logradouro">
                         </div>
                         <div class="row mb-3">
                             <div class="col">
@@ -127,18 +128,19 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <input name="bairro" type="text" class="form-control" placeholder="Bairro">
+                            <input type="text" name="bairro" id="bairro-profissional" class="form-control" maxlength="20"
+                                placeholder="Bairro">
                         </div>
                         <div class="row mb-3">
                             <div class="col">
-                                <input name="cidade" type="text" class="form-control" placeholder="Cidade">
+                                <input type="text" name="cidade" id="cidade-profissional" class="form-control" maxlength="20"placeholder="Cidade">
                             </div>
                             <div class="col">
-                                <input name="estado" type="text" class="form-control" placeholder="Estado">
+                                <input type="text" name="estado" id="estado-profissional" class="form-control" maxlength="20" placeholder="Estado">
                             </div>
                         </div>
                         <div class="mb-3">
-                            <input name="pais" type="text" class="form-control" placeholder="País">
+                            <input type="text" name="pais" id="pais-profissional" class="form-control" maxlength="20" placeholder="Pais">
                         </div>
                         <div class="mb-3">
                             <input name="referencia" type="text" class="form-control"
@@ -165,4 +167,33 @@
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('cep-pessoal').addEventListener('blur', buscarCEP);
+        document.getElementById('cep-profissional').addEventListener('blur', buscarCEP);
+    });
+    function buscarCEP(event) {
+        const cep = event.target.value.replace(/\D/g, '');
+        if (cep.length !== 8) return;
+        const isPessoal = event.target.id.includes('pessoal');
+        const suffix = isPessoal ? 'pessoal' : 'profissional';
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.erro) {
+                    alert('CEP não encontrado!');
+                    return;
+                }
+                document.getElementById(`logradouro-${suffix}`).value = data.logradouro || '';
+                document.getElementById(`bairro-${suffix}`).value = data.bairro || '';
+                document.getElementById(`cidade-${suffix}`).value = data.localidade || '';
+                document.getElementById(`estado-${suffix}`).value = data.uf || '';
+                document.getElementById(`pais-${suffix}`).value = "Brasil";
+            })
+            .catch(error => {
+                console.error('Erro ao buscar o CEP:', error);
+                alert('Erro ao buscar o CEP!');
+            });
+    }
+</script>
 {% endblock %}

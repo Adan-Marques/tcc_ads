@@ -91,10 +91,9 @@
                 {% endif %}
             </div>
             <!-- Resumo do Ticket -->
-
             <div class="card p-4 mt-4">
                 <h4> <i class="fa-solid fa-wrench"></i> Resumo do Ticket</h4>
-                {% if confirmacao %}
+                <!--{% if confirmacao %} -->
                 <form method="POST">
                     {% csrf_token %}
                     <div class="row">
@@ -169,7 +168,7 @@
                         <button type="button" class="btn btn-secondary flex-fill">Cancelar</button>
                     </div>
                 </form>
-                {% endif %}
+            <!-- {% endif %} -->
             </div>
 
         </div>
