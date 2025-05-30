@@ -15,6 +15,12 @@ STATUS_ORCAMENTO = [
         ("E", "Em análise")
         ]
 
+STATUS_SERVICE = [
+        ("P", "Pendente"),
+        ("F", "Finalizado"),
+        ("E", "Em andamento")
+        ]
+
 CATEGORY_CHOICE = [
         ("ES", "Escoamento"),
         ("PI", "Pintura"),
@@ -46,6 +52,10 @@ class Orcamento(models.Model):
     prazo = models.DateField()
 
 class Service(models.Model):
-    pass
+    ticket = models.ForeignKey(TicketServico, on_delete=models.SET_NULL, null=True)
+    orcamento = models.ForeignKey(Orcamento, on_delete=models.SET_NULL, null=True)
+    status = models.CharField(max_length=1, choices=STATUS_SERVICE, default="E")
+    dataInicio = models.DateField()
+    dataConclusao = models.DateField()
 
 
