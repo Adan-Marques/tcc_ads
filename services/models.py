@@ -3,10 +3,16 @@ from users.models import User, Endereco
 from django.utils import timezone
 
 
-STATUS_CHOICE = [
+STATUS_TICKET = [
         ("A", "Aberto"),
         ("F", "Fechado"),
         ("C", "Cancelado")
+        ]
+
+STATUS_ORCAMENTO = [
+        ("A", "Aceito"),
+        ("R", "Recusado"),
+        ("E", "Em análise")
         ]
 
 CATEGORY_CHOICE = [
@@ -22,7 +28,7 @@ CATEGORY_CHOICE = [
         ]
 
 class TicketServico(models.Model):
-    status = models.CharField(max_length=1, choices=STATUS_CHOICE, default="C")
+    status = models.CharField(max_length=1, choices=STATUS_TICKET, default="C")
     solicitante = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     categoria = models.CharField(max_length=2, choices=CATEGORY_CHOICE, default="RE")
     dataCriacao = models.DateTimeField(default=timezone.now)
@@ -30,9 +36,16 @@ class TicketServico(models.Model):
     endereco = models.ForeignKey(Endereco, on_delete=models.SET_NULL, null=True)
     imagem = models.ImageField(blank=True, null=True)
 
+class Orcamento(models.Model):
+    status = models.CharField(max_length=1, choices=STATUS_ORCAMENTO, default="E")
+    ticket = models.ForeignKey(TicketServico, on_delete=models.SET_NULL, null=True)
+    prestador = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    valor = models.DecimalField(max_digits=10, decimal_places=2)
+    descricao = models.TextField()
+    dataCriacao = models.DateTimeField(default=timezone.now)
+    prazo = models.DateField()
+
 class Service(models.Model):
     pass
 
 
-class Orcamento(models.Model):
-    pass
