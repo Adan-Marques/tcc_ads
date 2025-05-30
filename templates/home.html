@@ -1,13 +1,4 @@
 {% extends 'base.html' %}
-{% block navbar %}
-   {% if not request.user.is_authenticated %}
-   	{% include 'navbar.html' %}
-   {% elif request.user.type_user == "C" %}
-   	{% include 'cliente/navbar_cliente.html' %}
-   {% elif request.user.type_user == "P" %}
-   	{% include 'prestador/navbar_prestador.html' %}
-   {% endif %}
-{% endblock %}
 {% block body %}
 {% load static %}
 <section class="hero-section">

@@ -1,18 +1,21 @@
 {% extends 'navbar_base.html' %}
 {% block options %}
-<li class="nav-item">
-	<a class="nav-menu-link" href="#" style="color: black;">
-		Cadastre-se
-	</a>
-</li>
+
+{% if not request.user.is_authenticated %}
 <li class="nav-item">
 	<a class=" nav-menu-link" href="{% url 'home' %}" style="color: black;">
 		<i class="fa-solid fa-house me-1"></i> Início
 	</a>
 </li>
 <li class="nav-item">
-	<a class=" nav-menu-link" href="{% url 'ticketUsuario' %}" style="color: black;">
-		<i class="fa-solid fa-list-ul me-1"></i> Meus chamados
+	<a class="nav-menu-link" href="{% url 'cadastro' %}" style="color: black;">
+		Cadastre-se
 	</a>
 </li>
+{% elif request.user.type_user == "C" %}
+	{% include 'cliente/navbar_cliente.html' %}
+{% elif request.user.type_user == "P" %}
+	{% include 'prestador/navbar_prestador.html' %}
+{% endif %}
+
 {% endblock %}

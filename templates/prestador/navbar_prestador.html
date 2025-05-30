@@ -1,23 +1,15 @@
-{% extends 'navbar_base.html' %}
-{% block options %}
-<li class="nav-item">
-	<a class="nav-menu-link" href="#" style="color: black;">
-		Todos os serviços
-	</a>
-</li>
 <li class="nav-item">
 	<a class=" nav-menu-link" href="{% url 'home' %}" style="color: black;">
 		<i class="fa-solid fa-house me-1"></i> Início
 	</a>
 </li>
 <li class="nav-item">
-	<a class=" nav-menu-link" href="{% url 'ticketUsuario' %}" style="color: black;">
-		<i class="fa-solid fa-list-ul me-1"></i> Meus chamados
+	<a class="nav-menu-link" href="#" style="color: black;">
+		Buscar serviços
 	</a>
 </li>
 <li class="nav-item">
 	<a class="nav-menu-link" href="#" style="color: black;">
-		<i class="fa-regular fa-circle-user me-1"></i> Sou prestador
+		<i class="fa-regular fa-circle-user me-1"></i> Aba prestador
 	</a>
 </li>
-{% endblock %}
