@@ -7,15 +7,6 @@
 {% block body %}
 <div class="container my-5">
     <div class="position-absolute top-0 end-0 mt-3 me-3">
-        {% if request.user.is_authenticated %}
-        <div class="d-flex align-items-center gap-2">
-            <p class="mb-0">Você está logado!</p>
-            <form method="POST" action="{% url 'logout' %}">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-secondary btn-sm">Logout</button>
-            </form>
-        </div>
-        {% endif %}
     </div>
     <div class="row justify-content-center">
         <div class="col-12 col-sm-10 col-md-8 col-lg-6">
