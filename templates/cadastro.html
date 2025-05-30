@@ -3,6 +3,15 @@
 <div class="container">
     <div class="form-container">
         <h2 class="text-center">WorkExpress</h2>
+
+	{% if messages %}
+	    {% for message in messages %}
+	        <div class="alert alert-{{message.tags}}" role="alert">
+		    {{ message }}
+		</div>
+	    {% endfor %}
+	{% endif %}
+
         <ul class="nav nav-tabs justify-content-center" id="tabMenu">
             <li class="nav-item">
                 <a class="nav-link active" data-bs-toggle="tab" href="#pessoal">Pessoal</a>
@@ -78,6 +87,10 @@
                         <input name="password" type="password" class="form-control"
                             placeholder="Senha (min 8 caracteres)">
                     </div>
+                        <div class="mb-3">
+                            <input name="confirm-password" type="password" class="form-control"
+                                placeholder="Confirme sua senha">
+                        </div>
                     <div class="mb-3 form-check">
                         <input type="checkbox" class="form-check-input">
                         <label class="form-check-label">Li e concordo com os termos, condições e <a href="#">Políticas
@@ -152,6 +165,10 @@
                         <div class="mb-3">
                             <input name="password" type="password" class="form-control"
                                 placeholder="Senha (min 8 caracteres)">
+                        </div>
+                        <div class="mb-3">
+                            <input name="confirm-password" type="password" class="form-control"
+                                placeholder="Confirme sua senha">
                         </div>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input">
