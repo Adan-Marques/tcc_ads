@@ -5,21 +5,19 @@
         <!-- Sidebar: Tickets em Andamento -->
         <div class="col-md-2 sidebar">
             <h5 class="text-center">Tickets em Andamento</h5>
+            {% for ticket in tickets %}
             <div class="ticket-list">
                 <div class=" text-center border p-2 my-2 ticket-box">
-                    <p><strong>Nº TICKET 00000000-00</strong></p>
-                    <p>DATA: 21/02/2025</p>
-                    <p>STATUS: EM ABERTO</p>
-                </div>
-                <div class="text-center border p-2 my-2 ticket-box">
-                    <p><strong>Nº TICKET 00000000-00</strong></p>
-                    <p>DATA: 21/02/2025</p>
-                    <p>STATUS: EM ABERTO</p>
+                <p><strong> <a href="{%  url 'ticketUsuario'  %}">Nº TICKET {{ticke.id}}</a></strong></p>
+                    <p>DATA: {{ticket.data}}</p>
+                    <p>STATUS: {{ticket.status}}</p>
                 </div>
             </div>
+            {% empty %}
+            <p class="text-muted text-center">Nenhum ticket disponível no momento.</p>
+            {% endfor %}
         </div>
-
-        <!-- Formulário de Abertura de Ticket -->
+        <!-- formulário de Abertura de Ticket -->
         <div class="col-md-6 p-4 content-container">
             <div class="card p-4">
                 <h4> <i class="fa-solid fa-pen"></i> Abertura de Novo Ticket</h4>
@@ -90,7 +88,7 @@
                 </form>
                 {% endif %}
             </div>
-            <!-- Resumo do Ticket -->
+            <!-- resumo do Ticket -->
             <div class="card p-4 mt-4">
                 <h4> <i class="fa-solid fa-wrench"></i> Resumo do Ticket</h4>
                 <!--{% if confirmacao %} -->
