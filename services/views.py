@@ -1,9 +1,14 @@
 from django.shortcuts import render
 from .models import TicketServico
 from users.models import Endereco
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 
-
+@login_required
 def cadastroTicket(request):
+    if request.user.type_user == 'P':
+        return HttpResponse("Montar página 404")
+
     ticket = TicketServico()
     endereco = Endereco()
     if request.method == 'POST':
@@ -15,10 +20,8 @@ def cadastroTicket(request):
         endereco.bairro = request.POST.get('bairro')
         endereco.cidade = request.POST.get('cidade')
         endereco.estado = request.POST.get('estado')
-        #TODO: automatizar
-        endereco.referencia = "NA"
-        endereco.pais = "BRASIL"
-        endereco.tipo = "NA"
+        endereco.referencia = request.POST.get('referencia')
+        endereco.tipo = request.POST.get('tipo')
         endereco.save()
 
         ticket.status = "A"
