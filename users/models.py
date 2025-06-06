@@ -15,9 +15,8 @@ class Endereco(models.Model):
     cidade = models.CharField(max_length=20)
     estado = models.CharField(max_length=20)
     logradouro = models.CharField(max_length=20)
-    complemento = models.CharField(max_length=20)
-    referencia = models.CharField(max_length=20)
-    pais = models.CharField(max_length=20)
+    complemento = models.CharField(max_length=20, null=True, blank=True)
+    referencia = models.CharField(max_length=20, null=True, blank=True)
     tipo = models.CharField(max_length=20)
 
 

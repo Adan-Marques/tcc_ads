@@ -69,9 +69,6 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <input type="text" name="pais" id="pais-pessoal" class="form-control" maxlength="20" placeholder="Pais">
-                    </div>
-                    <div class="mb-3">
                         <input name="referencia" type="text" class="form-control" placeholder="Referência (opcional)">
                     </div>
                     <div class="mb-3">
@@ -154,9 +151,6 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <input type="text" name="pais" id="pais-profissional" class="form-control" maxlength="20" placeholder="Pais">
-                        </div>
-                        <div class="mb-3">
                             <input name="referencia" type="text" class="form-control"
                                 placeholder="Referência (opcional)">
                         </div>
@@ -206,7 +200,6 @@
                 document.getElementById(`bairro-${suffix}`).value = data.bairro || '';
                 document.getElementById(`cidade-${suffix}`).value = data.localidade || '';
                 document.getElementById(`estado-${suffix}`).value = data.uf || '';
-                document.getElementById(`pais-${suffix}`).value = "Brasil";
             })
             .catch(error => {
                 console.error('Erro ao buscar o CEP:', error);
