@@ -1,0 +1,59 @@
+{% extends 'prestador/base_prestador.html' %}
+{% load static %}
+{% block body %}
+<div class="container mt-4">
+    <h3 class="mb-4 text-center">Detalhes do Serviço</h3>
+
+    <!--detalhes -->
+    <div class="card mb-4 shadow-sm mx-auto" style="max-width: 700px;">
+        <div class="card-body">
+            <p><strong>Descrição:</strong> {{ ticket.descricao }}</p>
+            <p><strong>Solicitante:</strong> {{ ticket.solicitante}}</p>
+            <p><strong>Endereço:</strong> {{ ticket.endereco }}</p>
+            <p><strong>Categoria:</strong> {{ ticket.categoria.nome }}</p>
+            <p><strong>Data do Pedido:</strong> {{ ticket.data|date:"d/m/Y" }}</p>
+            <div id="carouselJob{{ ticket.id }}" class="carousel slide mt-3" style="width: 100%;">
+                <div class="carousel-inner rounded">
+                    {% for imagem in ticket.imagens.all %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        <img src="{{ imagem.imagem.url }}" class="d-block w-100" alt="Imagem {{ forloop.counter }}">
+                    </div>
+                    {% empty %}
+                    <div class="carousel-item active">
+                        <img src="{% static 'images/default.jpg' %}" class="d-block w-100" alt="Imagem padrão">
+                    </div>
+                    {% endfor %}
+                </div>
+                <!-- butoes do carrosel -->
+            </div>
+        </div>
+    </div>
+
+    <!-- form orcamento -->
+    <div class="card shadow-sm mx-auto" style="max-width: 700px;">
+        <div class="card-body">
+            <h5 class="card-title mb-3">Enviar Orçamento</h5>
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="valor" class="form-label">Valor Proposto (R$)</label>
+                    <input type="number" class="form-control" id="valor" name="valor" step="0.01" required>
+                </div>
+                <div class="mb-3">
+                    <label for="prazo" class="form-label">Prazo Estimado (em dias)</label>
+                    <input type="number" class="form-control" id="prazo" name="prazo" required>
+                </div>
+                <div class="mb-3">
+                    <label for="mensagem" class="form-label">Mensagem Adicional</label>
+                    <textarea class="form-control" id="mensagem" name="mensagem" rows="4"></textarea>
+                </div>
+                <div class="card mx-auto" style="max-width: 300px;">
+                    <button type="submit" class="btn btn-orange px-4">Enviar Orçamento</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

@@ -121,6 +121,12 @@ def meuPerfil(request):
     context = { 'user_info': user_info }
     return render(request, 'meuPerfil.html', context)
 
+def ticketOrcamento(request):
+    #if request.user.type_user == 'P':
+        #TODO refactor
+        #return HttpResponse('*Fazer uma paǵina 404*')
+    return render(request, 'prestador/ticketOrcamento.html')
+
 
 
 

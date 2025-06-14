@@ -8,5 +8,6 @@ urlpatterns = [
     path('ticketPrestador/', views.ticketPrestador, name='ticketPrestador'),
     path('detalhesPedido/', views.detalhesPedido, name='detalhesPedido'),
     path('meu-perfil/', views.meuPerfil, name='meu-perfil'),
+    path('ticketOrcamento/', views.ticketOrcamento, name='ticketOrcamento'),
 ]
 
