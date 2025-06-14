@@ -7,5 +7,6 @@ urlpatterns = [
     path('ticketUsuario/', views.ticketUsuario, name='ticketUsuario'),
     path('ticketPrestador/', views.ticketPrestador, name='ticketPrestador'),
     path('detalhesPedido/', views.detalhesPedido, name='detalhesPedido'),
+    path('meu-perfil/', views.meuPerfil, name='meu-perfil'),
 ]
 
