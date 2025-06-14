@@ -1,8 +1,10 @@
 from django.shortcuts import render
-from .models import TicketServico
+from .models import TicketServico, Orcamento
 from users.models import Endereco
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+from django.contrib import messages
+
 
 @login_required
 def cadastroTicket(request):
@@ -51,6 +53,35 @@ def ticketUser(request):
     return render(request, 'cliente/ticketUsuario.html', context)
 
 
+def ticketOrcamento(request, pk):
 
+    if request.user.type_user == 'C':
+        return HttpResponse('*Fazer uma paǵina 404*')
 
+    ticket = TicketServico.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        orcamento = Orcamento()
+        orcamento.ticket = ticket
+        orcamento.prestador = request.user
+        orcamento.valor = request.POST.get('valor')
+        orcamento.prazo = request.POST.get('prazo')
+        orcamento.descricao = request.POST.get('mensagem')
+        orcamento.save()
+        messages.success(request, "Orçamento enviado com sucesso!")
+
+    context = {
+            'ticket': ticket,
+            }
+    return render(request, 'prestador/ticketOrcamento.html', context)
+
+def ticketPrestador(request):
+    if request.user.type_user == 'C':
+        return HttpResponse('*Fazer uma paǵina 404*')
+
+    tickets = TicketServico.objects.all()
+    context = {
+            'tickets': tickets,
+            }
+    return render(request, 'prestador/ticketPrestador.html', context)
 

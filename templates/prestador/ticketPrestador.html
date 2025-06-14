@@ -51,12 +51,13 @@
         <div class="flex-grow-1">
             <h5>{{ ticket.titulo }}</h5>
             <p class="mb-3"><i class="fa-solid fa-user-large"></i> <strong>{{ ticket.solicitante }}</strong></p>
-            <p class="mb-3"><i class="fa-solid fa-location-dot"></i> {{ ticket.endereco }}</p>
+            <p class="mb-3"><i class="fa-solid fa-location-dot"></i> {{ ticket.endereco.logradouro }} {{ ticket.endereco.numero }}, {{ ticket.endereco.bairro }} - {{ ticket.endereco.cidade }}
+</p>
             <a href="#" class="text-decoration-none text-primary">Seja o primeiro a enviar um orçamento</a>
         </div>
 
         <div class="ms-auto">
-            <a href="{% url 'ticketOrcamento' %}" class="btn btn-orange">Ver detalhes</a>
+            <a href="{% url 'ticket-orcamento' ticket.id %}" class="btn btn-orange">Ver detalhes</a>
         </div>
     </div>
     {% empty %}

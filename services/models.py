@@ -44,7 +44,7 @@ class TicketServico(models.Model):
 
 class Orcamento(models.Model):
     status = models.CharField(max_length=1, choices=STATUS_ORCAMENTO, default="E")
-    ticket = models.ForeignKey(TicketServico, on_delete=models.SET_NULL, null=True)
+    ticket = models.ForeignKey(TicketServico, on_delete=models.SET_NULL, null=True, related_name='orcamentos')
     prestador = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     valor = models.DecimalField(max_digits=10, decimal_places=2)
     descricao = models.TextField()

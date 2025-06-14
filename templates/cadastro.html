@@ -2,209 +2,217 @@
 {% load static %}
 {% block body %}
 <div class="container">
-    <div class="form-container">
-        <h2 class="text-center">WorkExpress</h2>
+	<div class="form-container">
+		<h2 class="text-center">WorkExpress</h2>
 
-	{% if messages %}
-	    {% for message in messages %}
-	        <div class="alert alert-{{message.tags}}" role="alert">
-		    {{ message }}
+		{% if messages %}
+		{% for message in messages %}
+		<div class="alert alert-{{message.tags}}" role="alert">
+			{{ message }}
 		</div>
-	    {% endfor %}
-	{% endif %}
+		{% endfor %}
+		{% endif %}
 
-        <ul class="nav nav-tabs justify-content-center" id="tabMenu">
-            <li class="nav-item">
-                <a class="nav-link active" data-bs-toggle="tab" href="#pessoal">Pessoal</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#profissional">Profissional</a>
-            </li>
-        </ul>
-        <!-- FORMULARIO DA PESSOA FISICA -->
-        <div class="tab-content mt-3">
-            <div class="tab-pane fade show active" id="pessoal">
-                <form method='POST'>
-                    {% csrf_token %}
-                    <input type="hidden" name="type" value="C">
-                    <div class="mb-3">
-                        <input name="cpf" type="text" class="form-control" placeholder="CPF ou CNPJ">
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col">
-                            <input name="nome" type="text" class="form-control" placeholder="Nome">
-                        </div>
-                        <div class="col">
-                            <input name="sobrenome" type="text" class="form-control" placeholder="Sobrenome">
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <input name="telefone" type="text" class="form-control mt-2" placeholder="Celular">
-                    </div>
-                    <div class="mb-3">
-                        <input type="text" name="cep" id="cep-pessoal" class="form-control" maxlength="20" required placeholder="CEP">
-                    </div>
-                    <div class="mb-3">
-                        <input type="text" name="logradouro" id="logradouro-pessoal" class="form-control" maxlength="20"
-                            placeholder="Logradouro">
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col">
-                            <input name="numero" type="text" class="form-control" placeholder="Número">
-                        </div>
-                        <div class="col">
-                            <input name="complemento" type="text" class="form-control"
-                                placeholder="Complemento (opcional)">
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <input type="text" name="bairro" id="bairro-pessoal" class="form-control" maxlength="20" placeholder="Bairro">
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col">
-                            <input type="text" name="cidade" id="cidade-pessoal" class="form-control" maxlength="20"placeholder="Cidade">
-                        </div>
-                        <div class="col">
-                            <input type="text" name="estado" id="estado-pessoal" class="form-control" maxlength="20" placeholder="Estado">
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <input name="referencia" type="text" class="form-control" placeholder="Referência (opcional)">
-                    </div>
-                    <div class="mb-3">
-                        <select name="tipo_end" class="form-select">
-                            <option value="Residencial" selected>Tipo de Endereço</option>
-                            <option value="Comercial">Comercial</option>
-                            <option value="Residencial">Residencial</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <input name="email" type="email" class="form-control" placeholder="Email">
-                    </div>
-                    <div class="mb-3">
-                        <input name="password" type="password" class="form-control"
-                            placeholder="Senha (min 8 caracteres)">
-                    </div>
-                        <div class="mb-3">
-                            <input name="confirm-password" type="password" class="form-control"
-                                placeholder="Confirme sua senha">
-                        </div>
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input">
-                        <label class="form-check-label">Li e concordo com os termos, condições e <a href="#">Políticas
-                                de privacidade</a>.</label>
-                    </div>
-                    <button type="submit" class="btn btn-custom w-100">Inscreva-se</button>
-                    <p class="text-center mt-3">Já tem uma conta? <a href="{%  url 'login'  %}">Entrar</a></p>
-                </form>
-            </div>
-            <!-- FORMULARIO DO PROFISSIONAL -->
-            <div class="tab-pane fade" id="profissional">
-                <form method='POST'>
-                    {% csrf_token %}
-                    <input type="hidden" name="type" value="P">
-                    <div class="mb-3">
-                        <input name="cpf" type="text" class="form-control" placeholder="CPF ou CNPJ">
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col">
-                            <input name="nome" type="text" class="form-control" placeholder="Nome">
-                        </div>
-                        <div class="col">
-                            <input name="sobrenome" type="text" class="form-control" placeholder="Sobrenome">
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <select class="form-select">
-                            <option selected>Especialidades</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <input name="telefone" type="text" class="form-control mt-2" placeholder="Celular">
-                    </div>
-                    <div class="mb-3">
-                        <div class="mb-3">
-                            <input type="text" name="cep" id="cep-profissional" class="form-control" maxlength="20" required placeholder="CEP">
-                        </div>
-                        <div class="mb-3">
-                            <input type="text" name="logradouro" id="logradouro-profissional" class="form-control" maxlength="20" placeholder="Logradouro">
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col">
-                                <input name="numero" type="text" class="form-control" placeholder="Número">
-                            </div>
-                            <div class="col">
-                                <input name="complemento" type="text" class="form-control"
-                                    placeholder="Complemento (opcional)">
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <input type="text" name="bairro" id="bairro-profissional" class="form-control" maxlength="20"
-                                placeholder="Bairro">
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col">
-                                <input type="text" name="cidade" id="cidade-profissional" class="form-control" maxlength="20"placeholder="Cidade">
-                            </div>
-                            <div class="col">
-                                <input type="text" name="estado" id="estado-profissional" class="form-control" maxlength="20" placeholder="Estado">
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <input name="referencia" type="text" class="form-control"
-                                placeholder="Referência (opcional)">
-                        </div>
-                        <div class="mb-3">
-                            <input name="email" type="email" class="form-control" placeholder="Email">
-                        </div>
-                        <div class="mb-3">
-                            <input name="password" type="password" class="form-control"
-                                placeholder="Senha (min 8 caracteres)">
-                        </div>
-                        <div class="mb-3">
-                            <input name="confirm-password" type="password" class="form-control"
-                                placeholder="Confirme sua senha">
-                        </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input">
-                            <label class="form-check-label">Li e concordo com os termos, condições e <a
-                                    href="#">Políticas
-                                    de privacidade</a>.</label>
-                        </div>
-                        <button type="submit" class="btn btn-custom w-100">Inscreva-se</button>
-                        <p class="text-center mt-3">Já tem uma conta? <a href="{%  url 'login'  %}">Entrar</a>
-                        </p>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        document.getElementById('cep-pessoal').addEventListener('blur', buscarCEP);
-        document.getElementById('cep-profissional').addEventListener('blur', buscarCEP);
-    });
-    function buscarCEP(event) {
-        const cep = event.target.value.replace(/\D/g, '');
-        if (cep.length !== 8) return;
-        const isPessoal = event.target.id.includes('pessoal');
-        const suffix = isPessoal ? 'pessoal' : 'profissional';
-        fetch(`https://viacep.com.br/ws/${cep}/json/`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.erro) {
-                    alert('CEP não encontrado!');
-                    return;
-                }
-                document.getElementById(`logradouro-${suffix}`).value = data.logradouro || '';
-                document.getElementById(`bairro-${suffix}`).value = data.bairro || '';
-                document.getElementById(`cidade-${suffix}`).value = data.localidade || '';
-                document.getElementById(`estado-${suffix}`).value = data.uf || '';
-            })
-            .catch(error => {
-                console.error('Erro ao buscar o CEP:', error);
-                alert('Erro ao buscar o CEP!');
-            });
-    }
-</script>
-{% endblock %}
+		<ul class="nav nav-tabs justify-content-center" id="tabMenu">
+			<li class="nav-item">
+				<a class="nav-link active" data-bs-toggle="tab" href="#pessoal">Pessoal</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" data-bs-toggle="tab" href="#profissional">Profissional</a>
+			</li>
+		</ul>
+		<!-- FORMULARIO DA PESSOA FISICA -->
+		<div class="tab-content mt-3">
+			<div class="tab-pane fade show active" id="pessoal">
+				<form method='POST'>
+					{% csrf_token %}
+					<input type="hidden" name="type" value="C">
+					<div class="mb-3">
+						<input name="cpf" type="text" class="form-control" placeholder="CPF ou CNPJ">
+					</div>
+					<div class="row mb-3">
+						<div class="col">
+							<input name="nome" type="text" class="form-control" placeholder="Nome">
+						</div>
+						<div class="col">
+							<input name="sobrenome" type="text" class="form-control" placeholder="Sobrenome">
+						</div>
+					</div>
+					<div class="mb-3">
+						<input name="telefone" type="text" class="form-control mt-2" placeholder="Celular">
+					</div>
+					<div class="mb-3">
+						<input type="text" name="cep" id="cep-pessoal" class="form-control" maxlength="20" required placeholder="CEP">
+					</div>
+					<div class="mb-3">
+						<input type="text" name="logradouro" id="logradouro-pessoal" class="form-control" maxlength="20"
+																  placeholder="Logradouro">
+					</div>
+					<div class="row mb-3">
+						<div class="col">
+							<input name="numero" type="text" class="form-control" placeholder="Número">
+						</div>
+						<div class="col">
+							<input name="complemento" type="text" class="form-control"
+											      placeholder="Complemento (opcional)">
+						</div>
+					</div>
+					<div class="mb-3">
+						<input type="text" name="bairro" id="bairro-pessoal" class="form-control" maxlength="20" placeholder="Bairro">
+					</div>
+					<div class="row mb-3">
+						<div class="col">
+							<input type="text" name="cidade" id="cidade-pessoal" class="form-control" maxlength="20"placeholder="Cidade">
+						</div>
+						<div class="col">
+							<input type="text" name="estado" id="estado-pessoal" class="form-control" maxlength="20" placeholder="Estado">
+						</div>
+					</div>
+					<div class="mb-3">
+						<input name="referencia" type="text" class="form-control" placeholder="Referência (opcional)">
+					</div>
+					<div class="mb-3">
+						<select name="tipo_end" class="form-select">
+							<option value="Residencial" selected>Tipo de Endereço</option>
+							<option value="Comercial">Comercial</option>
+							<option value="Residencial">Residencial</option>
+						</select>
+					</div>
+					<div class="mb-3">
+						<input name="email" type="email" class="form-control" placeholder="Email">
+					</div>
+					<div class="mb-3">
+						<input name="password" type="password" class="form-control"
+										       placeholder="Senha (min 8 caracteres)">
+					</div>
+					<div class="mb-3">
+						<input name="confirm-password" type="password" class="form-control"
+											       placeholder="Confirme sua senha">
+					</div>
+					<div class="mb-3 form-check">
+						<input type="checkbox" class="form-check-input">
+						<label class="form-check-label">Li e concordo com os termos, condições e <a href="#">Políticas
+								de privacidade</a>.</label>
+					</div>
+					<button type="submit" class="btn btn-custom w-100">Inscreva-se</button>
+					<p class="text-center mt-3">Já tem uma conta? <a href="{%  url 'login'  %}">Entrar</a></p>
+				</form>
+			</div>
+			<!-- FORMULARIO DO PROFISSIONAL -->
+			<div class="tab-pane fade" id="profissional">
+				<form method='POST'>
+					{% csrf_token %}
+					<input type="hidden" name="type" value="P">
+					<div class="mb-3">
+						<input name="cpf" type="text" class="form-control" placeholder="CPF ou CNPJ">
+					</div>
+					<div class="row mb-3">
+						<div class="col">
+							<input name="nome" type="text" class="form-control" placeholder="Nome">
+						</div>
+						<div class="col">
+							<input name="sobrenome" type="text" class="form-control" placeholder="Sobrenome">
+						</div>
+					</div>
+					<div class="mb-3">
+						<select class="form-select">
+							<option selected>Especialidades</option>
+						</select>
+					</div>
+					<div class="mb-3">
+						<input name="telefone" type="text" class="form-control mt-2" placeholder="Celular">
+					</div>
+					<div class="mb-3">
+						<div class="mb-3">
+							<input type="text" name="cep" id="cep-profissional" class="form-control" maxlength="20" required placeholder="CEP">
+						</div>
+						<div class="mb-3">
+							<input type="text" name="logradouro" id="logradouro-profissional" class="form-control" maxlength="20" placeholder="Logradouro">
+						</div>
+						<div class="row mb-3">
+							<div class="col">
+								<input name="numero" type="text" class="form-control" placeholder="Número">
+							</div>
+							<div class="col">
+								<input name="complemento" type="text" class="form-control"
+												      placeholder="Complemento (opcional)">
+							</div>
+						</div>
+						<div class="mb-3">
+							<input type="text" name="bairro" id="bairro-profissional" class="form-control" maxlength="20"
+																       placeholder="Bairro">
+						</div>
+						<div class="row mb-3">
+							<div class="col">
+								<input type="text" name="cidade" id="cidade-profissional" class="form-control" maxlength="20"placeholder="Cidade">
+							</div>
+							<div class="col">
+								<input type="text" name="estado" id="estado-profissional" class="form-control" maxlength="20" placeholder="Estado">
+							</div>
+						</div>
+						<div class="mb-3">
+							<input name="referencia" type="text" class="form-control"
+											     placeholder="Referência (opcional)">
+						</div>
+						<div class="mb-3">
+							<select name="tipo_end" class="form-select">
+								<option value="Residencial" selected>Tipo de Endereço</option>
+								<option value="Comercial">Comercial</option>
+								<option value="Residencial">Residencial</option>
+							</select>
+						</div>
+
+						<div class="mb-3">
+							<input name="email" type="email" class="form-control" placeholder="Email">
+						</div>
+						<div class="mb-3">
+							<input name="password" type="password" class="form-control"
+											       placeholder="Senha (min 8 caracteres)">
+						</div>
+						<div class="mb-3">
+							<input name="confirm-password" type="password" class="form-control"
+												       placeholder="Confirme sua senha">
+						</div>
+						<div class="mb-3 form-check">
+							<input type="checkbox" class="form-check-input">
+							<label class="form-check-label">Li e concordo com os termos, condições e <a
+							       href="#">Políticas
+							       de privacidade</a>.</label>
+						</div>
+						<button type="submit" class="btn btn-custom w-100">Inscreva-se</button>
+						<p class="text-center mt-3">Já tem uma conta? <a href="{%  url 'login'  %}">Entrar</a>
+						</p>
+				</form>
+					</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+					document.getElementById('cep-pessoal').addEventListener('blur', buscarCEP);
+					document.getElementById('cep-profissional').addEventListener('blur', buscarCEP);
+				});
+		function buscarCEP(event) {
+					const cep = event.target.value.replace(/\D/g, '');
+					if (cep.length !== 8) return;
+					const isPessoal = event.target.id.includes('pessoal');
+					const suffix = isPessoal ? 'pessoal' : 'profissional';
+					fetch(`https://viacep.com.br/ws/${cep}/json/`)
+						.then(response => response.json())
+						.then(data => {
+									if (data.erro) {
+												alert('CEP não encontrado!');
+												return;
+											}
+									document.getElementById(`logradouro-${suffix}`).value = data.logradouro || '';
+									document.getElementById(`bairro-${suffix}`).value = data.bairro || '';
+									document.getElementById(`cidade-${suffix}`).value = data.localidade || '';
+									document.getElementById(`estado-${suffix}`).value = data.uf || '';
+								})
+						.catch(error => {
+									console.error('Erro ao buscar o CEP:', error);
+									alert('Erro ao buscar o CEP!');
+								});
+				}
+	</script>
+	{% endblock %}
