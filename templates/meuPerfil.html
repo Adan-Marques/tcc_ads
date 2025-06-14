@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<div class="container">
+	<div class="form-perfil">
+		<h2 class="text-center">WorkExpress</h2>
+
+		{% if messages %}
+		{% for message in messages %}
+		<div class="alert alert-{{message.tags}}" role="alert">
+			{{ message }}
+		</div>
+		{% endfor %}
+		{% endif %}
+
+		<ul class="nav nav-tabs justify-content-center" id="tabMenu">
+			<li class="nav-item">
+				<a class="nav-link active" data-bs-toggle="tab" href="#pessoal">Informações Pessoais</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" data-bs-toggle="tab" href="#senha">Senha</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" data-bs-toggle="tab" href="#endereco">Endereço</a>
+			</li>
+
+		</ul>
+		<!-- FORMULARIO DA PESSOA FISICA -->
+		<div class="tab-content mt-3">
+			<div class="tab-pane fade show active" id="pessoal">
+				<form method='POST'>
+					{% csrf_token %}
+					<input type="hidden" name="aba" value="pessoal">
+					<div class="mb-3">
+						<label class="form-label">CPF</label>
+						<input name="cpf" type="text" class="form-control" value="{{ user_info.cpf }}" disabled placeholder="CPF">
+					</div>
+					<div class="row mb-3">
+						<div class="col">
+	                        <label class="form-label">Nome</label>
+							<input name="nome" type="text" class="form-control" value="{{ user_info.first_name }}" placeholder="Nome">
+						</div>
+						<div class="col">
+	                            <label class="form-label">Sobrenome</label>
+								<input name="sobrenome" type="text" class="form-control" value="{{ user_info.last_name }}" placeholder="Sobrenome">
+						</div>
+					</div>
+
+					<div class="mb-3">
+                        <label class="form-label">Celular</label>
+						<input name="telefone" type="text" class="form-control mt-2" value="{{ user_info.telefone }}" placeholder="Celular">
+					</div>
+					<div class="mb-3">
+                        <label class="form-label">Email</label>
+						<input name="email" type="email" class="form-control" value="{{ user_info.email }}" placeholder="Email">
+					</div>
+					<button type="submit" class="btn btn-custom w-100">Atualizar Informações</button>
+				</form>
+			</div>
+			<!-- FORMULARIO DE SENHA -->
+			<div class="tab-pane fade" id="senha">
+				<form method='POST'>
+					{% csrf_token %}
+					<input type="hidden" name="aba" value="senha">
+					<div class="mb-3">
+                        <label class="form-label">Nova Senha</label>
+						<input name="password" type="password" class="form-control"
+											   placeholder="Insira aqui sua nova senha">
+					</div>
+					<div class="mb-3">
+                        <label class="form-label">Confirme sua nova senha</label>
+						<input name="confirm-password" type="password" class="form-control"
+												   placeholder="Confirme aqui a sua nova senha">
+					</div>
+					<button type="submit" class="btn btn-custom w-100">Atualizar Senha</button>
+				</form>
+			</div>
+			<!-- FORMULARIO DO ENDERECO -->
+			<div class="tab-pane fade" id="endereco">
+				<form method='POST'>
+					{% csrf_token %}
+					<input type="hidden" name="aba" value="endereco">
+					<div class="mb-3">
+						<input type="text" name="cep" id="cep-pessoal" class="form-control" maxlength="20" required value="{{ user_info.endereco.cep }}" placeholder="CEP">
+					</div>
+					<div class="mb-3">
+						<input type="text" name="logradouro" id="logradouro-pessoal" class="form-control" maxlength="20"
+																  value="{{ user_info.endereco.logradouro }}" placeholder="Logradouro">
+					</div>
+					<div class="row mb-3">
+						<div class="col">
+							<input name="numero" type="text" class="form-control" value="{{ user_info.endereco.numero }}" placeholder="Número">
+						</div>
+						<div class="col">
+							<input name="complemento" type="text" class="form-control"
+												  value="{{ user_info.endereco.complemento }}" placeholder="Complemento">
+						</div>
+					</div>
+					<div class="mb-3">
+						<input type="text" name="bairro" id="bairro-pessoal" class="form-control" maxlength="20" value="{{ user_info.endereco.bairro }}" placeholder="Bairro">
+					</div>
+					<div class="row mb-3">
+						<div class="col">
+							<input type="text" name="cidade" id="cidade-pessoal" class="form-control" maxlength="20" value="{{ user_info.endereco.cidade }}" placeholder="Cidade">
+						</div>
+						<div class="col">
+							<input type="text" name="estado" id="estado-pessoal" class="form-control" maxlength="20" value="{{ user_info.endereco.estado }}" placeholder="Estado">
+						</div>
+					</div>
+					<div class="mb-3">
+						<input name="referencia" type="text" class="form-control" value="{{ user_info.endereco.referencia }}" placeholder="Referencia">
+					</div>
+					<div class="mb-3">
+						<select class="form-select" name="tipo_end">
+							<option value="Residencial" {% if not user_info.endereco.tipo %}selected{% endif %}>Tipo de Endereço</option>
+							<option value="Comercial" {% if user_info.endereco.tipo == "Comercial" %}selected{% endif %}>Comercial</option>
+							<option value="Residencial" {% if user_info.endereco.tipo == "Residencial" %}selected{% endif %}>Residencial</option>
+						</select>
+					</div>
+
+					<button type="submit" class="btn btn-custom w-100">Atualizar Endereço</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+			document.getElementById('cep-pessoal').addEventListener('blur', buscarCEP);
+			document.getElementById('cep-profissional').addEventListener('blur', buscarCEP);
+		});
+	function buscarCEP(event) {
+			const cep = event.target.value.replace(/\D/g, '');
+			if (cep.length !== 8) return;
+			const isPessoal = event.target.id.includes('pessoal');
+			const suffix = isPessoal ? 'pessoal' : 'profissional';
+			fetch(`https://viacep.com.br/ws/${cep}/json/`)
+				.then(response => response.json())
+				.then(data => {
+						if (data.erro) {
+								alert('CEP não encontrado!');
+								return;
+							}
+						document.getElementById(`logradouro-${suffix}`).value = data.logradouro || '';
+						document.getElementById(`bairro-${suffix}`).value = data.bairro || '';
+						document.getElementById(`cidade-${suffix}`).value = data.localidade || '';
+						document.getElementById(`estado-${suffix}`).value = data.uf || '';
+					})
+				.catch(error => {
+						console.error('Erro ao buscar o CEP:', error);
+						alert('Erro ao buscar o CEP!');
+					});
+		}
+</script>
+{% endblock %}
+
