@@ -25,12 +25,12 @@ CATEGORY_CHOICE = [
         ("ES", "Escoamento"),
         ("PI", "Pintura"),
         ("RE", "Reforma"),
-        ("CO", "Construcao"),
+        ("CO", "Construção"),
         ("VI", "Vidracaria"),
         ("MA", "Marcenaria"),
         ("FR", "Freteiro"),
         ("MO", "Montagem"),
-        ("EL", "Eletrica")
+        ("EL", "Elétrica")
         ]
 
 class TicketServico(models.Model):

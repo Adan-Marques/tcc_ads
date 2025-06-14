@@ -34,6 +34,22 @@ def cadastroTicket(request):
     return render(request, 'cliente/ticket.html')
 
 
+@login_required
+def ticketUser(request):
+    if request.user.type_user == 'P':
+        return HttpResponse('*Fazer uma paǵina 404*')
+    ticket_user = TicketServico.objects.filter(solicitante = request.user)
+    tickets_abertos = TicketServico.objects.filter(solicitante=request.user, status='A').count()
+    tickets_fechados = TicketServico.objects.filter(solicitante=request.user, status='F').count()
+    tickets_cancelados = TicketServico.objects.filter(solicitante=request.user, status='C').count()
+    context = { 
+            'ticket_user': ticket_user,
+            'tickets_abertos': tickets_abertos,
+            'tickets_fechados': tickets_fechados,
+            'tickets_cancelados': tickets_cancelados,
+            }
+    return render(request, 'cliente/ticketUsuario.html', context)
+
 
 
 
