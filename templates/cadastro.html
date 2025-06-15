@@ -42,11 +42,12 @@
 						<input name="telefone" type="text" class="form-control mt-2" placeholder="Celular">
 					</div>
 					<div class="mb-3">
-						<input type="text" name="cep" id="cep-pessoal" class="form-control" maxlength="20" required placeholder="CEP">
+						<input type="text" name="cep" id="cep-pessoal" class="form-control" maxlength="20" required
+							placeholder="CEP">
 					</div>
 					<div class="mb-3">
 						<input type="text" name="logradouro" id="logradouro-pessoal" class="form-control" maxlength="20"
-																  placeholder="Logradouro">
+							placeholder="Logradouro">
 					</div>
 					<div class="row mb-3">
 						<div class="col">
@@ -54,18 +55,21 @@
 						</div>
 						<div class="col">
 							<input name="complemento" type="text" class="form-control"
-											      placeholder="Complemento (opcional)">
+								placeholder="Complemento (opcional)">
 						</div>
 					</div>
 					<div class="mb-3">
-						<input type="text" name="bairro" id="bairro-pessoal" class="form-control" maxlength="20" placeholder="Bairro">
+						<input type="text" name="bairro" id="bairro-pessoal" class="form-control" maxlength="20"
+							placeholder="Bairro">
 					</div>
 					<div class="row mb-3">
 						<div class="col">
-							<input type="text" name="cidade" id="cidade-pessoal" class="form-control" maxlength="20"placeholder="Cidade">
+							<input type="text" name="cidade" id="cidade-pessoal" class="form-control" maxlength="20"
+								placeholder="Cidade">
 						</div>
 						<div class="col">
-							<input type="text" name="estado" id="estado-pessoal" class="form-control" maxlength="20" placeholder="Estado">
+							<input type="text" name="estado" id="estado-pessoal" class="form-control" maxlength="20"
+								placeholder="Estado">
 						</div>
 					</div>
 					<div class="mb-3">
@@ -83,11 +87,11 @@
 					</div>
 					<div class="mb-3">
 						<input name="password" type="password" class="form-control"
-										       placeholder="Senha (min 8 caracteres)">
+							placeholder="Senha (min 8 caracteres)">
 					</div>
 					<div class="mb-3">
 						<input name="confirm-password" type="password" class="form-control"
-											       placeholder="Confirme sua senha">
+							placeholder="Confirme sua senha">
 					</div>
 					<div class="mb-3 form-check">
 						<input type="checkbox" class="form-check-input">
@@ -124,10 +128,12 @@
 					</div>
 					<div class="mb-3">
 						<div class="mb-3">
-							<input type="text" name="cep" id="cep-profissional" class="form-control" maxlength="20" required placeholder="CEP">
+							<input type="text" name="cep" id="cep-profissional" class="form-control" maxlength="20"
+								required placeholder="CEP">
 						</div>
 						<div class="mb-3">
-							<input type="text" name="logradouro" id="logradouro-profissional" class="form-control" maxlength="20" placeholder="Logradouro">
+							<input type="text" name="logradouro" id="logradouro-profissional" class="form-control"
+								maxlength="20" placeholder="Logradouro">
 						</div>
 						<div class="row mb-3">
 							<div class="col">
@@ -135,24 +141,26 @@
 							</div>
 							<div class="col">
 								<input name="complemento" type="text" class="form-control"
-												      placeholder="Complemento (opcional)">
+									placeholder="Complemento (opcional)">
 							</div>
 						</div>
 						<div class="mb-3">
-							<input type="text" name="bairro" id="bairro-profissional" class="form-control" maxlength="20"
-																       placeholder="Bairro">
+							<input type="text" name="bairro" id="bairro-profissional" class="form-control"
+								maxlength="20" placeholder="Bairro">
 						</div>
 						<div class="row mb-3">
 							<div class="col">
-								<input type="text" name="cidade" id="cidade-profissional" class="form-control" maxlength="20"placeholder="Cidade">
+								<input type="text" name="cidade" id="cidade-profissional" class="form-control"
+									maxlength="20" placeholder="Cidade">
 							</div>
 							<div class="col">
-								<input type="text" name="estado" id="estado-profissional" class="form-control" maxlength="20" placeholder="Estado">
+								<input type="text" name="estado" id="estado-profissional" class="form-control"
+									maxlength="20" placeholder="Estado">
 							</div>
 						</div>
 						<div class="mb-3">
 							<input name="referencia" type="text" class="form-control"
-											     placeholder="Referência (opcional)">
+								placeholder="Referência (opcional)">
 						</div>
 						<div class="mb-3">
 							<select name="tipo_end" class="form-select">
@@ -167,52 +175,52 @@
 						</div>
 						<div class="mb-3">
 							<input name="password" type="password" class="form-control"
-											       placeholder="Senha (min 8 caracteres)">
+								placeholder="Senha (min 8 caracteres)">
 						</div>
 						<div class="mb-3">
 							<input name="confirm-password" type="password" class="form-control"
-												       placeholder="Confirme sua senha">
+								placeholder="Confirme sua senha">
 						</div>
 						<div class="mb-3 form-check">
 							<input type="checkbox" class="form-check-input">
 							<label class="form-check-label">Li e concordo com os termos, condições e <a
-							       href="#">Políticas
-							       de privacidade</a>.</label>
+									href="#">Políticas
+									de privacidade</a>.</label>
 						</div>
 						<button type="submit" class="btn btn-custom w-100">Inscreva-se</button>
 						<p class="text-center mt-3">Já tem uma conta? <a href="{%  url 'login'  %}">Entrar</a>
 						</p>
 				</form>
-					</div>
 			</div>
 		</div>
 	</div>
-	<script>
-		document.addEventListener('DOMContentLoaded', function () {
-					document.getElementById('cep-pessoal').addEventListener('blur', buscarCEP);
-					document.getElementById('cep-profissional').addEventListener('blur', buscarCEP);
-				});
-		function buscarCEP(event) {
-					const cep = event.target.value.replace(/\D/g, '');
-					if (cep.length !== 8) return;
-					const isPessoal = event.target.id.includes('pessoal');
-					const suffix = isPessoal ? 'pessoal' : 'profissional';
-					fetch(`https://viacep.com.br/ws/${cep}/json/`)
-						.then(response => response.json())
-						.then(data => {
-									if (data.erro) {
-												alert('CEP não encontrado!');
-												return;
-											}
-									document.getElementById(`logradouro-${suffix}`).value = data.logradouro || '';
-									document.getElementById(`bairro-${suffix}`).value = data.bairro || '';
-									document.getElementById(`cidade-${suffix}`).value = data.localidade || '';
-									document.getElementById(`estado-${suffix}`).value = data.uf || '';
-								})
-						.catch(error => {
-									console.error('Erro ao buscar o CEP:', error);
-									alert('Erro ao buscar o CEP!');
-								});
+</div>
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		document.getElementById('cep-pessoal').addEventListener('blur', buscarCEP);
+		document.getElementById('cep-profissional').addEventListener('blur', buscarCEP);
+	});
+	function buscarCEP(event) {
+		const cep = event.target.value.replace(/\D/g, '');
+		if (cep.length !== 8) return;
+		const isPessoal = event.target.id.includes('pessoal');
+		const suffix = isPessoal ? 'pessoal' : 'profissional';
+		fetch(`https://viacep.com.br/ws/${cep}/json/`)
+			.then(response => response.json())
+			.then(data => {
+				if (data.erro) {
+					alert('CEP não encontrado!');
+					return;
 				}
-	</script>
-	{% endblock %}
+				document.getElementById(`logradouro-${suffix}`).value = data.logradouro || '';
+				document.getElementById(`bairro-${suffix}`).value = data.bairro || '';
+				document.getElementById(`cidade-${suffix}`).value = data.localidade || '';
+				document.getElementById(`estado-${suffix}`).value = data.uf || '';
+			})
+			.catch(error => {
+				console.error('Erro ao buscar o CEP:', error);
+				alert('Erro ao buscar o CEP!');
+			});
+	}
+</script>
+{% endblock %}

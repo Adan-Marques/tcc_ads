@@ -6,4 +6,7 @@ urlpatterns = [
     path('ticket-user/', views.ticketUser, name='ticket-user'),
     path('ticket-orcamento/<int:pk>/', views.ticketOrcamento, name='ticket-orcamento'),
     path('ticket-prestador/', views.ticketPrestador, name='ticket-prestador'),
+    path('ticket-prestador-detalhes/', views.ticketPrestadorDetalhes, name='ticket-prestador-detalhes'),
+    path('page_not_found/', views.page_not_found, name='page_not_found'),
 ]
+

@@ -107,7 +107,9 @@ def meuPerfil(request):
     context = { 'user_info': user_info }
     return render(request, 'meuPerfil.html', context)
 
-
+def page_not_found(request):
+    # Render the 404 page
+    return render(request, 'page_not_found.html')
 
 
 

@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.shortcuts import render
 from .models import TicketServico, Orcamento
 from users.models import Endereco
@@ -39,7 +40,7 @@ def cadastroTicket(request):
 @login_required
 def ticketUser(request):
     if request.user.type_user == 'P':
-        return HttpResponse('*Fazer uma paǵina 404*')
+        return HttpResponse('page_not_found.html')
     ticket_user = TicketServico.objects.filter(solicitante = request.user)
     tickets_abertos = TicketServico.objects.filter(solicitante=request.user, status='A').count()
     tickets_fechados = TicketServico.objects.filter(solicitante=request.user, status='F').count()
@@ -56,7 +57,7 @@ def ticketUser(request):
 def ticketOrcamento(request, pk):
 
     if request.user.type_user == 'C':
-        return HttpResponse('*Fazer uma paǵina 404*')
+        return HttpResponse('page_not_found.html')
 
     ticket = TicketServico.objects.get(pk=pk)
 
@@ -77,7 +78,7 @@ def ticketOrcamento(request, pk):
 
 def ticketPrestador(request):
     if request.user.type_user == 'C':
-        return HttpResponse('*Fazer uma paǵina 404*')
+        return HttpResponse('page_not_found.html')
 
     tickets = TicketServico.objects.all()
     context = {
@@ -85,3 +86,12 @@ def ticketPrestador(request):
             }
     return render(request, 'prestador/ticketPrestador.html', context)
 
+def ticketPrestadorDetalhes(request):
+    #if request.user.type_user == 'P':
+        #TODO refactor
+        #return HttpResponse('*Fazer uma paǵina 404*')
+    return render(request, 'prestador/ticketPrestadorDetalhes.html')
+
+def page_not_found(request):
+    # Render the 404 page
+    return render(request, 'page_not_found.html')
