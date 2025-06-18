@@ -42,13 +42,6 @@ def cadastro(request):
         messages.success(request, "Cadastro realizado com sucesso!")
     return render(request, 'cadastro.html')
 
-
-def detalhesPedido(request):
-    #if request.user.type_user == 'P':
-        #TODO refactor
-        #return HttpResponse('*Fazer uma paǵina 404*')
-    return render(request, 'cliente/detalhesPedido.html')
-
 @login_required
 def meuPerfil(request):
     user_info = request.user

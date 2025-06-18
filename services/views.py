@@ -95,3 +95,19 @@ def ticketPrestadorDetalhes(request):
 def page_not_found(request):
     # Render the 404 page
     return render(request, 'page_not_found.html')
+
+def detalhesPedido(request, pk):
+    #if request.user.type_user == 'P':
+        #TODO refactor
+        #return HttpResponse('*Fazer uma paǵina 404*')
+    ticket = TicketServico.objects.get(pk=pk)
+    orcamentos = Orcamento.objects.filter(ticket=ticket)
+    context = {
+            'orcamentos': orcamentos,
+            'ticket': ticket,
+            }
+
+    return render(request, 'cliente/detalhesPedido.html', context)
+
+
+

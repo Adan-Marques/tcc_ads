@@ -4,32 +4,33 @@
 
 <div class="container my-4 px-2">
     <!-- Voltar -->
-    <a href="{% url 'ticketUsuario' %}" class="text-decoration-none mb-3 d-block">&larr; Voltar</a>
+    <a href="{% url 'ticket-user' %}" class="text-decoration-none mb-3 d-block">&larr; Voltar</a>
     <!-- Título -->
     <h4 class="text-center mb-4">Meu Pedido</h4>
     <!-- Detalhes do Pedido -->
     <div class="mb-3">
         <h5>Detalhes do Pedido</h5>
         <p class="mb-1">
-            <strong>{{ ticket.profissional }}</strong>
+            <strong>{{ ticket.solicitante }}</strong>
             <a href="#" class="text-decoration-none">#0001</a>
         </p>
         <p class="mb-1">
-            <i class="bi bi-geo-alt-fill"></i> {{ ticket.endereco.endereco_completo }}
-            <span class="pedido-status ms-2">{{ ticket.status }}</span>
+	<i class="bi bi-geo-alt-fill"></i> {{ ticket.endereco.logradouro }} {{ ticket.endereco.numero }}, {{ ticket.endereco.bairro }} - {{ ticket.endereco.cidade }} </p>
+	<p>
+            <span class="pedido-status ms-2">{{ ticket.get_status_display }}</span>
         </p>
     </div>
     <!-- Orçamentos -->
-    <h6>{{ profissionais|length }} Orçamentos recebidos</h6>
+    <h6>{{ orcamentos.count }} Orçamentos recebidos</h6>
     <div class="row">
-        {% for profissional in profissionais %}
+        {% for orcamento in orcamentos %}
         <div class="col-12 col-sm-6 col-md-4 mb-3">
             <div class="orcamento-card p-3 shadow-sm rounded">
                 <p class="mb-1">Valor do orçamento:</p>
-                <h5 class="text-warning">R$ {{ profissional.valor }}</h5>
+                <h5 class="text-warning">R$ {{ orcamento.valor }}</h5>
                 <img src="{{ profissional.foto }}" alt="Foto do profissional" class="my-2 rounded-circle" width="60"
                     height="60">
-                <p class="mb-0"><strong>{{ profissional.nome }}</strong></p>
+                <p class="mb-0"><strong>{{ orcamento.prestador }}</strong></p>
                 <p class="text-muted small mb-1">
                     ⭐ {{ profissional.avaliacao }} &nbsp; | &nbsp; {{ profissional.servicos }} serviços realizados
                 </p>
