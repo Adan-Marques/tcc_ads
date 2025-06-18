@@ -66,6 +66,7 @@ def ticketOrcamento(request, pk):
         orcamento.ticket = ticket
         orcamento.prestador = request.user
         orcamento.valor = request.POST.get('valor')
+        orcamento.dataInicio = request.POST.get('dataInicio')
         orcamento.prazo = request.POST.get('prazo')
         orcamento.descricao = request.POST.get('mensagem')
         orcamento.save()
@@ -110,8 +111,8 @@ def detalhesPedido(request, pk):
     return render(request, 'cliente/detalhesPedido.html', context)
 
 
-def aceitarOrcamento(request, orcamento_id):
-    orcamento = get_object_or_404(Orcamento, id=orcamento_id)
+def aceitarOrcamento(request, pk):
+    orcamento = get_object_or_404(Orcamento, id=pk)
     ticket = orcamento.ticket
 
 
@@ -134,5 +135,6 @@ def aceitarOrcamento(request, orcamento_id):
     Orcamento.objects.filter(ticket=ticket).exclude(id=orcamento.id).update(status='R')
 
     messages.success(request, "Serviço contratado com sucesso!")
-    return redirect('detalhes-pedido', pk=ticket.id)
-
+   #return redirect('detalhes-pedido', pk=ticket.id)
+   #TODO: fazer página de serviço
+    return HttpResponse("aba de serviço")
