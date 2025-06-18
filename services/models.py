@@ -50,6 +50,7 @@ class Orcamento(models.Model):
     descricao = models.TextField()
     dataCriacao = models.DateTimeField(default=timezone.now)
     prazo = models.DateField()
+    dataInicio = models.DateField()
 
 class Service(models.Model):
     ticket = models.ForeignKey(TicketServico, on_delete=models.SET_NULL, null=True)
@@ -57,5 +58,8 @@ class Service(models.Model):
     status = models.CharField(max_length=1, choices=STATUS_SERVICE, default="E")
     dataInicio = models.DateField()
     dataConclusao = models.DateField()
+    prestador = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="servicos_contratados")
+    cliente = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="servicos_prestados")
+
 
 
