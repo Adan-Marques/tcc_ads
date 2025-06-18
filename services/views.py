@@ -1,6 +1,6 @@
 from multiprocessing import context
-from django.shortcuts import render
-from .models import TicketServico, Orcamento
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import TicketServico, Orcamento, Service
 from users.models import Endereco
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
@@ -110,4 +110,29 @@ def detalhesPedido(request, pk):
     return render(request, 'cliente/detalhesPedido.html', context)
 
 
+def aceitarOrcamento(request, orcamento_id):
+    orcamento = get_object_or_404(Orcamento, id=orcamento_id)
+    ticket = orcamento.ticket
+
+
+    if Service.objects.filter(ticket=ticket).exists():
+        messages.error(request, "Este ticket já possui um serviço contratado.")
+        return redirect('detalhes-pedido', pk=ticket.id)
+
+    Service.objects.create(
+        ticket=ticket,
+        orcamento=orcamento,
+        cliente = request.user,
+        prestador=orcamento.prestador,
+        dataInicio = orcamento.dataInicio,
+        dataConclusao = orcamento.prazo,
+    )
+    
+    ticket.status = "F"
+    ticket.save()
+
+    Orcamento.objects.filter(ticket=ticket).exclude(id=orcamento.id).update(status='R')
+
+    messages.success(request, "Serviço contratado com sucesso!")
+    return redirect('detalhes-pedido', pk=ticket.id)
 
