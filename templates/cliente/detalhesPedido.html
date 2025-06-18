@@ -14,9 +14,7 @@
             <strong>{{ ticket.solicitante }}</strong>
             <a href="#" class="text-decoration-none">#0001</a>
         </p>
-        <p class="mb-1">
-	<i class="bi bi-geo-alt-fill"></i> {{ ticket.endereco.logradouro }} {{ ticket.endereco.numero }}, {{ ticket.endereco.bairro }} - {{ ticket.endereco.cidade }} </p>
-	<p>
+        <p>
             <span class="pedido-status ms-2">{{ ticket.get_status_display }}</span>
         </p>
     </div>
@@ -28,12 +26,15 @@
             <div class="orcamento-card p-3 shadow-sm rounded">
                 <p class="mb-1">Valor do orçamento:</p>
                 <h5 class="text-warning">R$ {{ orcamento.valor }}</h5>
-                <img src="{{ profissional.foto }}" alt="Foto do profissional" class="my-2 rounded-circle" width="60"
-                    height="60">
-                <p class="mb-0"><strong>{{ orcamento.prestador }}</strong></p>
-                <p class="text-muted small mb-1">
+                <!--<img src="{{ profissional.foto }}" alt="Foto do profissional" class="my-2 rounded-circle" width="60"
+                    height="60">-->
+                <p class="mb-0"><strong>Prestador:  </strong> {{ orcamento.prestador }}</p>
+                <p class="mb-0"> <strong>Descrição: </strong>  {{ orcamento.descricao }}</p>
+                <p class="mb-0"><strong>Data Inicial:</strong> {{ orcamento.dataCriacao |date:"d/m/Y" }} </p>
+                 <p class="mb-0"><strong>Data Final (Estimativa):</strong> {{ orcamento.prazo |date:"d/m/Y" }}</p>
+                <!-- <p class="text-muted small mb-1">
                     ⭐ {{ profissional.avaliacao }} &nbsp; | &nbsp; {{ profissional.servicos }} serviços realizados
-                </p>
+                </p> -->
                 <div class="d-flex justify-content-between mt-2">
                     <button class="btn btn-success btn-sm">Aceitar</button>
                     <button class="btn btn-danger btn-sm">Recusar</button>
@@ -46,21 +47,16 @@
     <!-- Mais informações -->
     <div class="mt-4">
         <h4>Mais informações:</h4>
-        <p><strong>Endereço:</strong> R. Frei João - Ipiranga, SP</p>
-        <p><strong>Data do pedido:</strong> 12/05/2025</p>
+        <br>
+        <p><strong>Endereço:</strong> {{ ticket.endereco.logradouro }} {{ ticket.endereco.numero }}, {{ticket.endereco.bairro }} - {{ ticket.endereco.cidade }}</p>
+        <p><strong>Data do pedido:</strong> {{ticket.dataCriacao|date:"d/m/Y" }}</p>
     </div>
-
-    <!-- Data prevista -->
-    <p class="mb-1">
-        <i class="bi bi-calendar-event-fill me-1"></i>
-        <strong>Data prevista:</strong> 17/05/2025
-    </p>
-
     <!-- Tipo de serviço -->
-    <p class="mb-4">
-        <strong>Tipo de serviço:</strong><br />
-        Manutenção elétrica
-    </p>
+    <div class="mt-4">
+        <p class="mb-4">
+            <strong>Tipo de serviço:</strong> {{ticket.get_categoria_display }}
+        </p>
+    </div>
     <!-- Botão Cancelar -->
     <div class="text-end">
         <button class="btn" style="background-color: #8b0000; color: white;">
