@@ -12,7 +12,7 @@
         <h5>Detalhes do Pedido</h5>
         <p class="mb-1">
             <strong>{{ ticket.solicitante }}</strong>
-	    <!-- TODO: REMOVER ESSE ID -->
+            <!-- TODO: REMOVER ESSE ID -->
             <a href="#" class="text-decoration-none">#0001</a>
         </p>
         <p>
@@ -28,21 +28,24 @@
             <div class="orcamento-card p-3 shadow-sm rounded">
                 <p class="mb-1">Valor do orçamento:</p>
                 <h5 class="text-warning">R$ {{ orcamento.valor }}</h5>
-		<!-- TODO: REMOVER FOTO DO PROFISSIONAL -->
+                <!-- TODO: REMOVER FOTO DO PROFISSIONAL
                 <img src="{{ profissional.foto }}" alt="Foto do profissional" class="my-2 rounded-circle" width="60"
-                    height="60">
-                <p class="mb-0"><strong>{{ orcamento.prestador }}</strong></p>
-                <p class="text-muted small mb-1">
-		<!-- TODO: REMOVER ISSO -->
+                    height="60"> -->
+                <!-- TODO: REMOVER ISSO
                     ⭐ {{ profissional.avaliacao }} &nbsp; | &nbsp; {{ profissional.servicos }} serviços realizados
                 </p> -->
+                <p class="mb-0"><strong>Prestador: </strong>{{ orcamento.prestador }}</p>
+              <p class="mb-0"><strong>Descrição: </strong>{{ orcamento.descricao }}</p>
+                <p class="mb-0"><strong>Data de início: </strong>{{ orcamento.dataInicio|date:"d/m/Y" }}</p>
+                <p class="mb-0"><strong>Prazo estimado: </strong>{{ orcamento.prazo|date:"d/m/Y" }}</p>
+                <p class="text-muted small mb-1">
                 <div class="d-flex justify-content-between mt-2">
-			 <a href="{% url 'aceitar-orcamento' orcamento.id %}" class="btn btn-success btn-sm">
-        		 	Aceitar
-    			 </a>
-    			 <a href="#" class="btn btn-danger btn-sm">
-        		 	Recusar
-    			 </a>
+                    <a href="{% url 'aceitar-orcamento' orcamento.id %}" class="btn btn-success btn-sm">
+                        Aceitar
+                    </a>
+                    <a href="#" class="btn btn-danger btn-sm">
+                        Recusar
+                    </a>
                 </div>
             </div>
         </div>
@@ -54,7 +57,8 @@
     <div class="mt-4">
         <h4>Mais informações:</h4>
         <br>
-        <p><strong>Endereço:</strong> {{ ticket.endereco.logradouro }} {{ ticket.endereco.numero }}, {{ticket.endereco.bairro }} - {{ ticket.endereco.cidade }}</p>
+        <p><strong>Endereço:</strong> {{ ticket.endereco.logradouro }} {{ ticket.endereco.numero }},
+            {{ticket.endereco.bairro }} - {{ ticket.endereco.cidade }}</p>
         <p><strong>Data do pedido:</strong> {{ticket.dataCriacao|date:"d/m/Y" }}</p>
     </div>
     <!-- Tipo de serviço -->
