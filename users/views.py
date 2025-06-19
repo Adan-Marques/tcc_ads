@@ -19,7 +19,7 @@ def cadastro(request):
             return redirect('cadastro')
         user.cpf = request.POST.get('cpf')
         user.first_name = request.POST.get('nome')
-        user.username = request.POST.get('nome')
+        user.username = request.POST.get('username')
         user.email = request.POST.get('email')
         user.last_name = request.POST.get('sobrenome')
         user.telefone = request.POST.get('telefone')
