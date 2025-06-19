@@ -2,7 +2,7 @@
 {% block body %}
 <div class="container my-5">
     <!-- Voltar -->
-    <a href="{% url 'ticket-user' %}" class="btn btn-link mb-3 p-0">&larr; Voltar</a>
+    <a href="{% url 'ticket-user' %}" class="btn btn-warning rounded-pill px-3" style="width: 100px;">&larr; Voltar</a>
 
     <!-- Título -->
     <h3 class="text-center fw-bold mb-4">Detalhes do Pedido</h3>
@@ -11,7 +11,7 @@
     <div class="card shadow-sm p-4 mb-4 border-0 rounded-3">
         <h5 class="mb-2"><strong>Solicitante:</strong> {{ ticket.solicitante }}</h5>
         <p class="mb-1">
-            <span class="badge bg-secondary">#0001</span>
+            <span class="badge bg-secondary">#000{{ticket.id}}</span>
         </p>
         <p><span class="badge bg-warning text-dark">{{ ticket.get_status_display }}</span></p>
     </div>

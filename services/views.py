@@ -136,3 +136,7 @@ def aceitarOrcamento(request, pk):
    #return redirect('detalhes-pedido', pk=ticket.id)
    #TODO: fazer página de serviço
     return HttpResponse("aba de serviço")
+
+#def teste(request):
+    # Função de teste para aceitar orçamento
+    return render(request, 'teste.html')

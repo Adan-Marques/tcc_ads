@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container my-5">
+    <!-- voltar -->
+    <a href="{% url 'ticketUsuario' %}" class="btn btn-warning rounded-pill px-3" style="width: 100px;">&larr; Voltar</a>
+
+    <!-- título -->
+    <h3 class="text-center fw-bold mb-4">Orçamento n.º {{orcamento.id}}</h3>
+
+    <!-- informações do orçamento -->
+
+    <div class="card p-4 bg-white rounded-4 shadow-sm mx-auto w-100" style="max-width: 1000px;">
+        <h5 class=" align-items-center mb-2 "> O orçamento foi aceito, a confirmação será enviada ao prestador</h5>
+        <br>
+        <p><strong>Prestador:</strong> {{ orcamento.prestador }}</p>
+        <p><strong>Valor:</strong> <span class="text-warning mb-3">R$ {{ orcamento.valor }}</span></p>
+        <p><strong>Descrição:</strong> {{ orcamento.descricao }}</p>
+        <p><strong>Data de Início:</strong> {{ orcamento.dataInicio|date:"d/m/Y" }}</p>
+        <p><strong>Prazo estimado:</strong> {{ orcamento.prazo|date:"d/m/Y" }}</p>
+    </div>
+    {% endblock %}
