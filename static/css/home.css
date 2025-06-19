@@ -637,3 +637,14 @@ body {
 		margin: 0 auto;
 	}
 }
+.orcamento-card {
+    background-color: #fff;
+    border-radius: 1rem;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+.pedido-status {
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #f57c00;
+}

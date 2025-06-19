@@ -1,82 +1,55 @@
 {% extends 'base.html' %}
 {% block body %}
-
-<!-- TODO: MELHORAR ESTÉTICA DA PÁGINA PARA FICAR MAIS PARECIDA COM AS OUTRAS PÁGINAS -->
-<div class="container my-4 px-2">
+<div class="container my-5">
     <!-- Voltar -->
-    <a href="{% url 'ticket-user' %}" class="text-decoration-none mb-3 d-block">&larr; Voltar</a>
+    <a href="{% url 'ticket-user' %}" class="btn btn-link mb-3 p-0">&larr; Voltar</a>
+
     <!-- Título -->
-    <h4 class="text-center mb-4">Meu Pedido</h4>
-    <!-- Detalhes do Pedido -->
-    <div class="mb-3">
-        <h5>Detalhes do Pedido</h5>
+    <h3 class="text-center fw-bold mb-4">Detalhes do Pedido</h3>
+
+    <!-- Informações do pedido -->
+    <div class="card shadow-sm p-4 mb-4 border-0 rounded-3">
+        <h5 class="mb-2"><strong>Solicitante:</strong> {{ ticket.solicitante }}</h5>
         <p class="mb-1">
-            <strong>{{ ticket.solicitante }}</strong>
-            <!-- TODO: REMOVER ESSE ID -->
-            <a href="#" class="text-decoration-none">#0001</a>
+            <span class="badge bg-secondary">#0001</span>
         </p>
-        <p>
-            <span class="pedido-status ms-2">{{ ticket.get_status_display }}</span>
-        </p>
+        <p><span class="badge bg-warning text-dark">{{ ticket.get_status_display }}</span></p>
     </div>
-    <!-- Orçamentos -->
-    <!-- TODO: COLOCAR AS INFORMAÇÕES DO ORÇAMENTO DENTRO DO CARD -->
-    <h6>{{ orcamentos.count }} Orçamentos recebidos</h6>
+
+    <!-- Orçamentos recebidos -->
+    <h5 class="mb-3">{{ orcamentos.count }} Orçamento(s) Recebido(s)</h5>
     <div class="row">
         {% for orcamento in orcamentos %}
-        <div class="col-12 col-sm-6 col-md-4 mb-3">
-            <div class="orcamento-card p-3 shadow-sm rounded">
-                <p class="mb-1">Valor do orçamento:</p>
-                <h5 class="text-warning">R$ {{ orcamento.valor }}</h5>
-                <!-- TODO: REMOVER FOTO DO PROFISSIONAL
-                <img src="{{ profissional.foto }}" alt="Foto do profissional" class="my-2 rounded-circle" width="60"
-                    height="60"> -->
-                <!-- TODO: REMOVER ISSO
-                    ⭐ {{ profissional.avaliacao }} &nbsp; | &nbsp; {{ profissional.servicos }} serviços realizados
-                </p> -->
-                <p class="mb-0"><strong>Prestador: </strong>{{ orcamento.prestador }}</p>
-              <p class="mb-0"><strong>Descrição: </strong>{{ orcamento.descricao }}</p>
-                <p class="mb-0"><strong>Data de início: </strong>{{ orcamento.dataInicio|date:"d/m/Y" }}</p>
-                <p class="mb-0"><strong>Prazo estimado: </strong>{{ orcamento.prazo|date:"d/m/Y" }}</p>
-                <p class="text-muted small mb-1">
-                <div class="d-flex justify-content-between mt-2">
-                    <a href="{% url 'aceitar-orcamento' orcamento.id %}" class="btn btn-success btn-sm">
-                        Aceitar
-                    </a>
-                    <a href="#" class="btn btn-danger btn-sm">
-                        Recusar
-                    </a>
+        <div class="col-12 col-md-6 col-lg-4 mb-4">
+            <div class="card border-0 shadow-sm p-3 h-100 rounded-4">
+                <div class="card-body">
+                    <p class="mb-1 text-muted">Valor do orçamento:</p>
+                    <h5 class="text-warning mb-3">R$ {{ orcamento.valor }}</h5>
+                    <p class="mb-0"><strong>Prestador:</strong> {{ orcamento.prestador }}</p>
+                    <p class="mb-0"><strong>Descrição:</strong> {{ orcamento.descricao }}</p>
+                    <p class="mb-0"><strong>Data de início:</strong> {{ orcamento.dataInicio|date:"d/m/Y" }}</p>
+                    <p class="mb-3"><strong>Prazo estimado:</strong> {{ orcamento.prazo|date:"d/m/Y" }}</p>
+
+                    <div class="d-flex justify-content-between">
+                        <a href="{% url 'aceitar-orcamento' orcamento.id %}" class="btn btn-warning w-25 rounded-pill px-3">
+                            Aceitar
+                        </a>
+                        <a href="#" class="btn btn-secondary btn-sm rounded-pill px-3">
+                            Recusar
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
-    <hr style="border-top: 1px solid #ccc; margin-top: 40px;" />
-    <!-- TODO: ISSO É NECESSÁRIO? SE SIM, COLOCAR NO RESUMO DO TICKET NO TOPO DA PÁGINA -->
-    <!-- Mais informações -->
-    <div class="mt-4">
-        <h4>Mais informações:</h4>
-        <br>
-        <p><strong>Endereço:</strong> {{ ticket.endereco.logradouro }} {{ ticket.endereco.numero }},
-            {{ticket.endereco.bairro }} - {{ ticket.endereco.cidade }}</p>
-        <p><strong>Data do pedido:</strong> {{ticket.dataCriacao|date:"d/m/Y" }}</p>
-    </div>
-    <!-- Tipo de serviço -->
-    <div class="mt-4">
-        <p class="mb-4">
-            <strong>Tipo de serviço:</strong> {{ticket.get_categoria_display }}
-        </p>
-    </div>
-    <!-- Botão Cancelar -->
-    <div class="text-end">
-        <button class="btn" style="background-color: #8b0000; color: white;">
-            Cancelar
-        </button>
-    </div>
-</div>
-</div>
 
-<!-- TODO: ISSO É NECESSÁRIO? -->
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Mais informações -->
+    <div class="card p-4 shadow-sm mt-4 border-0 rounded-3">
+        <h5 class="mb-3">Mais informações</h5>
+        <p><strong>Endereço:</strong> {{ ticket.endereco.logradouro }} {{ ticket.endereco.numero }}, {{ ticket.endereco.bairro }} - {{ ticket.endereco.cidade }}</p>
+        <p><strong>Data do pedido:</strong> {{ ticket.dataCriacao|date:"d/m/Y" }}</p>
+        <p><strong>Tipo de serviço:</strong> {{ ticket.get_categoria_display }}</p>
+    </div>
+
 {% endblock %}

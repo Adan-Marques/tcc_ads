@@ -24,39 +24,39 @@
 			<div class="row g-0 align-items-center">
 				<!-- Coluna com o carrossel -->
 				<div class="col-md-3">
-					<div id="imageCarousel" class="carousel slide position-relative" data-bs-ride="false"
-													 data-bs-interval="false">
+					<div id="carousel-{{ ticket.id }}" class="carousel slide position-relative" data-bs-ride="carousel"
+						data-bs-interval="100000">
 						<div class="carousel-inner rounded">
 							<div class="carousel-item active">
 								<img src="{{ ticket.imagem.url }}" class="d-block w-100 rounded" alt="Imagem 1"
-																 style="height: 180px; object-fit: cover;">
-								<div class="position-absolute bottom-0 start-0 bg-dark text-white px-2 py-1 small">1
-									/ 3</div>
+									style="height: 180px; object-fit: cover;">
+								<div class="position-absolute bottom-0 start-0 bg-dark text-white px-2 py-1 small">1 / 3
+								</div>
 							</div>
 							<div class="carousel-item">
 								<img src="{{ ticket.imagem.url }}" class="d-block w-100 rounded" alt="Imagem 2"
-																 style="height: 180px; object-fit: cover;">
-								<div class="position-absolute bottom-0 start-0 bg-dark text-white px-2 py-1 small">2
-									/ 3</div>
+									style="height: 180px; object-fit: cover;">
+								<div class="position-absolute bottom-0 start-0 bg-dark text-white px-2 py-1 small">2 / 3
+								</div>
 							</div>
 							<div class="carousel-item">
 								<img src="{{ ticket.imagem.url }}" class="d-block w-100 rounded" alt="Imagem 3"
-																 style="height: 180px; object-fit: cover;">
-								<div class="position-absolute bottom-0 start-0 bg-dark text-white px-2 py-1 small">3
-									/ 3</div>
+									style="height: 180px; object-fit: cover;">
+								<div class="position-absolute bottom-0 start-0 bg-dark text-white px-2 py-1 small">3 / 3
+								</div>
 							</div>
 						</div>
+
 						<!-- Botão anterior -->
-						<button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel"
-												    data-bs-slide="prev"
-												    style="top: 50%; transform: translateY(-50%); width: 15%; left: 5px;">
+						<button class="carousel-control-prev" type="button" data-bs-target="#carousel-{{ ticket.id }}"
+							data-bs-slide="prev" style="top: 50%; transform: translateY(-50%); width: 15%; left: 5px;">
 							<i class="fa-solid fa-chevron-left text-dark fs-4 p-2 rounded-circle"></i>
 							<span class="visually-hidden">Anterior</span>
 						</button>
+
 						<!-- Botão próximo -->
-						<button class="carousel-control-next" type="button" data-bs-target="#imageCarousel"
-												    data-bs-slide="next"
-												    style="top: 50%; transform: translateY(-50%); width: 15%; right: 5px;">
+						<button class="carousel-control-next" type="button" data-bs-target="#carousel-{{ ticket.id }}"
+							data-bs-slide="next" style="top: 50%; transform: translateY(-50%); width: 15%; right: 5px;">
 							<i class="fa-solid fa-chevron-right text-dark fs-4 p-2 rounded-circle"></i>
 							<span class="visually-hidden">Próximo</span>
 						</button>
@@ -69,24 +69,24 @@
 						<div class="me-3">
 							<h5 class="card-title fw-bold">{{ ticket.get_categoria_display }}</h5>
 							<p class="card-text mb-1">
-							<!-- TODO: ALTERAR ÍCONE -->														
-							<i class="fa-solid fa-check-square text-dark me-2"></i>
-							{{ ticket.dataCriacao|date:"d/m/Y" }}
+								<!-- TODO: ALTERAR ÍCONE -->
+								<i class="fa-solid fa-calendar"></i>
+								{{ ticket.dataCriacao|date:"d/m/Y" }}
 							</p>
 							<i class="fa-solid fa-check-square text-dark me-2"></i>
 							Recebeu {{ ticket.orcamentos.count }} orçamento(s)
 							</p>
 
 							<p class="card-text text-muted">
-							<i class="fa-solid fa-location-dot text-dark me-2"></i>
-							{{ ticket.endereco.logradouro }} {{ ticket.endereco.numero }}, {{ ticket.endereco.bairro }} - {{ ticket.endereco.cidade }}
+								<i class="fa-solid fa-location-dot text-dark me-2"></i>
+								{{ ticket.endereco.logradouro }} {{ ticket.endereco.numero }}, {{ticket.endereco.bairro}} - {{ ticket.endereco.cidade }}
 							</p>
 						</div>
 						<div class="d-flex flex-column align-items-end gap-2">
-							<a href="{% url 'detalhes-pedido' ticket.pk %}" class="btn btn-warning text-white" style="width: 200px;">Ver detalhes <i
-																	   class="fa-solid fa-chevron-right ms-2"></i></a>
+							<a href="{% url 'detalhes-pedido' ticket.pk %}" class="btn btn-warning text-white"
+								style="width: 200px;">Ver detalhes <i class="fa-solid fa-chevron-right ms-2"></i></a>
 							<a href="#" class="btn btn-warning text-white" style="width: 200px;">Cancelar<i
-												       class="fa-solid fa-xmark ms-2"></i></a>
+									class="fa-solid fa-xmark ms-2"></i></a>
 						</div>
 					</div>
 				</div>
@@ -95,12 +95,13 @@
 		{% endfor %}
 		<!-- Botão flutuante -->
 		<a href="{%  url 'ticket'  %}"
-		   class="btn btn-warning rounded-circle position-fixed shadow-lg d-flex align-items-center justify-content-center text-white"
-		   style="width: 80px; height: 80px; font-size: 30px; bottom: 30rem; right: 10rem;">
+			class="btn btn-warning rounded-circle position-fixed shadow-lg d-flex align-items-center justify-content-center text-white"
+			style="width: 80px; height: 80px; font-size: 30px; bottom: 30rem; right: 10rem;">
 			+
 		</a>
 		<p class="position-fixed text-dark small" style="bottom: 27rem; right: 9rem;">
-		Novo chamado
+			Novo chamado
 		</p>
 	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 	{% endblock %}
