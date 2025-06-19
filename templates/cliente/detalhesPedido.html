@@ -1,7 +1,7 @@
-{% extends 'cliente/base_cliente.html' %}
+{% extends 'base.html' %}
 {% block body %}
 
-
+<!-- TODO: MELHORAR ESTÉTICA DA PÁGINA PARA FICAR MAIS PARECIDA COM AS OUTRAS PÁGINAS -->
 <div class="container my-4 px-2">
     <!-- Voltar -->
     <a href="{% url 'ticket-user' %}" class="text-decoration-none mb-3 d-block">&larr; Voltar</a>
@@ -12,6 +12,7 @@
         <h5>Detalhes do Pedido</h5>
         <p class="mb-1">
             <strong>{{ ticket.solicitante }}</strong>
+	    <!-- TODO: REMOVER ESSE ID -->
             <a href="#" class="text-decoration-none">#0001</a>
         </p>
         <p class="mb-1">
@@ -21,6 +22,7 @@
         </p>
     </div>
     <!-- Orçamentos -->
+    <!-- TODO: COLOCAR AS INFORMAÇÕES DO ORÇAMENTO DENTRO DO CARD -->
     <h6>{{ orcamentos.count }} Orçamentos recebidos</h6>
     <div class="row">
         {% for orcamento in orcamentos %}
@@ -28,10 +30,12 @@
             <div class="orcamento-card p-3 shadow-sm rounded">
                 <p class="mb-1">Valor do orçamento:</p>
                 <h5 class="text-warning">R$ {{ orcamento.valor }}</h5>
+		<!-- TODO: REMOVER FOTO DO PROFISSIONAL -->
                 <img src="{{ profissional.foto }}" alt="Foto do profissional" class="my-2 rounded-circle" width="60"
                     height="60">
                 <p class="mb-0"><strong>{{ orcamento.prestador }}</strong></p>
                 <p class="text-muted small mb-1">
+		<!-- TODO: REMOVER ISSO -->
                     ⭐ {{ profissional.avaliacao }} &nbsp; | &nbsp; {{ profissional.servicos }} serviços realizados
                 </p>
                 <div class="d-flex justify-content-between mt-2">
@@ -47,6 +51,7 @@
         {% endfor %}
     </div>
     <hr style="border-top: 1px solid #ccc; margin-top: 40px;" />
+    <!-- TODO: ISSO É NECESSÁRIO? SE SIM, COLOCAR NO RESUMO DO TICKET NO TOPO DA PÁGINA -->
     <!-- Mais informações -->
     <div class="mt-4">
         <h4>Mais informações:</h4>
@@ -65,6 +70,7 @@
         <strong>Tipo de serviço:</strong><br />
         Manutenção elétrica
     </p>
+    <!-- TODO: ISSO É NECESSÁRIO? -->
     <!-- Botão Cancelar -->
     <div class="text-end">
         <button class="btn" style="background-color: #8b0000; color: white;">
@@ -74,6 +80,7 @@
 </div>
 </div>
 
+<!-- TODO: ISSO É NECESSÁRIO? -->
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 {% endblock %}

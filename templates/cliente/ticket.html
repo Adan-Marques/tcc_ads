@@ -1,7 +1,8 @@
-{% extends 'cliente/base_cliente.html' %}
+{% extends 'base.html' %}
 {% block body %}
 <div class="container-fluid">
     <div class="row">
+	<!-- TODO: REMOVER SIDEBAR -->
         <!-- sidebar: Tickets em Andamento -->
         <div class="col-md-2 sidebar">
             <h5 class="text-center">Tickets em Andamento</h5>
@@ -100,6 +101,7 @@
                 </form>
                 {% endif %}
             </div>
+	    <!-- TODO: REMOVER ISSO -->
             <!-- resumo do Ticket -->
             <div class="card p-4 mt-4">
                 <h4> <i class="fa-solid fa-wrench"></i> Resumo do Ticket</h4>
