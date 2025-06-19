@@ -28,6 +28,9 @@
 					{% csrf_token %}
 					<input type="hidden" name="type" value="C">
 					<div class="mb-3">
+            <input name="username" type="text" class="form-control" placeholder="Nome de usuário">
+          </div>
+					<div class="mb-3">
 						<input name="cpf" type="text" class="form-control" placeholder="CPF ou CNPJ">
 					</div>
 					<div class="row mb-3">
@@ -107,6 +110,10 @@
 				<form method='POST'>
 					{% csrf_token %}
 					<input type="hidden" name="type" value="P">
+					<div class="mb-3">
+            <input name="username" type="text" class="form-control" placeholder="Nome de usuário">
+          </div>
+
 					<div class="mb-3">
 						<input name="cpf" type="text" class="form-control" placeholder="CPF ou CNPJ">
 					</div>

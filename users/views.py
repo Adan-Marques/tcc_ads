@@ -19,7 +19,7 @@ def cadastro(request):
             return redirect('cadastro')
         user.cpf = request.POST.get('cpf')
         user.first_name = request.POST.get('nome')
-        user.username = request.POST.get('nome')
+        user.username = request.POST.get('username')
         user.email = request.POST.get('email')
         user.last_name = request.POST.get('sobrenome')
         user.telefone = request.POST.get('telefone')
@@ -99,11 +99,6 @@ def meuPerfil(request):
         return redirect('meu-perfil')
     context = { 'user_info': user_info }
     return render(request, 'meuPerfil.html', context)
-
-def page_not_found(request):
-    # Render the 404 page
-    return render(request, 'page_not_found.html')
-
 
 
 

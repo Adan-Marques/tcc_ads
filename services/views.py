@@ -87,15 +87,13 @@ def ticketPrestador(request):
             }
     return render(request, 'prestador/ticketPrestador.html', context)
 
+#NÃO ESTÁ SENDO UTILIZADO
 def ticketPrestadorDetalhes(request):
     #if request.user.type_user == 'P':
         #TODO refactor
         #return HttpResponse('*Fazer uma paǵina 404*')
     return render(request, 'prestador/ticketPrestadorDetalhes.html')
 
-def page_not_found(request):
-    # Render the 404 page
-    return render(request, 'page_not_found.html')
 
 def detalhesPedido(request, pk):
     #if request.user.type_user == 'P':
