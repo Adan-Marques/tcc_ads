@@ -62,4 +62,9 @@ class Service(models.Model):
     cliente = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="servicos_prestados")
 
 
+class Rating(models.Model):
+    pessoa = models.ForeignKey(User, on_delete=models.CASCADE)
+    rating = models.IntegerField(default=0)
+
+
 
