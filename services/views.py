@@ -3,14 +3,15 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import TicketServico, Orcamento, Service
 from users.models import Endereco
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseForbidden
 from django.contrib import messages
 
 
 @login_required
 def cadastroTicket(request):
     if request.user.type_user == 'P':
-        return HttpResponse("Montar página 404")
+        #return HttpResponse("Montar página 404")
+        return HttpResponseForbidden("Você não tem permissão para acessar essa página")
 
     ticket = TicketServico()
     endereco = Endereco()
