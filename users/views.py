@@ -14,6 +14,9 @@ def cadastro(request):
     user = User()
     endereco = Endereco()
     if request.method == 'POST':
+        if User.objects.filter(username=request.POST.get('username')).exists():
+            messages.error(request, "Usuário já cadastrado!")
+            return redirect('cadastro')
         if request.POST.get('password') != request.POST.get('confirm-password'):
             messages.error(request, "As senhas não coincidem!")
             return redirect('cadastro')

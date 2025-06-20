@@ -34,6 +34,7 @@ def cadastroTicket(request):
         ticket.endereco = endereco
         ticket.imagem = request.FILES.get('imagem')
         ticket.save()
+        messages.success(request, "Chamado enviado com sucesso!")
     return render(request, 'cliente/ticket.html')
 
 

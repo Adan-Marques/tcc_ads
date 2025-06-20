@@ -1,90 +1,98 @@
 {% extends 'base.html' %}
 {% block body %}
 <div class="container-fluid">
-    <div class="row">
-        <!-- formulário de Abertura de Ticket -->
-        <div class="col-md-6 p-4 content-container">
-            <div class="card p-4">
-                <h4> <i class="fa-solid fa-pen"></i> Abertura de Novo Ticket</h4>
-                {% if not confirmacao %}
-                <form method='POST' enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="mb-3">
-                        <label class="form-label">Serviço</label>
-                        <select name="categoria" class="form-select">
-                            <option value="" selected disabled>Selecione um tipo de trabalho</option>
-                            <option value="ES">Escoamento</option>
-                            <option value="PI">Pintura</option>
-                            <option value="RE">Reforma</option>
-                            <option value="CO">Construção</option>
-                            <option value="VI">Vidraçaria</option>
-                            <option value="MA">Marcenária</option>
-                            <option value="FR">Freteiro</option>
-                            <option value="MO">Montagem</option>
-                            <option value="EL">Eletricista</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Data</label>
-                        <input type="date" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">CEP</label>
-                        <input type="text" name="cep" id="cep" class="form-control" maxlength="20" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Logradouro</label>
-                        <input type="text" name="logradouro" id="logradouro" class="form-control" maxlength="20">
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label class="form-label">Número</label>
-                            <input type="text" name="numero" class="form-control" maxlength="20">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Complemento</label>
-                            <input type="text" name="complemento" class="form-control" maxlength="20">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-md-4">
-                            <label class="form-label">Bairro</label>
-                            <input type="text" name="bairro" id="bairro" class="form-control" maxlength="20">
-                        </div>
-                        <div class="col-md-5">
-                            <label class="form-label">Cidade</label>
-                            <input type="text" name="cidade" id="cidade" class="form-control" maxlength="20">
-                        </div>
-                        <div class="col-md-3">
-                            <label class="form-label">Estado</label>
-                            <input type="text" name="estado" id="estado" class="form-control" maxlength="20">
-                        </div>
-                    </div>
-		    <div class="mb-3">
-                        <label class="form-label">Referência</label>
-                        <input name="referencia" type="text" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <select class="form-select" name="tipo">
-                            <option selected>Tipo de Endereço</option>
-                            <option>Comercial</option>
-                            <option>Residencial</option>
-                        </select>
-                    </div>
+	<div class="row">
+		<!-- formulário de Abertura de Ticket -->
+		<div class="col-md-6 p-4 content-container">
+			<div class="card p-4">
+				<h4> <i class="fa-solid fa-pen"></i> Abertura de Novo Ticket</h4>
+				{% if not confirmacao %}
+				<form method='POST' enctype="multipart/form-data">
+					{% csrf_token %}
+					{% if messages %}
+					{% for message in messages %}
+					<div class="alert alert-{{message.tags}}" role="alert">
+						{{ message }}
+					</div>
+					{% endfor %}
+					{% endif %}
 
-                    <div class="mb-3">
-                        <label class="form-label">Fotos</label>
-                        <input type="file" name="imagem" class="form-control" multiple>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Nota</label>
-                        <textarea name='descricao' class="form-control" rows="3"
-                            placeholder="Insira informações adicionais sobre o serviço"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-warning w-100" name="acao" value="criar">Adicionar</button>
-                </form>
-                {% endif %}
-            </div>
+					<div class="mb-3">
+						<label class="form-label">Serviço</label>
+						<select name="categoria" class="form-select">
+							<option value="" selected disabled>Selecione um tipo de trabalho</option>
+							<option value="ES">Escoamento</option>
+							<option value="PI">Pintura</option>
+							<option value="RE">Reforma</option>
+							<option value="CO">Construção</option>
+							<option value="VI">Vidraçaria</option>
+							<option value="MA">Marcenária</option>
+							<option value="FR">Freteiro</option>
+							<option value="MO">Montagem</option>
+							<option value="EL">Eletricista</option>
+						</select>
+					</div>
+					<div class="mb-3">
+						<label class="form-label">Data</label>
+						<input type="date" class="form-control">
+					</div>
+					<div class="mb-3">
+						<label class="form-label">CEP</label>
+						<input type="text" name="cep" id="cep" class="form-control" maxlength="20" required>
+					</div>
+					<div class="mb-3">
+						<label class="form-label">Logradouro</label>
+						<input type="text" name="logradouro" id="logradouro" class="form-control" maxlength="20">
+					</div>
+					<div class="row mb-3">
+						<div class="col-md-6">
+							<label class="form-label">Número</label>
+							<input type="text" name="numero" class="form-control" maxlength="20">
+						</div>
+						<div class="col-md-6">
+							<label class="form-label">Complemento</label>
+							<input type="text" name="complemento" class="form-control" maxlength="20">
+						</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col-md-4">
+							<label class="form-label">Bairro</label>
+							<input type="text" name="bairro" id="bairro" class="form-control" maxlength="20">
+						</div>
+						<div class="col-md-5">
+							<label class="form-label">Cidade</label>
+							<input type="text" name="cidade" id="cidade" class="form-control" maxlength="20">
+						</div>
+						<div class="col-md-3">
+							<label class="form-label">Estado</label>
+							<input type="text" name="estado" id="estado" class="form-control" maxlength="20">
+						</div>
+					</div>
+					<div class="mb-3">
+						<label class="form-label">Referência</label>
+						<input name="referencia" type="text" class="form-control">
+					</div>
+					<div class="mb-3">
+						<select class="form-select" name="tipo">
+							<option selected>Tipo de Endereço</option>
+							<option>Comercial</option>
+							<option>Residencial</option>
+						</select>
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label">Fotos</label>
+						<input type="file" name="imagem" class="form-control" multiple>
+					</div>
+					<div class="mb-3">
+						<label class="form-label">Nota</label>
+						<textarea name='descricao' class="form-control" rows="3"
+												placeholder="Insira informações adicionais sobre o serviço"></textarea>
+					</div>
+					<button type="submit" class="btn btn-warning w-100" name="acao" value="criar">Adicionar</button>
+				</form>
+				{% endif %}
+			</div>
 	    <!-- TODO: REMOVER ISSO -->
             <!-- resumo do Ticket -->
             <div class="card p-4 mt-4">
@@ -172,34 +180,34 @@
         <p style="color:green;">Ticket registrado com sucesso!</p>
         {% endif %}
     </div>
-</div>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const cepInput = document.getElementById('cep');
+		</div>
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+							const cepInput = document.getElementById('cep');
 
-    cepInput.addEventListener('blur', function () {
-        const cep = cepInput.value.replace(/\D/g, '');
+							cepInput.addEventListener('blur', function () {
+											const cep = cepInput.value.replace(/\D/g, '');
 
-        if (cep.length !== 8) return;
+											if (cep.length !== 8) return;
 
-        fetch(`https://viacep.com.br/ws/${cep}/json/`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.erro) {
-                    alert('CEP não encontrado!');
-                    return;
-                }
+											fetch(`https://viacep.com.br/ws/${cep}/json/`)
+												.then(response => response.json())
+												.then(data => {
+																if (data.erro) {
+																				alert('CEP não encontrado!');
+																				return;
+																			}
 
-                document.getElementById('logradouro').value = data.logradouro;
-                document.getElementById('bairro').value = data.bairro;
-                document.getElementById('cidade').value = data.localidade;
-                document.getElementById('estado').value = data.uf;
-            })
-            .catch(error => {
-                console.error('Erro ao buscar o CEP:', error);
-                alert('Erro ao buscar o CEP!');
-            });
-    });
-});
-</script>
-{% endblock %}
+																document.getElementById('logradouro').value = data.logradouro;
+																document.getElementById('bairro').value = data.bairro;
+																document.getElementById('cidade').value = data.localidade;
+																document.getElementById('estado').value = data.uf;
+															})
+												.catch(error => {
+																console.error('Erro ao buscar o CEP:', error);
+																alert('Erro ao buscar o CEP!');
+															});
+										});
+						});
+		</script>
+		{% endblock %}
