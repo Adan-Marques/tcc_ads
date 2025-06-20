@@ -10,6 +10,5 @@ urlpatterns = [
     path('ticket-prestador-detalhes/', views.ticketPrestadorDetalhes, name='ticket-prestador-detalhes'),
     path('detalhes-pedido/<int:pk>/', views.detalhesPedido, name='detalhes-pedido'),
     path('orcamento/<int:pk>/aceitar/', views.aceitarOrcamento, name='aceitar-orcamento'),
-    #path('teste/', views.teste, name='teste'),
 ]
 

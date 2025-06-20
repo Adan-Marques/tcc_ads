@@ -5,14 +5,12 @@ from users.models import Endereco
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseForbidden
 from django.contrib import messages
+from .utils import user_is
 
 
 @login_required
+@user_is('C')
 def cadastroTicket(request):
-    if request.user.type_user == 'P':
-        #return HttpResponse("Montar página 404")
-        return HttpResponseForbidden("Você não tem permissão para acessar essa página")
-
     ticket = TicketServico()
     endereco = Endereco()
     if request.method == 'POST':
@@ -40,9 +38,8 @@ def cadastroTicket(request):
 
 
 @login_required
+@user_is('C')
 def ticketUser(request):
-    if request.user.type_user == 'P':
-        return HttpResponse('page_not_found.html')
     ticket_user = TicketServico.objects.filter(solicitante = request.user)
     tickets_abertos = TicketServico.objects.filter(solicitante=request.user, status='A').count()
     tickets_fechados = TicketServico.objects.filter(solicitante=request.user, status='F').count()
@@ -56,13 +53,9 @@ def ticketUser(request):
     return render(request, 'cliente/ticketUsuario.html', context)
 
 
+@user_is('P')
 def ticketOrcamento(request, pk):
-
-    if request.user.type_user == 'C':
-        return HttpResponse('page_not_found.html')
-
     ticket = TicketServico.objects.get(pk=pk)
-
     if request.method == 'POST':
         orcamento = Orcamento()
         orcamento.ticket = ticket
@@ -79,10 +72,8 @@ def ticketOrcamento(request, pk):
             }
     return render(request, 'prestador/ticketOrcamento.html', context)
 
+@user_is('P')
 def ticketPrestador(request):
-    if request.user.type_user == 'C':
-        return HttpResponse('page_not_found.html')
-
     tickets = TicketServico.objects.all()
     context = {
             'tickets': tickets,
@@ -97,10 +88,8 @@ def ticketPrestadorDetalhes(request):
     return render(request, 'prestador/ticketPrestadorDetalhes.html')
 
 
+@user_is('C')
 def detalhesPedido(request, pk):
-    #if request.user.type_user == 'P':
-        #TODO refactor
-        #return HttpResponse('*Fazer uma paǵina 404*')
     ticket = TicketServico.objects.get(pk=pk)
     orcamentos = Orcamento.objects.filter(ticket=ticket)
     context = {
@@ -111,6 +100,7 @@ def detalhesPedido(request, pk):
     return render(request, 'cliente/detalhesPedido.html', context)
 
 
+@user_is('C')
 def aceitarOrcamento(request, pk):
     orcamento = get_object_or_404(Orcamento, id=pk)
     ticket = orcamento.ticket
@@ -120,7 +110,7 @@ def aceitarOrcamento(request, pk):
         messages.error(request, "Este ticket já possui um serviço contratado.")
         return redirect('detalhes-pedido', pk=ticket.id)
 
-    Service.objects.create(
+    service =  Service.objects.create(
         ticket=ticket,
         orcamento=orcamento,
         cliente = request.user,
@@ -135,10 +125,9 @@ def aceitarOrcamento(request, pk):
     Orcamento.objects.filter(ticket=ticket).exclude(id=orcamento.id).update(status='R')
 
     messages.success(request, "Serviço contratado com sucesso!")
-   #return redirect('detalhes-pedido', pk=ticket.id)
-   #TODO: fazer página de serviço
-    return HttpResponse("aba de serviço")
 
-#def teste(request):
-    # Função de teste para aceitar orçamento
-    return render(request, 'teste.html')
+    context = {
+            'service': service,
+            }
+
+    return render(request, 'cliente/aceitarOrcamento.html', context)
