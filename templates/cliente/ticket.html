@@ -42,12 +42,12 @@
 					</div>
 					<div class="mb-3">
 						<label class="form-label">Logradouro</label>
-						<input type="text" name="logradouro" id="logradouro" class="form-control" maxlength="20">
+						<input type="text" name="logradouro" id="logradouro" class="form-control" maxlength="20" readonly>
 					</div>
 					<div class="row mb-3">
 						<div class="col-md-6">
 							<label class="form-label">Número</label>
-							<input type="text" name="numero" class="form-control" maxlength="20">
+							<input type="text" name="numero" class="form-control" maxlength="20" required >
 						</div>
 						<div class="col-md-6">
 							<label class="form-label">Complemento</label>
@@ -57,15 +57,15 @@
 					<div class="row mb-3">
 						<div class="col-md-4">
 							<label class="form-label">Bairro</label>
-							<input type="text" name="bairro" id="bairro" class="form-control" maxlength="20">
+							<input type="text" name="bairro" id="bairro" class="form-control" maxlength="20" readonly>
 						</div>
 						<div class="col-md-5">
 							<label class="form-label">Cidade</label>
-							<input type="text" name="cidade" id="cidade" class="form-control" maxlength="20">
+							<input type="text" name="cidade" id="cidade" class="form-control" maxlength="20" readonly >
 						</div>
 						<div class="col-md-3">
 							<label class="form-label">Estado</label>
-							<input type="text" name="estado" id="estado" class="form-control" maxlength="20">
+							<input type="text" name="estado" id="estado" class="form-control" maxlength="20"readonly>
 						</div>
 					</div>
 					<div class="mb-3">
@@ -82,7 +82,7 @@
 
 					<div class="mb-3">
 						<label class="form-label">Fotos</label>
-						<input type="file" name="imagem" class="form-control" multiple>
+						<input type="file" name="imagem" class="form-control" multiple required>
 					</div>
 					<div class="mb-3">
 						<label class="form-label">Nota</label>
@@ -93,11 +93,10 @@
 				</form>
 				{% endif %}
 			</div>
-	    <!-- TODO: REMOVER ISSO -->
-            <!-- resumo do Ticket -->
+	    <!-- TODO: REMOVER ISSO
+			{% if confirmacao %}
             <div class="card p-4 mt-4">
                 <h4> <i class="fa-solid fa-wrench"></i> Resumo do Ticket</h4>
-                <!--{% if confirmacao %} -->
                 <form method="POST">
                     {% csrf_token %}
                     <div class="row">
@@ -115,10 +114,6 @@
                             <label class="form-label">Fim (previsão)</label>
                             <input type="date" class="form-control" disabled value="{{ticket.data_previsao}}">
                         </div>
-                        <!-- <div class="col-md-6 mb-3">
-                            <label class="form-label">Região</label>
-                            <input type="text" class="form-control" disabled value="">
-                        </div> -->
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-3">
@@ -172,14 +167,13 @@
                         <button type="button" class="btn btn-secondary flex-fill">Cancelar</button>
                     </div>
                 </form>
-            <!-- {% endif %} -->
+            {% endif %} 
             </div>
-
         </div>
         {% if sucesso %}
         <p style="color:green;">Ticket registrado com sucesso!</p>
         {% endif %}
-    </div>
+    </div>-->
 		</div>
 		<script>
 			document.addEventListener('DOMContentLoaded', function () {

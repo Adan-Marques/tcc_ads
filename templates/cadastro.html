@@ -28,21 +28,21 @@
 					{% csrf_token %}
 					<input type="hidden" name="type" value="C">
 					<div class="mb-3">
-            <input name="username" type="text" class="form-control" placeholder="Nome de usuário">
+            <input name="username" type="text" class="form-control" placeholder="Nome de usuário"required>
           </div>
 					<div class="mb-3">
-						<input name="cpf" type="text" class="form-control" placeholder="CPF ou CNPJ">
+						<input name="cpf" type="text" class="form-control" placeholder="CPF ou CNPJ"required>
 					</div>
 					<div class="row mb-3">
 						<div class="col">
-							<input name="nome" type="text" class="form-control" placeholder="Nome">
+							<input name="nome" type="text" class="form-control" placeholder="Nome"required>
 						</div>
 						<div class="col">
-							<input name="sobrenome" type="text" class="form-control" placeholder="Sobrenome">
+							<input name="sobrenome" type="text" class="form-control" placeholder="Sobrenome"required>
 						</div>
 					</div>
 					<div class="mb-3">
-						<input name="telefone" type="text" class="form-control mt-2" placeholder="Celular">
+						<input name="telefone" type="text" class="form-control mt-2" placeholder="Celular"required>
 					</div>
 					<div class="mb-3">
 						<input type="text" name="cep" id="cep-pessoal" class="form-control" maxlength="20" required
@@ -50,7 +50,7 @@
 					</div>
 					<div class="mb-3">
 						<input type="text" name="logradouro" id="logradouro-pessoal" class="form-control" maxlength="20"
-							placeholder="Logradouro">
+							placeholder="Logradouro"readonly>
 					</div>
 					<div class="row mb-3">
 						<div class="col">
@@ -63,16 +63,16 @@
 					</div>
 					<div class="mb-3">
 						<input type="text" name="bairro" id="bairro-pessoal" class="form-control" maxlength="20"
-							placeholder="Bairro">
+							placeholder="Bairro" readonly>
 					</div>
 					<div class="row mb-3">
 						<div class="col">
 							<input type="text" name="cidade" id="cidade-pessoal" class="form-control" maxlength="20"
-								placeholder="Cidade">
+								placeholder="Cidade"readonly>
 						</div>
 						<div class="col">
 							<input type="text" name="estado" id="estado-pessoal" class="form-control" maxlength="20"
-								placeholder="Estado">
+								placeholder="Estado"readonly>
 						</div>
 					</div>
 					<div class="mb-3">
@@ -90,11 +90,11 @@
 					</div>
 					<div class="mb-3">
 						<input name="password" type="password" class="form-control"
-							placeholder="Senha (min 8 caracteres)">
+							placeholder="Senha (min 8 caracteres)"required>
 					</div>
 					<div class="mb-3">
 						<input name="confirm-password" type="password" class="form-control"
-							placeholder="Confirme sua senha">
+							placeholder="Confirme sua senha"required>
 					</div>
 					<div class="mb-3 form-check">
 						<input type="checkbox" class="form-check-input">
@@ -111,18 +111,18 @@
 					{% csrf_token %}
 					<input type="hidden" name="type" value="P">
 					<div class="mb-3">
-            <input name="username" type="text" class="form-control" placeholder="Nome de usuário">
+            <input name="username" type="text" class="form-control" placeholder="Nome de usuário"required>
           </div>
 
 					<div class="mb-3">
-						<input name="cpf" type="text" class="form-control" placeholder="CPF ou CNPJ">
+						<input name="cpf" type="text" class="form-control" placeholder="CPF ou CNPJ"required>
 					</div>
 					<div class="row mb-3">
 						<div class="col">
-							<input name="nome" type="text" class="form-control" placeholder="Nome">
+							<input name="nome" type="text" class="form-control" placeholder="Nome"required>
 						</div>
 						<div class="col">
-							<input name="sobrenome" type="text" class="form-control" placeholder="Sobrenome">
+							<input name="sobrenome" type="text" class="form-control" placeholder="Sobrenome"required>
 						</div>
 					</div>
 					<div class="mb-3">
@@ -131,20 +131,20 @@
 						</select>
 					</div>
 					<div class="mb-3">
-						<input name="telefone" type="text" class="form-control mt-2" placeholder="Celular">
+						<input name="telefone" type="text" class="form-control mt-2" placeholder="Celular"required>
 					</div>
 					<div class="mb-3">
 						<div class="mb-3">
 							<input type="text" name="cep" id="cep-profissional" class="form-control" maxlength="20"
-								required placeholder="CEP">
+								required placeholder="CEP"required>
 						</div>
 						<div class="mb-3">
 							<input type="text" name="logradouro" id="logradouro-profissional" class="form-control"
-								maxlength="20" placeholder="Logradouro">
+								maxlength="20" placeholder="Logradouro"readonly>
 						</div>
 						<div class="row mb-3">
 							<div class="col">
-								<input name="numero" type="text" class="form-control" placeholder="Número">
+								<input name="numero" type="text" class="form-control" placeholder="Número"required>
 							</div>
 							<div class="col">
 								<input name="complemento" type="text" class="form-control"
@@ -153,16 +153,16 @@
 						</div>
 						<div class="mb-3">
 							<input type="text" name="bairro" id="bairro-profissional" class="form-control"
-								maxlength="20" placeholder="Bairro">
+								maxlength="20" placeholder="Bairro"readonly>
 						</div>
 						<div class="row mb-3">
 							<div class="col">
 								<input type="text" name="cidade" id="cidade-profissional" class="form-control"
-									maxlength="20" placeholder="Cidade">
+									maxlength="20" placeholder="Cidade"readonly>
 							</div>
 							<div class="col">
 								<input type="text" name="estado" id="estado-profissional" class="form-control"
-									maxlength="20" placeholder="Estado">
+									maxlength="20" placeholder="Estado"readonly>
 							</div>
 						</div>
 						<div class="mb-3">
@@ -178,15 +178,15 @@
 						</div>
 
 						<div class="mb-3">
-							<input name="email" type="email" class="form-control" placeholder="Email">
+							<input name="email" type="email" class="form-control" placeholder="Email"required>
 						</div>
 						<div class="mb-3">
 							<input name="password" type="password" class="form-control"
-								placeholder="Senha (min 8 caracteres)">
+								placeholder="Senha (min 8 caracteres)"required>
 						</div>
 						<div class="mb-3">
 							<input name="confirm-password" type="password" class="form-control"
-								placeholder="Confirme sua senha">
+								placeholder="Confirme sua senha"required>
 						</div>
 						<div class="mb-3 form-check">
 							<input type="checkbox" class="form-check-input">
