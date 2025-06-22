@@ -85,7 +85,7 @@
 						<div class="d-flex flex-column align-items-end gap-2">
 							<a href="{% url 'detalhes-pedido' ticket.pk %}" class="btn btn-warning text-white"
 								style="width: 200px;">Ver detalhes <i class="fa-solid fa-chevron-right ms-2"></i></a>
-							<a href="#" class="btn btn-warning text-white" style="width: 200px;">Cancelar<i
+							<a href="{% url 'excluir-ticket' ticket.pk %}" class="btn btn-warning text-white" style="width: 200px;">Cancelar<i
 									class="fa-solid fa-xmark ms-2"></i></a>
 						</div>
 					</div>

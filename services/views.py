@@ -132,3 +132,12 @@ def aceitarOrcamento(request, pk):
             }
 
     return render(request, 'cliente/aceitarOrcamento.html', context)
+
+@user_is('C')
+@login_required
+def excluirTicket(request, pk):
+    ticket = get_object_or_404(TicketServico, pk=pk, solicitante=request.user)
+    ticket.delete()
+    return redirect('ticket-user')
+
+
