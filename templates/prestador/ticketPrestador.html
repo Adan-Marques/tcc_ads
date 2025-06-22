@@ -43,23 +43,26 @@
     <!-- lista de serviços -->
     <!-- TODO: SELECIONAR INFORMAÇÕES MELHORES SOBRE O TICKET PARA LISTAR -->
     {% for ticket in tickets %}
+    {% if ticket.status == 'A' %}
     <div class="job-card d-flex border-0 align-items-center justify-content-between mb-4">
         <div class="me-3">
-            <img src="{{ ticket.imagem.url }}" alt="Imagem do serviço"
-                style="width: 60px; height: 60px;">
+            <img src="{{ ticket.imagem.url }}" alt="Imagem do serviço"  class="rounded-circle" style="width: 100px; height: 100px;">
         </div>
 
         <div class="flex-grow-1">
             <h5>{{ ticket.titulo }}</h5>
             <p class="mb-3"><i class="fa-solid fa-user-large"></i> <strong>{{ ticket.solicitante }}</strong></p>
-            <p class="mb-3"><i class="fa-solid fa-location-dot"></i> {{ ticket.endereco.logradouro }} {{ ticket.endereco.numero }}, {{ ticket.endereco.bairro }} - {{ ticket.endereco.cidade }}
-</p>
+            <p class="mb-3"><i class="fa-solid fa-calendar-days"></i> {{ ticket.dataCriacao|date:"d/m/Y" }}</p>
+            <p class="mb-3"><i class="fa-solid fa-tag"></i> {{ ticket.get_categoria_display }}</p>
+            <p class="mb-3"><i class="fa-solid fa-location-dot"></i> {{ ticket.endereco.logradouro }} {{ticket.endereco.numero }}, {{ ticket.endereco.bairro }} - {{ ticket.endereco.cidade }}
+            </p>
         </div>
 
         <div class="ms-auto">
             <a href="{% url 'ticket-orcamento' ticket.id %}" class="btn btn-orange">Ver detalhes</a>
         </div>
     </div>
+    {% endif %}
     {% empty %}
     <p class="text-muted">Nenhum ticket disponível no momento.</p>
     {% endfor %}
