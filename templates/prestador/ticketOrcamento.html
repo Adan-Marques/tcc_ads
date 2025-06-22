@@ -9,24 +9,22 @@
 		<div class="card-body">
 			<p><strong>Descrição:</strong> {{ ticket.descricao }}</p>
 			<p><strong>Solicitante:</strong> {{ ticket.solicitante}}</p>
-			<p><strong>Endereço:</strong> {{ ticket.endereco.logradouro }} {{ ticket.endereco.numero }}, {{ticket.endereco.bairro }} - {{ ticket.endereco.cidade }}
+			<p><strong>Endereço:</strong> {{ ticket.endereco.logradouro }} {{ ticket.endereco.numero }},
+				{{ticket.endereco.bairro }} - {{ ticket.endereco.cidade }}
 			</p>
 			<p><strong>Categoria:</strong> {{ ticket.get_categoria_display }}</p>
 			<p><strong>Data do Pedido:</strong> {{ ticket.dataCriacao|date:"d/m/Y" }}</p>
-			<div id="carouselJob{{ ticket.id }}" class="carousel slide mt-3" style="width: 100%;">
-				<div class="carousel-inner rounded">
-					{% for imagem in ticket.imagens.all %}
-					<div class="carousel-item {% if forloop.first %}active{% endif %}">
-						<img src="{{ imagem.imagem.url }}" class="d-block w-100" alt="Imagem {{ forloop.counter }}">
-					</div>
-					{% empty %}
-					<div class="carousel-item active">
-						<img src="{% static 'images/default.jpg' %}" class="d-block w-100" alt="Imagem padrão">
-					</div>
-					{% endfor %}
-				</div>
-				<!-- butoes do carrosel -->
+			<!-- imagem do serviço obs.: carrossel não implementado pq a model so tem uma imagem -->
+			{% if ticket.imagem %}
+			<div class="text-center mt-3">
+				<img src="{{ ticket.imagem.url }}" class="img-fluid rounded" alt="Imagem do serviço"
+					style="object-fit: cover; height: 200px;">
 			</div>
+			{% else %}
+			<div class="text-center mt-3">
+				<p class="mt-2"><i class="fa-solid fa-images"></i> Sem imagens disponíveis</p>
+			</div>
+			{% endif %}
 		</div>
 	</div>
 
