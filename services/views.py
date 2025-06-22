@@ -140,4 +140,10 @@ def excluirTicket(request, pk):
     ticket.delete()
     return redirect('ticket-user')
 
+def avaliar_ticket(request):
+    
+    return render(request, 'cliente/avaliar-ticket.html', )
 
+def minhas_avaliacoes(request):
+    
+    return render(request, 'cliente/minhas-avaliacoes.html', )

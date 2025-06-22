@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container mt-5">
+    <h3 class="mb-4 text-center">Todas as Avaliações</h3>
+
+    {% if avaliacoes %}
+        <div class="list-group">
+            {% for avaliacao in avaliacoes %}
+                <div class="list-group-item mb-3 shadow-sm rounded">
+                    <h5><i class="fa-solid fa-user me-2"></i>{{ avaliacao.usuario.username }}</h5>
+                    <p class="mb-1"><strong>Ticket:</strong> {{ avaliacao.ticket.get_categoria_display }}</p>
+                    <p class="mb-1"><strong>Comentário:</strong> {{ avaliacao.comentario|default:"(sem comentário)" }}</p>
+                    <p class="mb-1"><strong>Data:</strong> {{ avaliacao.data_avaliacao|date:"d/m/Y" }}</p>
+                    <div>
+                        <strong>Nota:</strong>
+                        <p> {{avaliacao.nota}}</p><i class="fa-solid fa-star text-warning"></i>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center text-muted">Nenhuma avaliação cadastrada.</p>
+    {% endif %}
+</div>
+{% endblock %}

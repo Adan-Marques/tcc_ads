@@ -42,12 +42,13 @@
 					</div>
 					<div class="mb-3">
 						<label class="form-label">Logradouro</label>
-						<input type="text" name="logradouro" id="logradouro" class="form-control" maxlength="20" readonly>
+						<input type="text" name="logradouro" id="logradouro" class="form-control" maxlength="20"
+							readonly>
 					</div>
 					<div class="row mb-3">
 						<div class="col-md-6">
 							<label class="form-label">Número</label>
-							<input type="text" name="numero" class="form-control" maxlength="20" required >
+							<input type="text" name="numero" class="form-control" maxlength="20" required>
 						</div>
 						<div class="col-md-6">
 							<label class="form-label">Complemento</label>
@@ -61,11 +62,11 @@
 						</div>
 						<div class="col-md-5">
 							<label class="form-label">Cidade</label>
-							<input type="text" name="cidade" id="cidade" class="form-control" maxlength="20" readonly >
+							<input type="text" name="cidade" id="cidade" class="form-control" maxlength="20" readonly>
 						</div>
 						<div class="col-md-3">
 							<label class="form-label">Estado</label>
-							<input type="text" name="estado" id="estado" class="form-control" maxlength="20"readonly>
+							<input type="text" name="estado" id="estado" class="form-control" maxlength="20" readonly>
 						</div>
 					</div>
 					<div class="mb-3">
@@ -87,13 +88,13 @@
 					<div class="mb-3">
 						<label class="form-label">Nota</label>
 						<textarea name='descricao' class="form-control" rows="3"
-												placeholder="Insira informações adicionais sobre o serviço"></textarea>
+							placeholder="Insira informações adicionais sobre o serviço"></textarea>
 					</div>
 					<button type="submit" class="btn btn-warning w-100" name="acao" value="criar">Adicionar</button>
 				</form>
 				{% endif %}
 			</div>
-	    <!-- TODO: REMOVER ISSO
+			<!-- TODO: REMOVER ISSO
 			{% if confirmacao %}
             <div class="card p-4 mt-4">
                 <h4> <i class="fa-solid fa-wrench"></i> Resumo do Ticket</h4>
@@ -177,31 +178,27 @@
 		</div>
 		<script>
 			document.addEventListener('DOMContentLoaded', function () {
-							const cepInput = document.getElementById('cep');
-
-							cepInput.addEventListener('blur', function () {
-											const cep = cepInput.value.replace(/\D/g, '');
-
-											if (cep.length !== 8) return;
-
-											fetch(`https://viacep.com.br/ws/${cep}/json/`)
-												.then(response => response.json())
-												.then(data => {
-																if (data.erro) {
-																				alert('CEP não encontrado!');
-																				return;
-																			}
-
-																document.getElementById('logradouro').value = data.logradouro;
-																document.getElementById('bairro').value = data.bairro;
-																document.getElementById('cidade').value = data.localidade;
-																document.getElementById('estado').value = data.uf;
-															})
-												.catch(error => {
-																console.error('Erro ao buscar o CEP:', error);
-																alert('Erro ao buscar o CEP!');
-															});
-										});
+				const cepInput = document.getElementById('cep');
+				cepInput.addEventListener('blur', function () {
+					const cep = cepInput.value.replace(/\D/g, '');
+					if (cep.length !== 8) return;
+					fetch(`https://viacep.com.br/ws/${cep}/json/`)
+						.then(response => response.json())
+						.then(data => {
+							if (data.erro) {
+								alert('CEP não encontrado!');
+								return;
+							}
+							document.getElementById('logradouro').value = data.logradouro;
+							document.getElementById('bairro').value = data.bairro;
+							document.getElementById('cidade').value = data.localidade;
+							document.getElementById('estado').value = data.uf;
+						})
+						.catch(error => {
+							console.error('Erro ao buscar o CEP:', error);
+							alert('Erro ao buscar o CEP!');
 						});
+				});
+			});
 		</script>
 		{% endblock %}

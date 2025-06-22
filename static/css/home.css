@@ -648,3 +648,10 @@ body {
     font-size: 0.9rem;
     color: #f57c00;
 }
+.star i {
+        color: black; 
+        transition: color 0.2s;
+    }
+    .star i.active {
+        color: #FFC107; 
+    }
