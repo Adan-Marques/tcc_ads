@@ -327,7 +327,7 @@ body {
 }
 
 .hero-section {
-	background-image: url('/static/images/1.jpg');
+	background-image: url('/static/images/1.png');
 	background-size: cover;
 	height: 700px;
 	display: flex;
