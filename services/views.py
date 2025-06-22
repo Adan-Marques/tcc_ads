@@ -40,7 +40,8 @@ def cadastroTicket(request):
 @login_required
 @user_is('C')
 def ticketUser(request):
-    ticket_user = TicketServico.objects.filter(solicitante = request.user)
+    # TODO: Estudar maneira de apresentar tickets na tela
+    ticket_user = TicketServico.objects.filter(solicitante = request.user, status='A').order_by('-dataCriacao')
     tickets_abertos = TicketServico.objects.filter(solicitante=request.user, status='A').count()
     tickets_fechados = TicketServico.objects.filter(solicitante=request.user, status='F').count()
     tickets_cancelados = TicketServico.objects.filter(solicitante=request.user, status='C').count()
