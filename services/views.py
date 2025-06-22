@@ -75,7 +75,7 @@ def ticketOrcamento(request, pk):
 
 @user_is('P')
 def ticketPrestador(request):
-    tickets = TicketServico.objects.all()
+    tickets = TicketServico.objects.filter(status='A').order_by('-dataCriacao')
     context = {
             'tickets': tickets,
             }
