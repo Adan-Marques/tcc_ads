@@ -92,7 +92,7 @@ def ticketPrestadorDetalhes(request):
 @user_is('C')
 def detalhesPedido(request, pk):
     ticket = TicketServico.objects.get(pk=pk)
-    orcamentos = Orcamento.objects.filter(ticket=ticket)
+    orcamentos = Orcamento.objects.filter(ticket=ticket, status="E")
     context = {
             'orcamentos': orcamentos,
             'ticket': ticket,
@@ -124,6 +124,8 @@ def aceitarOrcamento(request, pk):
     ticket.save()
 
     Orcamento.objects.filter(ticket=ticket).exclude(id=orcamento.id).update(status='R')
+    orcamento.status="A"
+    orcamento.save()
 
     messages.success(request, "Serviço contratado com sucesso!")
 
@@ -139,6 +141,15 @@ def excluirTicket(request, pk):
     ticket = get_object_or_404(TicketServico, pk=pk, solicitante=request.user)
     ticket.delete()
     return redirect('ticket-user')
+
+@user_is('C')
+@login_required
+def recusarOrcamento(request, pk):
+    orcamento = get_object_or_404(Orcamento, pk=pk)
+    ticket_id = orcamento.ticket.id
+    orcamento.status="R"
+    orcamento.save()
+    return redirect('detalhes-pedido', pk=ticket_id)
 
 def avaliar_ticket(request):
     
