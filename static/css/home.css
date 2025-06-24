@@ -89,12 +89,12 @@ body {
 }
 
 .form-perfil {
-        max-width: 800px;
-        margin: 50px auto;
-        background: #fff;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	max-width: 800px;
+	margin: 50px auto;
+	background: #fff;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -632,26 +632,49 @@ body {
 	.orcamento-card {
 		text-align: center;
 	}
+
 	.orcamento-card img {
 		display: block;
 		margin: 0 auto;
 	}
 }
+
 .orcamento-card {
-    background-color: #fff;
-    border-radius: 1rem;
-    border: none;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+	background-color: #fff;
+	border-radius: 1rem;
+	border: none;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
+
 .pedido-status {
-    font-weight: bold;
-    font-size: 0.9rem;
-    color: #f57c00;
+	font-weight: bold;
+	font-size: 0.9rem;
+	color: #f57c00;
 }
+
 .star i {
-        color: black; 
-        transition: color 0.2s;
-    }
-    .star i.active {
-        color: #FFC107; 
-    }
+	color: black;
+	transition: color 0.2s;
+}
+
+.star i.active {
+	color: #FFC107;
+}
+
+.btn-laranja {
+	background-color: #ff9800;
+	color: #fff;
+	border: none;
+}
+
+.btn-laranja:hover {
+	background-color: #e68900;
+}
+
+.bg-claro {
+	background-color: #f8f9fa;
+}
+
+.border-custom {
+	border: 1px solid #ccc;
+}

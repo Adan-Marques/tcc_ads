@@ -13,5 +13,6 @@ urlpatterns = [
     path('excluit-ticket/<int:pk>/', views.excluirTicket, name='excluir-ticket'),
     path('avaliar-ticket/', views.avaliar_ticket, name='avaliar-ticket'),
     path('minhas-avaliacoes/', views.minhas_avaliacoes, name='minhas-avaliacoes'),
+    path('gerenciar-tickets/', views.gerenciarTicket, name='gerenciar-tickets'),
 ]
 

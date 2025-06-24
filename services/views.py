@@ -142,8 +142,12 @@ def excluirTicket(request, pk):
 
 def avaliar_ticket(request):
     
-    return render(request, 'cliente/avaliar-ticket.html', )
+    return render(request, 'cliente/avaliarTicket.html', )
 
 def minhas_avaliacoes(request):
     
-    return render(request, 'cliente/minhas-avaliacoes.html', )
+    return render(request, 'cliente/minhasAvaliacoes.html', )
+
+def gerenciarTicket(request):
+    
+    return render(request, 'prestador/gerenciarTicket.html', )
