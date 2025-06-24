@@ -155,12 +155,16 @@ def avaliar_ticket(request):
     
     return render(request, 'cliente/avaliarTicket.html', )
 
+@user_is('C')
+@login_required
 def minhas_avaliacoes(request):
     
-    return render(request, 'cliente/minhas-avaliacoes.html', )
-
     return render(request, 'cliente/minhasAvaliacoes.html', )
 
 def gerenciarTicket(request):
     
     return render(request, 'prestador/gerenciarTicket.html', )
+
+def avaliacoesPrestador(request):
+    
+    return render(request, 'prestador/avaliacoesPrestador.html', )

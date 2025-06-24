@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container mt-5" style="max-width: 950px;">
+    <h3 class="mb-4 text-center" style="color: #ff9800;">Minhas Avaliações</h3>
+
+    {% if avaliacoes %}
+        {% for avaliacao in avaliacoes %}
+        <div class="card mb-4 shadow-sm rounded-4" style="border: 1px solid #ccc; background-color: #f8f9fa;">
+            <div class="card-body px-4 py-3 text-black">
+                <div class="d-flex justify-content-between flex-wrap mb-2">
+                    <div><strong>Pedido:</strong> #{{ avaliacao.servico.id }}</div>
+                    <div><strong>Data:</strong> {{ avaliacao.data|date:"d/m/Y" }}</div>
+                </div>
+                <p class="mb-2"><strong>Descrição:</strong> {{ avaliacao.servico.orcamento.descricao }}</p>
+
+                <!-- Estrelas -->
+                <div class="mb-2">
+                    <strong>Nota:</strong>
+                    {% for i in "12345"|slice:":avaliacao.nota"|make_list %}
+                        <i class="fa-solid fa-star" style="color: #ff9800;"></i>
+                    {% endfor %}
+                    {% for i in "12345"|slice:"avaliacao.nota:"|make_list %}
+                        <i class="fa-regular fa-star" style="color: #ccc;"></i>
+                    {% endfor %}
+                </div>
+                {% if avaliacao.comentario %}
+                <div>
+                    <strong>Comentário:</strong><br>
+                    <span>{{ avaliacao.comentario }}</span>
+                </div>
+                {% else %}
+                <p class="fst-italic text-black mt-2">Sem comentário</p>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-info text-center shadow-sm rounded-3">
+            Nenhuma avaliação recebida até o momento.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

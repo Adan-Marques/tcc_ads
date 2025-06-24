@@ -15,5 +15,6 @@ urlpatterns = [
     path('avaliar-ticket/', views.avaliar_ticket, name='avaliar-ticket'),
     path('minhas-avaliacoes/', views.minhas_avaliacoes, name='minhas-avaliacoes'),
     path('gerenciar-tickets/', views.gerenciarTicket, name='gerenciar-tickets'),
+    path('avaliacoes-prestador/', views.avaliacoesPrestador, name='avaliacoes-prestador'),
 ]
 
