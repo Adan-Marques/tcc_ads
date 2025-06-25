@@ -4,7 +4,6 @@
 <div class="container">
 	<div class="form-container">
 		<h2 class="text-center">WorkExpress</h2>
-
 		{% if messages %}
 		{% for message in messages %}
 		<div class="alert alert-{{message.tags}}" role="alert">
@@ -12,7 +11,6 @@
 		</div>
 		{% endfor %}
 		{% endif %}
-
 		<ul class="nav nav-tabs justify-content-center" id="tabMenu">
 			<li class="nav-item">
 				<a class="nav-link active" data-bs-toggle="tab" href="#pessoal">Pessoal</a>
@@ -28,21 +26,21 @@
 					{% csrf_token %}
 					<input type="hidden" name="type" value="C">
 					<div class="mb-3">
-            <input name="username" type="text" class="form-control" placeholder="Nome de usuário"required>
-          </div>
+						<input name="username" type="text" class="form-control" placeholder="Nome de usuário" required>
+					</div>
 					<div class="mb-3">
-						<input name="cpf" type="text" class="form-control" placeholder="CPF ou CNPJ"required>
+						<input name="cpf" type="text" class="form-control" placeholder="CPF ou CNPJ" required>
 					</div>
 					<div class="row mb-3">
 						<div class="col">
-							<input name="nome" type="text" class="form-control" placeholder="Nome"required>
+							<input name="nome" type="text" class="form-control" placeholder="Nome" required>
 						</div>
 						<div class="col">
-							<input name="sobrenome" type="text" class="form-control" placeholder="Sobrenome"required>
+							<input name="sobrenome" type="text" class="form-control" placeholder="Sobrenome" required>
 						</div>
 					</div>
 					<div class="mb-3">
-						<input name="telefone" type="text" class="form-control mt-2" placeholder="Celular"required>
+						<input name="telefone" type="text" class="form-control mt-2" placeholder="Celular" required>
 					</div>
 					<div class="mb-3">
 						<input type="text" name="cep" id="cep-pessoal" class="form-control" maxlength="20" required
@@ -50,7 +48,7 @@
 					</div>
 					<div class="mb-3">
 						<input type="text" name="logradouro" id="logradouro-pessoal" class="form-control" maxlength="20"
-							placeholder="Logradouro"readonly>
+							placeholder="Logradouro" readonly>
 					</div>
 					<div class="row mb-3">
 						<div class="col">
@@ -68,11 +66,11 @@
 					<div class="row mb-3">
 						<div class="col">
 							<input type="text" name="cidade" id="cidade-pessoal" class="form-control" maxlength="20"
-								placeholder="Cidade"readonly>
+								placeholder="Cidade" readonly>
 						</div>
 						<div class="col">
 							<input type="text" name="estado" id="estado-pessoal" class="form-control" maxlength="20"
-								placeholder="Estado"readonly>
+								placeholder="Estado" readonly>
 						</div>
 					</div>
 					<div class="mb-3">
@@ -90,11 +88,11 @@
 					</div>
 					<div class="mb-3">
 						<input name="password" type="password" class="form-control"
-							placeholder="Senha (min 8 caracteres)"required>
+							placeholder="Senha (min 8 caracteres)" required>
 					</div>
 					<div class="mb-3">
 						<input name="confirm-password" type="password" class="form-control"
-							placeholder="Confirme sua senha"required>
+							placeholder="Confirme sua senha" required>
 					</div>
 					<div class="mb-3 form-check">
 						<input type="checkbox" class="form-check-input">
@@ -111,40 +109,47 @@
 					{% csrf_token %}
 					<input type="hidden" name="type" value="P">
 					<div class="mb-3">
-            <input name="username" type="text" class="form-control" placeholder="Nome de usuário"required>
-          </div>
-
+						<input name="username" type="text" class="form-control" placeholder="Nome de usuário" required>
+					</div>
 					<div class="mb-3">
-						<input name="cpf" type="text" class="form-control" placeholder="CPF ou CNPJ"required>
+						<input name="cpf" type="text" class="form-control" placeholder="CPF ou CNPJ" required>
 					</div>
 					<div class="row mb-3">
 						<div class="col">
-							<input name="nome" type="text" class="form-control" placeholder="Nome"required>
+							<input name="nome" type="text" class="form-control" placeholder="Nome" required>
 						</div>
 						<div class="col">
-							<input name="sobrenome" type="text" class="form-control" placeholder="Sobrenome"required>
+							<input name="sobrenome" type="text" class="form-control" placeholder="Sobrenome" required>
 						</div>
 					</div>
-					<!--<div class="mb-3">
-						<select class="form-select">
-							<option selected>Especialidades</option>
-						</select>
-					</div>-->
 					<div class="mb-3">
-						<input name="telefone" type="text" class="form-control mt-2" placeholder="Celular"required>
+						<select class="js-example-basic-multiple" name="especialidades[]" multiple="multiple" style="width: 360px; height:100px ;">
+							<option value="ES">Escoador</option>
+							<option value="PI">Pintor</option>
+							<option value="RE">Pedreiro de acabamento</option>
+							<option value="CO">Pedreiro de alvenaria</option>
+							<option value="VI">Vidraceiro</option>
+							<option value="MA">Marceneiro</option>
+							<option value="FR">Freteiro</option>
+							<option value="MO">Montador</option>
+							<option value="EL">Eletricista</option>
+						</select>
+					</div>
+					<div class="mb-3">
+						<input name="telefone" type="text" class="form-control mt-2" placeholder="Celular" required>
 					</div>
 					<div class="mb-3">
 						<div class="mb-3">
 							<input type="text" name="cep" id="cep-profissional" class="form-control" maxlength="20"
-								required placeholder="CEP"required>
+								required placeholder="CEP" required>
 						</div>
 						<div class="mb-3">
 							<input type="text" name="logradouro" id="logradouro-profissional" class="form-control"
-								maxlength="20" placeholder="Logradouro"readonly>
+								maxlength="20" placeholder="Logradouro" readonly>
 						</div>
 						<div class="row mb-3">
 							<div class="col">
-								<input name="numero" type="text" class="form-control" placeholder="Número"required>
+								<input name="numero" type="text" class="form-control" placeholder="Número" required>
 							</div>
 							<div class="col">
 								<input name="complemento" type="text" class="form-control"
@@ -153,16 +158,16 @@
 						</div>
 						<div class="mb-3">
 							<input type="text" name="bairro" id="bairro-profissional" class="form-control"
-								maxlength="20" placeholder="Bairro"readonly>
+								maxlength="20" placeholder="Bairro" readonly>
 						</div>
 						<div class="row mb-3">
 							<div class="col">
 								<input type="text" name="cidade" id="cidade-profissional" class="form-control"
-									maxlength="20" placeholder="Cidade"readonly>
+									maxlength="20" placeholder="Cidade" readonly>
 							</div>
 							<div class="col">
 								<input type="text" name="estado" id="estado-profissional" class="form-control"
-									maxlength="20" placeholder="Estado"readonly>
+									maxlength="20" placeholder="Estado" readonly>
 							</div>
 						</div>
 						<div class="mb-3">
@@ -176,17 +181,16 @@
 								<option value="Residencial">Residencial</option>
 							</select>
 						</div>
-
 						<div class="mb-3">
-							<input name="email" type="email" class="form-control" placeholder="Email"required>
+							<input name="email" type="email" class="form-control" placeholder="Email" required>
 						</div>
 						<div class="mb-3">
 							<input name="password" type="password" class="form-control"
-								placeholder="Senha (min 8 caracteres)"required>
+								placeholder="Senha (min 8 caracteres)" required>
 						</div>
 						<div class="mb-3">
 							<input name="confirm-password" type="password" class="form-control"
-								placeholder="Confirme sua senha"required>
+								placeholder="Confirme sua senha" required>
 						</div>
 						<div class="mb-3 form-check">
 							<input type="checkbox" class="form-check-input">
@@ -202,6 +206,8 @@
 		</div>
 	</div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
 	document.addEventListener('DOMContentLoaded', function () {
 		document.getElementById('cep-pessoal').addEventListener('blur', buscarCEP);
@@ -229,5 +235,10 @@
 				alert('Erro ao buscar o CEP!');
 			});
 	}
+	$(document).ready(function () {
+		$('.js-example-basic-multiple').select2({
+			placeholder: "Selecione as especialidades"
+		});
+	});
 </script>
 {% endblock %}

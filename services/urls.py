@@ -14,7 +14,8 @@ urlpatterns = [
     path('excluir-ticket/<int:pk>/', views.excluirTicket, name='excluir-ticket'),
     path('avaliar-ticket/', views.avaliar_ticket, name='avaliar-ticket'),
     path('minhas-avaliacoes/', views.minhas_avaliacoes, name='minhas-avaliacoes'),
-    path('gerenciar-tickets/', views.gerenciarTicket, name='gerenciar-tickets'),
+    path('gerenciar-tickets-prestador/', views.gerenciarTicketPrestador, name='gerenciar-tickets-prestador'),
     path('avaliacoes-prestador/', views.avaliacoesPrestador, name='avaliacoes-prestador'),
+    path('gerenciar-tickets-cliente/', views.gerenciarTicketCliente, name='gerenciar-tickets-cliente'),
 ]
 

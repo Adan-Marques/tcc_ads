@@ -2,7 +2,11 @@
 {% block body %}
 {% load static %}
 <div class="container mt-5">
+    <a href="{% url 'home' %}" class="btn btn-warning rounded-pill px-3" style="width: 100px;">&larr; Voltar</a>
     <h3 class="mb-4 text-center">Painel do Prestador</h3>
+
+    <br>
+    <br>
     <h4> Olá {{user.first_name}}!</h4>
     <br>
     <!-- Abas de navegação -->
@@ -45,7 +49,8 @@
                         </h5>
                         <p><i class="fa-solid fa-hashtag"></i> {{ticket.id}}</p>
                         <p><i class="fa-solid fa-calendar me-1"></i> {{ ticket.dataCriacao|date:"d/m/Y" }}</p>
-                        <p><i class="fa-solid fa-location-dot me-1"></i> {{ ticket.endereco.cidade }} - {{ticket.endereco.bairro }}</p>
+                        <p><i class="fa-solid fa-location-dot me-1"></i> {{ ticket.endereco.cidade }} -
+                            {{ticket.endereco.bairro }}</p>
                         <p><i class="fa-solid fa-clipboard-check me-1"></i>
                             {% if ticket.status == "A" %}
                             <span class="badge bg-info text-dark">Aberto</span>
@@ -56,7 +61,7 @@
                             {% endif %}
                         </p>
                     </div>
-                    <!-- Botões de ação -->
+                    <!-- botões de ação -->
                     <div class="d-flex flex-column gap-2">
                         <a href="{% url 'atualizar-ticket' ticket.pk %}" class="btn btn-laranja"
                             style="width: 120px;">Atualizar</a>
@@ -64,6 +69,7 @@
                             style="width: 120px;">Finalizar</a>
                         <a href="{% url 'cancelar-ticket' ticket.pk %}" class="btn btn-laranja"
                             style="width: 120px;">Cancelar</a>
+                        
                     </div>
                 </div>
             </div>

@@ -161,10 +161,14 @@ def minhas_avaliacoes(request):
     
     return render(request, 'cliente/minhasAvaliacoes.html', )
 
-def gerenciarTicket(request):
+def gerenciarTicketPrestador(request):
     
-    return render(request, 'prestador/gerenciarTicket.html', )
+    return render(request, 'prestador/gerenciarTicketPrestador.html', )
 
 def avaliacoesPrestador(request):
     
     return render(request, 'prestador/avaliacoesPrestador.html', )
+
+def gerenciarTicketCliente(request):
+    
+    return render(request, 'cliente/gerenciarTicketCliente.html', )

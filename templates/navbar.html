@@ -8,8 +8,9 @@
 	</a>
 </li>
 <li class="nav-item">
+
 	<a class="nav-menu-link" href="{% url 'cadastro' %}" style="color: black;">
-		Cadastre-se
+			<i class="fa-solid fa-pen-to-square me-1"></i>    Cadastre-se
 	</a>
 </li>
 {% elif request.user.type_user == "C" %}
