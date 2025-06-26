@@ -7,6 +7,7 @@ from django.http import HttpResponse, HttpResponseForbidden
 from django.contrib import messages
 from .utils import user_is
 
+#philippians 4-13
 
 @login_required
 @user_is('C')
