@@ -1,3 +1,4 @@
+{% load static %}
 <section class="container my-5">
     <div class="row justify-content-center text-center">
         <div class="col-12 col-md-4 mb-4">
@@ -22,4 +23,71 @@
             </div>
         </div>
     </div>
+</section>
+<section class="container text-center my-5">
+    <br>
+    <br>
+    <h2>Principais serviços pedidos</h2>
+    <br>
+    <h5> Os serviços mais utilizados de cada categoria </h5>
+    <div class="container mt-4">
+        <div id="carouselServices" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col-12 col-md-4 mb-4">
+                            <div class="category-card shadow-sm">
+                                <img src="{% static 'images/2.jpg' %}" class="img-fluid rounded">
+                                <h5>Montagem de móveis</h5>
+                                <a href="#">Solicitar orçamento</a>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4 mb-4">
+                            <div class="category-card shadow-sm">
+                                <img src="{% static 'images/3.jpg' %}" class="img-fluid rounded">
+                                <h5>Mudanças e Carretos</h5>
+                                <a href="#">Solicitar orçamento</a>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4 mb-4">
+                            <div class="category-card shadow-sm">
+                                <img src="{% static 'images/4.jpg' %}" class="img-fluid rounded">
+                                <h5>Serviço de Pedreiro</h5>
+                                <a href="#">Solicitar orçamento</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-12 col-md-4 mb-4">
+                            <div class="category-card shadow-sm">
+                                <img src="{% static 'images/5.jpg' %}" class="img-fluid rounded">
+                                <h5>Pintura Residencial</h5>
+                                <a href="#">Solicitar orçamento</a>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4 mb-4">
+                            <div class="category-card shadow-sm">
+                                <img src="{% static 'images/6.jpg' %}" class="img-fluid rounded">
+                                <h5>Encanamento</h5>
+                                <a href="#">Solicitar orçamento</a>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4 mb-4">
+                            <div class="category-card shadow-sm">
+                                <img src="{% static 'images/7.jpg' %}" class="img-fluid rounded">
+                                <h5>Reformas Gerais</h5>
+                                <a href="#">Solicitar orçamento</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselServices" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselServices" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </button>
 </section>

@@ -1,3 +1,4 @@
+{% load static %}
 <section class="container text-center my-5">
     <div class="row justify-content-center">
         <div class="col-12 col-md-4 mb-4">
@@ -24,4 +25,71 @@
             </div>
         </div>
     </div>
+</section>
+<section class="container text-center my-5">
+    <br>
+    <br>
+    <h2>Nossos Parceiros</h2>
+    <br>
+    <h5>As principais lojas que apoiam os nossos prestadores </h5>
+    <div class="container mt-4">
+        <div id="carouselServices" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col-12 col-md-4 mb-4">
+                            <div class="category-card shadow-sm">
+                                <img src="{% static 'images/12.png' %}" class="img-fluid rounded">
+                                <h5>SODIMAC</h5>
+                                <a href="#">Verificar principais endereços</a>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4 mb-4">
+                            <div class="category-card shadow-sm">
+                                <img src="{% static 'images/13.jpg' %}" class="img-fluid rounded">
+                                <h5>Telha Norte</h5>
+                                <a href="#">Verificar principais endereços</a>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4 mb-4">
+                            <div class="category-card shadow-sm">
+                                <img src="{% static 'images/14.png' %}" class="img-fluid rounded">
+                                <h5>Leroy Merlin</h5>
+                                <a href="#">Verificar principais endereços</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-12 col-md-4 mb-4">
+                            <div class="category-card shadow-sm">
+                                <img src="{% static 'images/15.png' %}" class="img-fluid rounded">
+                                <h5>C&C</h5>
+                                <a href="#">Verificar principais endereços</a>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4 mb-4">
+                            <div class="category-card shadow-sm">
+                                <img src="{% static 'images/16.jpg' %}" class="img-fluid rounded">
+                                <h5>Joli</h5>
+                                <a href="#">Verificar principais endereços</a>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4 mb-4">
+                            <div class="category-card shadow-sm">
+                                <img src="{% static 'images/17.jpg' %}" class="img-fluid rounded">
+                                <h5>Copafer</h5>
+                                <a href="#">Verificar principais endereços</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselServices" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselServices" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </button>
 </section>

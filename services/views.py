@@ -151,9 +151,9 @@ def recusarOrcamento(request, pk):
     orcamento.save()
     return redirect('detalhes-pedido', pk=ticket_id)
 
-def avaliar_ticket(request):
+def avaliar_servico(request):
     
-    return render(request, 'cliente/avaliarTicket.html', )
+    return render(request, 'cliente/avaliarServico.html', )
 
 @user_is('C')
 @login_required

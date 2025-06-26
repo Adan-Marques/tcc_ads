@@ -27,12 +27,6 @@
         </div>
     </div>
 </section>
-{% elif request.user.type_user == "C" %}
-	{% include 'home-card-cliente.html' %}
-{% elif request.user.type_user == "P" %}
-	{% include 'home-card-prestador.html' %}
-{% endif %}
-{% endblock %}
 <section class="container text-center my-5">
     <br>
     <br>
@@ -100,3 +94,9 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
             </button>
 </section>
+{% elif request.user.type_user == "C" %}
+	{% include 'home-card-cliente.html' %}
+{% elif request.user.type_user == "P" %}
+	{% include 'home-card-prestador.html' %}
+{% endif %}
+{% endblock %}
