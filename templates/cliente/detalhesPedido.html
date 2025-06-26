@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block body %}
+{% load static %}
 <div class="container my-5">
     <!-- Voltar -->
     <a href="{% url 'ticket-user' %}" class="btn btn-warning rounded-pill px-3" style="width: 100px;">&larr; Voltar</a>
@@ -32,10 +33,12 @@
                     <p class="mb-3"><strong>Prazo estimado:</strong> {{ orcamento.prazo|date:"d/m/Y" }}</p>
 
                     <div class="d-flex justify-content-between">
-                        <a href="{% url 'aceitar-orcamento' orcamento.id %}" class="btn btn-warning w-25 rounded-pill px-3">
+                        <a href="{% url 'aceitar-orcamento' orcamento.id %}"
+                            class="btn btn-warning w-25 rounded-pill px-3">
                             Aceitar
                         </a>
-			<a href="{% url 'recusar-orcamento' orcamento.id %}" class="btn btn-secondary btn-sm rounded-pill px-3">
+                        <a href="{% url 'recusar-orcamento' orcamento.id %}"
+                            class="btn btn-secondary btn-sm rounded-pill px-3">
                             Recusar
                         </a>
                     </div>
@@ -49,9 +52,17 @@
     <!-- Mais informações -->
     <div class="card p-4 shadow-sm mt-4 border-0 rounded-3">
         <h5 class="mb-3">Mais informações</h5>
-        <p><strong>Endereço:</strong> {{ ticket.endereco.logradouro }} {{ ticket.endereco.numero }}, {{ ticket.endereco.bairro }} - {{ ticket.endereco.cidade }}</p>
+        <p><strong>Endereço:</strong> {{ ticket.endereco.logradouro }} {{ ticket.endereco.numero }}, {{ticket.endereco.bairro }} - {{ ticket.endereco.cidade }}</p>
         <p><strong>Data do pedido:</strong> {{ ticket.dataCriacao|date:"d/m/Y" }}</p>
         <p><strong>Tipo de serviço:</strong> {{ ticket.get_categoria_display }}</p>
     </div>
-
-{% endblock %}
+    <!-- Doações -->
+    <div class="text-center my-5 p-4 bg-light rounded shadow-sm">
+        <h4 class="mb-3 fw-bold text-dark">Faça uma contribuição</h4>
+        <p class="mb-4 text-muted fs-5">
+            Sua contribuição é muito importante para continuarmos ajudando pessoas a encontrar serviços de qualidade.
+        </p>
+        <p class="mb-4 text-muted fs-5"> Utilize o QR-Code abaixo para apoiar a nossa plataforma, para continuarmos crescendo juntos!</p>
+        <img src="{% static 'images/18.jpg' %}" alt="Doe agora" class="img-fluid rounded" style="max-width: 400px;">
+    </div>
+    {% endblock %}
