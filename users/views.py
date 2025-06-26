@@ -6,6 +6,8 @@ from .models import Endereco
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
 
 def logout_view(request):
     return logout_then_login(request)
@@ -14,22 +16,39 @@ def cadastro(request):
     user = User()
     endereco = Endereco()
     if request.method == 'POST':
-        if User.objects.filter(username=request.POST.get('username')).exists():
+        username = request.POST.get('username')
+        senha = request.POST.get('password')
+        confirmar_senha = request.POST.get('confirm-password')
+        cpf = request.POST.get('cpf')
+
+        if User.objects.filter(username=username).exists():
             messages.error(request, "Usuário já cadastrado!")
             return redirect('cadastro')
-        if request.POST.get('password') != request.POST.get('confirm-password'):
+
+        if User.objects.filter(cpf=cpf).exists():
+            messages.error(request, "CPF já cadastrado!")
+            return redirect('cadastro')
+
+        if senha != confirmar_senha:
             messages.error(request, "As senhas não coincidem!")
             return redirect('cadastro')
-        user.cpf = request.POST.get('cpf')
+
+        try:
+            validate_password(senha)
+        except ValidationError as e:
+            for erro in e.messages:
+                messages.error(request, erro)
+            return redirect('cadastro')
+
+        user.cpf = cpf
+        user.username = username
         user.first_name = request.POST.get('nome')
-        user.username = request.POST.get('username')
         user.email = request.POST.get('email')
         user.last_name = request.POST.get('sobrenome')
         user.telefone = request.POST.get('telefone')
-        senha = request.POST.get('password')
         user.type_user = request.POST.get('type')
-        if senha:
-            user.set_password(senha)
+        user.set_password(senha)
+
         endereco.cep = request.POST.get('cep')
         endereco.logradouro = request.POST.get('logradouro')
         endereco.numero = request.POST.get('numero')
@@ -40,8 +59,10 @@ def cadastro(request):
         endereco.referencia = request.POST.get('referencia')
         endereco.tipo = request.POST.get('tipo_end')
         endereco.save()
+
         user.endereco = endereco
         user.save()
+
         messages.success(request, "Cadastro realizado com sucesso!")
     return render(request, 'cadastro.html')
 
