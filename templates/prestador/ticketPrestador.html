@@ -46,7 +46,7 @@
     {% if ticket.status == 'A' %}
     <div class="job-card d-flex border-0 align-items-center justify-content-between mb-4">
         <div class="me-3">
-            <img src="{{ ticket.imagem.url }}" alt="Imagem do serviço"  class="rounded-circle" style="width: 100px; height: 100px;">
+            <img src="{{ ticket.imagem.url }}" alt="Imagem do serviço"  class="d-block w-100 rounded" style="height: 180px; object-fit: cover;">
         </div>
 
         <div class="flex-grow-1">
