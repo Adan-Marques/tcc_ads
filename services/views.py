@@ -182,7 +182,7 @@ def minhas_avaliacoes(request):
     return render(request, 'cliente/minhasAvaliacoes.html', )
 
 def gerenciarTicketPrestador(request): 
-    service_user = Service.objects.filter(status='E', prestador=request.user)
+    service_user = Service.objects.filter(status__in=['E','P'], prestador=request.user)
     historico = Service.objects.filter(status='F', prestador=request.user)
     context = {
         'service_user': service_user,
@@ -195,7 +195,7 @@ def avaliacoesPrestador(request):
     return render(request, 'prestador/avaliacoesPrestador.html', )
 
 def gerenciarTicketCliente(request):
-    service_user = Service.objects.filter(status__in=['P','E'],cliente=request.user)
+    service_user = Service.objects.filter(cliente=request.user)
     context = {
         'service_user': service_user,
     }
