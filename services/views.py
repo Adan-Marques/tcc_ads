@@ -187,7 +187,7 @@ def gerenciarTicketPrestador(request):
     context = {
         'service_user': service_user,
         'historico': historico,
-     }
+    }
     return render(request, 'prestador/gerenciarTicketPrestador.html', context)
 
 def avaliacoesPrestador(request):
