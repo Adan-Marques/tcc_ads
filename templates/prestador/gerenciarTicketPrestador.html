@@ -112,13 +112,12 @@
 					<div class="d-flex justify-content-between flex-wrap">
 						<div>
 							<h5 class="fw-bold">{{ ticket.ticket.get_categoria_display }}</h5>
+                             <p><i class="fa-solid fa-hashtag me-2 text-dark"></i><strong>Pedido:</strong> {{ticket.id}}</p>
+                            <p><i class="fa-solid fa-user-tie me-2 text-dark"></i><strong>Cliente:</strong> {{ticket.cliente.first_name }} {{ ticket.cliente.last_name }}</p>
 							<p><i class="fa-solid fa-calendar-check me-2 text-dark"></i> Finalizado em: {{ ticket.dataConclusao|date:"d/m/Y" }}</p>
 							<p><i class="fa-solid fa-location-dot me-2 text-dark"></i> {{ ticket.ticket.endereco.cidade }} - {{ ticket.ticket.endereco.bairro }}</p>
 						</div>
-						<div class="d-flex align-items-center">
-							<a href="{% url 'detalhes-pedido' ticket.pk %}" class="btn btn-laranja"
-													style="width: 140px;">Ver detalhes</a>
-						</div>
+
 					</div>
 				</div>
 			</div>
