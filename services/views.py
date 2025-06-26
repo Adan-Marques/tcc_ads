@@ -172,3 +172,7 @@ def avaliacoesPrestador(request):
 def gerenciarTicketCliente(request):
     
     return render(request, 'cliente/gerenciarTicketCliente.html', )
+
+def atualizar_servico(request, servico_id):
+
+    return render(request, 'prestador/atualizarServico.html', )
