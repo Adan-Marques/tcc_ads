@@ -17,6 +17,6 @@ urlpatterns = [
     path('gerenciar-tickets-prestador/', views.gerenciarTicketPrestador, name='gerenciar-tickets-prestador'),
     path('avaliacoes-prestador/', views.avaliacoesPrestador, name='avaliacoes-prestador'),
     path('gerenciar-tickets-cliente/', views.gerenciarTicketCliente, name='gerenciar-tickets-cliente'),
-    path('servico/<int:servico_id>/atualizar/', views.atualizar_servico, name='atualizar-servico'),
+    path('servico/<int:pk>/atualizar/', views.atualizar_servico, name='atualizar-servico'),
 ]
 

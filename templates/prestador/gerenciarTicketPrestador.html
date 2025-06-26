@@ -3,120 +3,130 @@
 {% load static %}
 
 <div class="container mt-5">
-    <a href="{% url 'home' %}" class="btn btn-warning rounded-pill px-3 mb-3" style="width: 100px;">&larr; Voltar</a>
-    <h3 class="mb-4 text-center">Painel do Prestador</h3>
-    <h4>Olá {{ user.first_name }}!</h4>
+	<a href="{% url 'home' %}" class="btn btn-warning rounded-pill px-3 mb-3" style="width: 100px;">&larr; Voltar</a>
+	<h3 class="mb-4 text-center">Painel do Prestador</h3>
+	{% if messages %}
+	{% for message in messages %}
+	<div class="alert alert-{{message.tags}}" role="alert">
+		{{ message }}
+	</div>
+	{% endfor %}
+	{% endif %}
+	<h4>Olá {{ user.first_name }}!</h4>
 
-    <!-- Abas -->
-    <ul class="nav nav-tabs mb-4 border-0">
-        <li class="nav-item">
-            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tickets">📋 Todos os Tickets</button>
-        </li>
-        <li class="nav-item">
-            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#historico">📚 Histórico de Serviços</button>
-        </li>
-    </ul>
+	<!-- Abas -->
+	<ul class="nav nav-tabs mb-4 border-0">
+		<li class="nav-item">
+			<button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tickets">📋 Todos os Tickets</button>
+		</li>
+		<li class="nav-item">
+			<button class="nav-link" data-bs-toggle="tab" data-bs-target="#historico">📚 Histórico de Serviços</button>
+		</li>
+	</ul>
 
-    <div class="tab-content border-custom bg-white p-4 rounded shadow-sm">
+	<div class="tab-content border-custom bg-white p-4 rounded shadow-sm">
 
-        <!-- TAB 1 - TICKETS -->
-        <div class="tab-pane fade show active" id="tickets">
-            <h5 class="mb-4">Todos os tickets em andamento</h5>
-            {% if service_user %}
-            {% for service in service_user %}
-            <div class="row justify-content-center mb-4">
-                <div class="card border-0 shadow-sm p-3" style="max-width: 1200px; width: 100%;">
-                    <div class="d-flex justify-content-between flex-wrap">
-                        <div class="mb-3">
-                            <p><i class="fa-solid fa-calendar-day me-2 text-dark"></i><strong>Início:</strong> {{service.dataInicio|date:"d/m/Y" }}</p>
-                            <p><i class="fa-solid fa-calendar-check me-2 text-dark"></i><strong>Conclusão:</strong> {{service.dataConclusao|date:"d/m/Y" }}</p>
-                            <p><i class="fa-solid fa-user-tie me-2 text-dark"></i><strong>Cliente:</strong> {{service.cliente.first_name }} {{ service.cliente.last_name }}</p>
-                        </div>
-                        <div class="d-flex align-items-center" style="width: 200px;">
-                            <button class="btn btn-warning text-white" data-bs-toggle="modal"
-                                data-bs-target="#modalAtualizar{{ service.id }}">
-                                Atualizar <i class="fa-solid fa-pen-to-square ms-2"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+		<!-- TAB 1 - TICKETS -->
+		<div class="tab-pane fade show active" id="tickets">
+			<h5 class="mb-4">Todos os tickets em andamento</h5>
 
-            <!-- MODAL -->
-            <div class="modal fade" id="modalAtualizar{{ service.id }}" tabindex="-1"
-                aria-labelledby="modalLabel{{ service.id }}" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <form method="POST" action="{% url 'atualizar-servico' service.id %}">
-                            {% csrf_token %}
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modalLabel{{ service.id }}">Atualizar Serviço</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Fechar"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="mb-3">
-                                    <label class="form-label">Data de Conclusão</label>
-                                    <input type="date" name="dataConclusao" class="form-control"
-                                        value="{{ service.dataConclusao|date:'Y-m-d' }}">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Status</label>
-                                    <select name="status" class="form-select">
-                                        <option value="P" {% if service.status == 'P' %}selected{% endif %}>Pendente
-                                        </option>
-                                        <option value="E" {% if service.status == 'E' %}selected{% endif %}>Em andamento
-                                        </option>
-                                        <option value="F" {% if service.status == 'F' %}selected{% endif %}>Finalizado
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Comentário</label>
-                                    <textarea name="comentario" class="form-control"
-                                        rows="3">{{ service.comentario }}</textarea>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-warning">Salvar</button>
-                                <button type="button" class="btn btn-secondary"
-                                    data-bs-dismiss="modal">Cancelar</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-            {% else %}
-            <div class="alert alert-primary text-center">Nenhum serviço em andamento no momento.</div>
-            {% endif %}
-        </div>
+			{% if service_user %}
+			{% for service in service_user %}
+			<div class="row justify-content-center mb-4">
+				<div class="card border-0 shadow-sm p-3" style="max-width: 1200px; width: 100%;">
+					<div class="d-flex justify-content-between flex-wrap">
+						<div class="mb-3">
+							<p><i class="fa-solid fa-calendar-day me-2 text-dark"></i><strong>Status:</strong> {{service.get_status_display }}</p>
+							<p><i class="fa-solid fa-calendar-day me-2 text-dark"></i><strong>Início:</strong> {{service.dataInicio|date:"d/m/Y" }}</p>
+							<p><i class="fa-solid fa-calendar-check me-2 text-dark"></i><strong>Prazo:</strong> {{service.dataConclusao|date:"d/m/Y" }}</p>
+							<p><i class="fa-solid fa-user-tie me-2 text-dark"></i><strong>Cliente:</strong> {{service.cliente.first_name }} {{ service.cliente.last_name }}</p>
+							<p><i class="fa-solid fa-calendar-day me-2 text-dark"></i><strong>Comentário:</strong> {{service.comentario|default_if_none:'' }}</p>
+						</div>
+						<div class="d-flex align-items-center" style="width: 200px;">
+							<button class="btn btn-warning text-white" data-bs-toggle="modal"
+												   data-bs-target="#modalAtualizar{{ service.id }}">
+								Atualizar <i class="fa-solid fa-pen-to-square ms-2"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
 
-        <!-- TAB 2 - HISTÓRICO -->
-        <div class="tab-pane fade" id="historico">
-            <h5 class="mb-4">Histórico de Tickets Finalizados</h5>
-            {% if historico %}
-            {% for ticket in historico %}
-            <div class="row justify-content-center mb-4">
-                <div class="card border-0 shadow-sm p-3" style="max-width: 800px; width: 100%;">
-                    <div class="d-flex justify-content-between flex-wrap">
-                        <div>
-                            <h5 class="fw-bold">{{ ticket.ticket.get_categoria_display }}</h5>
-                            <p><i class="fa-solid fa-calendar-check me-2 text-dark"></i> Finalizado em: {{ ticket.dataConclusao|date:"d/m/Y" }}</p>
-                            <p><i class="fa-solid fa-location-dot me-2 text-dark"></i> {{ ticket.ticket.endereco.cidade }} - {{ ticket.ticket.endereco.bairro }}</p>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <a href="{% url 'detalhes-pedido' ticket.pk %}" class="btn btn-laranja"
-                                style="width: 140px;">Ver detalhes</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-            {% else %}
-            <div class="alert alert-secondary text-center">Nenhum ticket finalizado ainda.</div>
-            {% endif %}
-        </div>
-    </div>
+			<!-- MODAL -->
+			<div class="modal fade" id="modalAtualizar{{ service.pk }}" tabindex="-1"
+										    aria-labelledby="modalLabel{{ service.pk }}" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<form method="POST" action="{% url 'atualizar-servico' service.pk %}">
+							{% csrf_token %}
+							<div class="modal-header">
+								<h5 class="modal-title" id="modalLabel{{ service.pk }}">Atualizar Serviço</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal"
+													aria-label="Fechar"></button>
+							</div>
+							<div class="modal-body">
+								<div class="mb-3">
+									<label class="form-label">Data de Atualização</label>
+									<input type="date" name="dataAtt" class="form-control"
+													  value="{{ service.dataConclusao|date:'Y-m-d' }}">
+								</div>
+								<div class="mb-3">
+									<label class="form-label">Status</label>
+									<select name="status" class="form-select">
+										<option value="P" {% if service.status == 'P' %}selected{% endif %}>Pendente
+										</option>
+										<option value="E" {% if service.status == 'E' %}selected{% endif %}>Em andamento
+										</option>
+										<option value="F" {% if service.status == 'F' %}selected{% endif %}>Finalizado
+										</option>
+									</select>
+								</div>
+								<div class="mb-3">
+									<label class="form-label">Comentário</label>
+									<textarea name="comentario" class="form-control"
+												    rows="3">{{ service.comentario|default_if_none:'' }}</textarea>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="submit" class="btn btn-warning">Salvar</button>
+								<button type="button" class="btn btn-secondary"
+										      data-bs-dismiss="modal">Cancelar</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+			{% else %}
+			<div class="alert alert-primary text-center">Nenhum serviço em andamento no momento.</div>
+			{% endif %}
+		</div>
+
+		<!-- TAB 2 - HISTÓRICO -->
+		<div class="tab-pane fade" id="historico">
+			<h5 class="mb-4">Histórico de Tickets Finalizados</h5>
+			{% if historico %}
+			{% for ticket in historico %}
+			<div class="row justify-content-center mb-4">
+				<div class="card border-0 shadow-sm p-3" style="max-width: 800px; width: 100%;">
+					<div class="d-flex justify-content-between flex-wrap">
+						<div>
+							<h5 class="fw-bold">{{ ticket.ticket.get_categoria_display }}</h5>
+							<p><i class="fa-solid fa-calendar-check me-2 text-dark"></i> Finalizado em: {{ ticket.dataConclusao|date:"d/m/Y" }}</p>
+							<p><i class="fa-solid fa-location-dot me-2 text-dark"></i> {{ ticket.ticket.endereco.cidade }} - {{ ticket.ticket.endereco.bairro }}</p>
+						</div>
+						<div class="d-flex align-items-center">
+							<a href="{% url 'detalhes-pedido' ticket.pk %}" class="btn btn-laranja"
+													style="width: 140px;">Ver detalhes</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+			{% else %}
+			<div class="alert alert-secondary text-center">Nenhum ticket finalizado ainda.</div>
+			{% endif %}
+		</div>
+	</div>
 </div>
 {% endblock %}

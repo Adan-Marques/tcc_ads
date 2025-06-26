@@ -195,12 +195,20 @@ def avaliacoesPrestador(request):
     return render(request, 'prestador/avaliacoesPrestador.html', )
 
 def gerenciarTicketCliente(request):
-    service_user = Service.objects.filter(cliente=request.user)
+    service_user = Service.objects.filter(status__in=['P','E'],cliente=request.user)
     context = {
         'service_user': service_user,
     }
     return render(request, 'cliente/gerenciarTicketCliente.html', context)
 
-def atualizar_servico(request, servico_id):
+def atualizar_servico(request, pk):
+    service = get_object_or_404(Service, pk=pk, prestador=request.user)
+    
+    if request.method == 'POST':
+        service.dataConclusao = request.POST.get('dataAtt')
+        service.status = request.POST.get('status')
+        service.comentario = request.POST.get('comentario')
+        service.save()
+        messages.success(request, 'Serviço atualizado com sucesso!')
 
-    return render(request, 'prestador/atualizarServico.html', )
+    return redirect('gerenciar-tickets-prestador')
