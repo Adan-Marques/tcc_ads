@@ -1,6 +1,6 @@
 from multiprocessing import context
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import TicketServico, Orcamento, Service
+from .models import TicketServico, Orcamento, Service, Rating
 from users.models import Endereco
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseForbidden
@@ -151,9 +151,29 @@ def recusarOrcamento(request, pk):
     orcamento.save()
     return redirect('detalhes-pedido', pk=ticket_id)
 
-def avaliar_servico(request):
-    
-    return render(request, 'cliente/avaliarServico.html', )
+@user_is('C')
+@login_required
+def avaliar_servico(request, pk):
+    service = Service.objects.get(pk=pk)
+    if request.method == 'POST':
+        if Rating.objects.filter(service=service, avaliado=request.user).exists():
+            messages.error(request, "Você já avaliou este serviço.")
+            return redirect('avaliar-servico', pk=pk)
+
+        rating = Rating.objects.create(
+            avaliado = request.user,
+            avaliador = service.prestador,
+            service = service,
+            comentario = request.POST.get('comentario'),
+            rating = request.POST.get('nota')
+        )
+        messages.success(request, "Avaliação enviada com sucesso!")
+        return redirect('avaliar-servico', pk=pk)
+
+    context = {
+            'service': service,
+    }
+    return render(request, 'cliente/avaliarServico.html', context)
 
 @user_is('C')
 @login_required
@@ -170,8 +190,11 @@ def avaliacoesPrestador(request):
     return render(request, 'prestador/avaliacoesPrestador.html', )
 
 def gerenciarTicketCliente(request):
-    
-    return render(request, 'cliente/gerenciarTicketCliente.html', )
+    service_user = Service.objects.filter(cliente=request.user)
+    context = {
+        'service_user': service_user,
+     }
+    return render(request, 'cliente/gerenciarTicketCliente.html', context)
 
 def atualizar_servico(request, servico_id):
 
