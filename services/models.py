@@ -60,10 +60,13 @@ class Service(models.Model):
     dataConclusao = models.DateField()
     prestador = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="servicos_contratados")
     cliente = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="servicos_prestados")
-
+    comentario = models.TextField(blank=True, null=True)
 
 class Rating(models.Model):
-    pessoa = models.ForeignKey(User, on_delete=models.CASCADE)
+    avaliado = models.ForeignKey(User, on_delete=models.CASCADE, related_name="avaliacoes_recebidas", null=True)
+    avaliador = models.ForeignKey(User, on_delete=models.CASCADE, related_name="avaliacoes_enviadas", null=True)
+    service = models.ForeignKey(Service, on_delete=models.SET_NULL, blank=True, null=True)
+    comentario = models.TextField(blank=True, null=True)
     rating = models.IntegerField(default=0)
 
 
