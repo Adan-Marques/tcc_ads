@@ -46,6 +46,7 @@
                   <i class="fa-solid fa-user-tie text-dark me-2"></i>
                   <strong>Prestador:</strong> {{ service.prestador.first_name }} {{ service.prestador.last_name }}
                 </p>
+                <p><i class="fa-solid fa-comment me-2 text-dark"></i><strong>Comentário:</strong> {{service.comentario|default_if_none:'' }}</p>
               </div>
             </div>
             <div class="col-md-3 d-flex flex-column align-items-end justify-content-center gap-2 pe-3">
